@@ -1,0 +1,17 @@
+@import "variables";
+.notes-view {
+    .note-each {
+        margin: 15px auto;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: 2px;
+        padding: 10px;
+        h5 {
+            color: $red;
+            line-height: 25px;
+        }
+        p {
+            font-size: 14px;
+            line-height: 20px;
+        }
+    }
+}

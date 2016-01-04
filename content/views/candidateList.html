@@ -1,0 +1,117 @@
+<search-view ng-show="searchProcess"></search-view>
+<div ng-hide="searchProcess" class="list-view col-lg-11 col-centered list-candidate" ng-controller="candidateCtrl">
+  <div class="filter-controls clearfix">
+        <fieldset class="col-lg-1">
+          <label>Filters</label>
+      </fieldset>
+      <fieldset class="col-lg-2">
+          <label>Name</label>
+          <input class="form-control" ng-model="nameFilterValue" ng-change="filterList.byName(nameFilterValue,emailFilterValue)" type="text">
+      </fieldset>
+
+      <fieldset class="col-lg-2">
+
+          <label>Email</label>
+          <input class="form-control" ng-model="emailFilterValue" ng-change="filterList.byEmail(nameFilterValue,emailFilterValue)" type="text">
+      </fieldset>
+
+  </div>
+    <div ng-class="currentCandidate ? 'col-lg-7' : 'col-centered row'">
+        <table class="table  tableMaterial" ng-class="currentCandidate ? 'min-table' : '' ">
+            <thead>
+                <tr>
+                    <th ng-repeat="column in columnsTable">{{column.heading.toUpperCase()}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th ng-repeat="item in candidateTableItems" ng-click="setOrder(item)">{{item}}<i class="glyphicon" ng-class="orderVal.active == [item] ? 'glyphicon-chevron-up active' : 'glyphicon-chevron-down'"></i></th>
+                </tr>
+                <tr ng-repeat="candidate in candidatesData | orderBy: [orderVal.filter] | filter: filterTextName || filterTextEmail " ng-class="candidate == currentCandidate ? 'selectedTable' : '' " ng-click="selectCandidate(candidate)">
+                    <td>{{candidate.summaryCard.name.fieldValue}}</td>
+                    <td>{{candidate.summaryCard.predefinedFields[0].fieldValue || "-"}}</td>
+                    <td>{{candidate.summaryCard.predefinedFields.SKYPE.fieldValue || "-"}}</td>
+                    <td>{{candidate.summaryCard.predefinedFields.PHONE.fieldValue || "-"}}</td>
+                    <td>{{candidate.summaryCard.predefinedFields[1].fieldValue || "-"}}</td>
+                    <td>-</td>
+                    <td>{{candidate.createTime|date:'shortDate'}}</td>
+                    </td>
+                    <td ng-hide="currentCandidate" style="width:300px">
+                        <div class="col-lg-8 pull-right clearfix action-btns">
+                            <md-button ng-click="quickAction.main(candidate)" class="md-fab main md-accent pull-right" aria-label="refresh">
+                                <md-tooltip>
+                                    Main
+                                </md-tooltip>
+                                M
+                                </md-icon>
+                            </md-button>
+                            <md-button ng-click="quickAction.suggestions(candidate)" class="md-fab flow md-accent pull-right" aria-label="refresh">
+                                <md-tooltip>
+                                    Suggestions
+                                </md-tooltip>
+                                S
+                                </md-icon>
+                            </md-button>
+                            <md-button ng-click="quickAction.notes(candidate)" class="md-fab note md-primary pull-right" aria-label="refresh">
+                                <md-tooltip>
+                                    Note
+                                </md-tooltip>
+                                N
+                                </md-icon>
+                            </md-button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-show="currentCandidate" class="clearfix side-view" ng-class="currentCandidate ? 'col-lg-5' : 'hide'">
+        <!-- Vacancy side menu  -->
+        <md-toolbar md-scroll-shrink>
+            <!-- Nav Vacancy side menu  -->
+            <div class="md-toolbar-tools clearfix">
+                <div class="col-lg-11"><span class="heading-vacancy-side">{{currentCandidate.summaryCard.predefinedFields.NAME_SURNAME.fieldValue}}</span></div>
+                <!-- <div class="col-lg-1"><span ng-show="currentCandidate.hot == true" class="badge hot">HOT</span></div> -->
+            </div>
+        </md-toolbar>
+        <!-- End Nav Vacancy side menu  -->
+        <md-content>
+            <!-- Content Vacancy side menu  -->
+            <div class="wrapper-sidemenu col-centered">
+                <!-- Wrapper side menu  -->
+                <md-tabs md-selected="selectedIndex" flex>
+                    <md-tab ng-repeat="tab in tabsCandidateDetails"><a href='javascript:void(0)'>{{tab.heading}}</a></md-tab>
+                </md-tabs>
+                <div ng-show="updateProcess" class="progress progress-details" style="margin:0px">
+                    <div class="indeterminate"></div>
+                </div>
+                <div ng-show="selectedIndex == 0">
+                    <candidate-side-main></candidate-side-main>
+                </div>
+                <!-- End tab Main  -->
+                <div ng-show="selectedIndex == 1">
+                    <candidate-side-flow class="flows"></candidate-side-flow>
+                </div>
+                <!-- End Tab Flow  -->
+                <div ng-show="selectedIndex == 2">
+                    <candidate-side-suggestions class="suggestions"></candidate-side-suggestions>
+                </div>
+                <!-- End tab Suggestions  -->
+                <div ng-show="selectedIndex == 3">
+                    <!-- Tab Notes  -->
+                    <notes class="row clearfix" style="padding:20px 0"></notes>
+                </div>
+                <!-- End tab Notes  -->
+            </div>
+            <!-- End tab Notes  -->
+    </div>
+    <!--  End Wrapper side menu  -->
+    </md-content>
+    <!-- End Content Vacancy side menu  -->
+</div>
+<!-- Vacancy side menu  -->
+</div>
+<!-- End Dashboard wrapper  -->
+</div>
+</div>
+<!-- End Dashboard wrapper  -->

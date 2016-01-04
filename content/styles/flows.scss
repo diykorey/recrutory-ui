@@ -1,0 +1,76 @@
+@import "variables";
+.flows {
+  .wrapper-flow-item {
+    margin-bottom: 20px;
+    border-radius: 3px;
+    &.active-flow {
+      background: lighten($brand-dark, 80);
+    }
+    .flow-action-inner {
+      width: 98%;
+      margin-top: 10px;
+      float: right;
+      .control {
+        min-height: 110px;
+        padding-right: 10px;
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+  div {
+    .flow-items {
+      margin: 0;
+      padding: 0 20px;
+      label {
+        font-size: 12px;
+        margin-bottom: 10px;
+      }
+      .info {
+        .date {
+          vertical-align: middle;
+          line-height: 70px;
+          &.candidate-name-col {
+            font-size: 12px;
+            line-height: 20px;
+          }
+        }
+      }
+      .text {
+        textarea {
+          border: none;
+          height: 80px;
+          font-size: 12px;
+          max-height: 80px;
+          min-width: 100%;
+          padding: 5px 10px;
+          line-height: 18px;
+          resize: none;
+          background: rgba(0,0,0,0.3);
+          color: #fff;
+          &:focus {
+            font-weight: 500;
+            background: rgba(0,0,0,0.2);
+            color: #fff;
+            border-bottom: 3px solid $red;
+          }
+        }
+      }
+      .text,
+      .info,
+      .picker {
+        padding: 15px 0;
+      }
+      .picker {
+        padding: 15px;
+      }
+      .control {
+        min-height: 140px;
+        /* These two lines are counted as one :-)       */
+        padding-right: 10px;
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+}

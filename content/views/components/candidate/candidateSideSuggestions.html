@@ -1,0 +1,29 @@
+<div>
+    <div class="text-center margin-20">
+        <button class="btn btn-default" ng-click='sendFlow()' ng-disabled="!flowData.length" ng-click="selectedIndex = 2">Add to flow</button>
+    </div>
+    <md-input-container class="col-lg-4 col-centered">
+        <label>Filter</label>
+        <input ng-change="getSuggestions.search()" ng-model="filterSuggestions">
+    </md-input-container>
+    <div class="col-centered col-lg-11 margin-b-20 margin-t-20 label-red">Suggested :</div>
+    <div ng-repeat="vacancy in flowSuggested" class="col-centered col-lg-11 clearfix section">
+        <div class="col-lg-1">
+            <md-checkbox ng-model="flowaddModel[vacancy.id]" ng-change="changeFlowData(vacancy.id)" aria-label="Checkbox 1"></md-checkbox>
+        </div>
+        <div class="col-lg-11 flow-vacancy-name">Vacancy [ {{vacancy.id}} ]</div>
+    </div>
+    <div class="text-center">
+        <md-button class="inline" ng-click="getSuggestions.suggested(true)">More</md-button>
+    </div>
+    <div class="col-centered col-lg-11 margin-b-20 margin-t-20 label-red">Available :</div>
+    <div ng-repeat="vacancy in flowAvailable" class="col-centered col-lg-11 clearfix section">
+        <div class="col-lg-1">
+            <md-checkbox ng-model="flowaddModel[vacancy.id]" ng-change="changeFlowData(vacancy.id)" aria-label="Checkbox 1"></md-checkbox>
+        </div>
+        <div class="col-lg-4 flow-vacancy-name">Vacancy [ {{vacancy.id}} ]</div>
+    </div>
+    <div class="text-center">
+        <md-button class="inline" ng-click="getSuggestions.available(true)">More</md-button>
+    </div>
+</div>

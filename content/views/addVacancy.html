@@ -1,0 +1,18 @@
+<div class="card container">
+    <h2 class="text-center margin-t-20">Add new vacancy</h2>
+    <div class="col-lg-4 col-centered ">
+        <md-input-container class="margin-t-20">
+            <label>Name</label>
+            <input type="text" ng-model="vacancy.name">
+        </md-input-container>
+        <md-input-container flex>
+            <label>Requierements</label>
+            <textarea ng-model="vacancy.requirements" rows="4" columns="1" md-maxlength="150"></textarea>
+        </md-input-container>
+        <label>Tags</label>
+        <md-chips ng-model="vacancy.tags" readonly="false"></md-chips>
+        <div class="text-center margin-t-20">
+            <md-button ng-click="addVacancy()" class="md-raised inline">add vacancy</md-button>
+        </div>
+    </div>
+</div>

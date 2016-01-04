@@ -1,0 +1,11 @@
+@import "variables";
+.suggestions {
+    .section {
+        div {
+            line-height: 42px;
+        }
+        div:first-child {
+            line-height: 0;
+        }
+    }
+}

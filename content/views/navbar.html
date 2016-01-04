@@ -1,0 +1,18 @@
+<div class="header">
+    <div class="clearfix wrapper-preloader">
+        <div ng-show="loader" class="progress" style="margin:0px">
+            <div class="indeterminate"></div>
+        </div>
+    </div>
+    <!-- Add your site or application content here -->
+    <nav>
+        <ul>
+
+            <li class="logo">
+                <a href="javascript:void(0)"><img src="images/logo.png"></a>
+            </li>
+            <li ng-repeat="item in tabs" ng-click="setCurrentTab(item.route)" ng-class="currentNavTab == item.route ? 'active-nav-tab' : ''" class="nav-item"><a href="/{{item.route}}">{{item.heading}}</a></li>
+        </ul>
+    </nav>
+
+    </div>

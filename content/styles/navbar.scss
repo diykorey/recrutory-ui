@@ -1,0 +1,111 @@
+@import "variables";
+$bgDefault: #4b494f;
+$bgHighlight: #f15f4c;
+$colDefault: #fff;
+$colHighlight: #fff;
+.navbar-default a,
+p,
+span,
+div,
+li {
+    font-family: 'Roboto', sans-serif !important;
+}
+
+.navbar {
+    min-height: 30px;
+}
+
+.navbar-default {
+    background-color: $bgDefault;
+    border-color: #4b494f;
+    border-radius: 0;
+    .navbar-brand {
+        color: $colDefault;
+        &:hover, &:focus {
+            color: $colHighlight;
+        }
+    }
+    .navbar-text {
+        color: $colDefault;
+    }
+    .navbar-nav {
+        > li {
+            > a {
+                color: $colDefault;
+                font-size: 12px;
+                padding:10px;
+                min-width: 120px;
+                text-align: center;
+                &:hover, &:focus {
+                    color: $colHighlight;
+                    font-weight: 400;
+                    background-color: $bgHighlight;
+                }
+            }
+        }
+        > .active {
+            > a, > a:hover, > a:focus {
+                color: $colHighlight;
+                background-color: $bgHighlight;
+            }
+        }
+        > .open {
+            > a, > a:hover, > a:focus {
+                color: $colHighlight;
+                background-color: $bgHighlight;
+            }
+        }
+    }
+    .navbar-toggle {
+        border-color: $bgHighlight;
+        &:hover, &:focus {
+            background-color: $bgHighlight;
+        }
+        .icon-bar {
+            background-color: $colDefault;
+        }
+    }
+    .navbar-collapse,
+    .navbar-form {
+        border-color: $colDefault;
+    }
+    .navbar-link {
+        color: $colDefault;
+        &:hover {
+            color: $colHighlight;
+        }
+    }
+    .navbar-right li input {
+        border: none;
+        padding:12px 10px 11px 10px;
+        background: rgba(0, 0, 0, 0.4);
+        color: rgba(255, 255, 255, 1);
+        -webkit-transition: width 0.2s ease-in-out;
+        -moz-transition: width 0.2s ease-in-out;
+        -o-transition: width 0.2s ease-in-out;
+        transition: width 0.2s ease-in-out;
+        width: 150px;
+        font-size: 12px;
+    }
+    .navbar-right li input:focus {
+        border-left: 2px solid $red;
+        width: 300px;
+    }
+}
+
+@media (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu {
+        > li > a {
+            color: $colDefault;
+            &:hover, &:focus {
+                color: $colHighlight;
+            }
+        }
+        > .active {
+            > a, > a:hover, > a:focus, {
+                color: $colHighlight;
+                background-color: $bgHighlight;
+            }
+        }
+    }
+}

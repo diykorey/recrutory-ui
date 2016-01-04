@@ -1,0 +1,10 @@
+@import "variables";
+.side-view {
+    padding-right: 0;
+    .wrapper-sidemenu {
+      padding:0 10px;
+      padding-bottom: 30px;
+        border: 2px solid lighten($gray, 60);
+        border-top: none;
+    }
+}

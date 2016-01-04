@@ -1,0 +1,53 @@
+<search-view ng-show="searchProcess"></search-view>
+<div class="card-view clearfix" ng-controller="candidateCtrl">
+    <!-- Dashboard wrapper  -->
+    <div ng-class="{'col-lg-6 no-padding' : currentCandidate}">
+        <candidate-card ng-repeat="candidate in candidatesData" class="recrutory-card"></candidate-card>
+    </div>
+    <div ng-show="currentCandidate" class="clearfix side-view" ng-class="currentCandidate ? 'col-lg-6' : 'hide'">
+        <!-- Vacancy side menu  -->
+        <md-toolbar md-scroll-shrink>
+            <!-- Nav Vacancy side menu  -->
+            <div class="md-toolbar-tools clearfix">
+                  <div class="col-md-12"><p class="heading-vacancy-side text-center">{{currentCandidate.summaryCard.name.fieldValue}}</p></div>
+                <!-- <div class="col-lg-1"><span ng-show="currentCandidate.hot == true" class="badge hot">HOT</span></div> -->
+            </div>
+        </md-toolbar>
+        <!-- End Nav Vacancy side menu  -->
+        <md-content>
+            <!-- Content Vacancy side menu  -->
+            <div class="wrapper-sidemenu col-centered">
+                <!-- Wrapper side menu  -->
+                <md-tabs md-selected="selectedIndex" flex>
+                    <md-tab ng-repeat="tab in tabsCandidateDetails"><a href='javascript:void(0)'>{{tab.heading}}</a> </md-tab>
+                </md-tabs>
+                <div ng-show="updateProcess" class="progress progress-details" style="margin:0px">
+                    <div class="indeterminate"></div>
+                </div>
+                <div ng-show="selectedIndex == 0">
+                    <candidate-side-main></candidate-side-main>
+                </div>
+                <!-- End tab Main  -->
+                <div ng-show="selectedIndex == 1">
+                    <candidate-side-flow class="flows"></candidate-side-flow>
+                </div>
+                <!-- End Tab Flow  -->
+                <div ng-show="selectedIndex == 2">
+                    <candidate-side-suggestions class="suggestions"></candidate-side-suggestions>
+                </div>
+                <!-- End tab Suggestions  -->
+                <div ng-show="selectedIndex == 3">
+                    <!-- Tab Notes  -->
+                    <notes></notes>
+                </div>
+                <!-- End tab Notes  -->
+            </div>
+            <!-- End tab Notes  -->
+    </div>
+    <!--  End Wrapper side menu  -->
+    </md-content>
+    <!-- End Content Vacancy side menu  -->
+</div>
+<!-- Vacancy side menu  -->
+</div>
+<!-- End Dashboard wrapper  -->
