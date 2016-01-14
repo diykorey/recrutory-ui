@@ -2,114 +2,144 @@
 <html class="no-js" ng-app="kandidatoApp">
 
 <head>
-  <base href="/">
-    <meta charset="utf-8">
-    <title>Recrutory</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <link href='http://fonts.googleapis.com/css?family=Roboto:500,100,300,700,400' rel='stylesheet' type='text/css'>
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-  <!-- build:css(bower_components) styles/font-awesome.css -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="/angular-material/angular-material.css">
-  <!-- endbuild -->
+
+<base href="/">
+<meta charset="utf-8">
+<title>Recrutory</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Khula:400,300,700">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 <!-- build:css(.tmp) styles/app.css -->
-<link rel="stylesheet" href="/styles/angular-material.css">
-<link rel="stylesheet" href="/styles/buttons.css">
-<link rel="stylesheet" href="/styles/badges.css">
 <link rel="stylesheet" href="/styles/layout.css">
-<link rel="stylesheet" href="/styles/bootstrap.css">
-<link rel="stylesheet" href="/styles/navmain.css">
-<link rel="stylesheet" href="/styles/suggestions.css">
-<link rel="stylesheet" href="/styles/flows.css">
-<link rel="stylesheet" href="/styles/loader.css">
-<link rel="stylesheet" href="/styles/notes.css">
-<link rel="stylesheet" href="/styles/search.css">
-<link rel="stylesheet" href="/styles/tables.css">
-<link rel="stylesheet" href="/styles/autocomplete.css">
-<link rel="stylesheet" href="/styles/card.css">
-<link rel="stylesheet" href="/styles/hiding-block.css">
-<link rel="stylesheet" href="/styles/navbar.css">
-<link rel="stylesheet" href="/styles/quick-action.css">
-<link rel="stylesheet" href="/styles/side-view.css">
-<link rel="stylesheet" href="/styles/tags.css">
-<link rel="stylesheet" href="/styles/lists.css">
 <!-- endbuild -->
 
 </head>
 
 <body ng-controller="MainCtrl">
-    <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
 
-    <div ui-view="navbar"></div>
-    <div ui-view="searchbar"></div>
-    <div ui-view="container"></div>
+<!--[if lt IE 7]>
+  <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
 
+<div class="wrapper">
+	<div ui-view="navbar"></div>
+	<div class="container">
+		<div ui-view="container"></div>
+	</div>
+</div>
+<footer>
+	<div class="container">
+		<nav class="footer-nav">
+			<ul>
+				<li>
+					<a href="#">Important</a>
+				</li>
+				<li>
+					<a href="#">Very Important</a>
+				</li>
+				<li>
+					<a href="#">Some Info</a>
+				</li>
+			</ul>
+			<ul>
+				<li>
+					<a href="#">Overview</a>
+				</li>
+				<li>
+					<a href="#">Something else</a>
+				</li>
+				<li>
+					<a href="#">Another Info</a>
+				</li>
+			</ul>
+			<ul>
+				<li>
+					<a href="#">Contact Us</a>
+				</li>
+				<li>
+					<a href="#">Account settings</a>
+				</li>
+				<li>
+					<a href="#">More</a>
+				</li>
+			</ul>
+		</nav>
+		<div class="copyright">&copy 2014 Recrutory</div>
+		<ul class="footer-social">
+			<li>
+				<a href="#" class="fb"></a>
+			</li>
+			<li>
+				<a href="#" class="tw"></a>
+			</li>
+		</ul>
+	</div>
+</footer>
 
-      <!-- build:js(bower_components) scripts/vendor.js -->
-      <script src="/jquery/dist/jquery.js"></script>
-      <script src="/underscore/underscore.js"></script>
-      <!-- Latest compiled and minified JavaScript -->
-      <script src="/angular/angular.js"></script>
-      <script src="/angular-local-storage/dist/angular-local-storage.js"></script>
-      <script src="/angular-ui-router/release/angular-ui-router.js"></script>
-      <script src="/angular-material/angular-material.js"></script>
-      <script src="/angular-animate/angular-animate.js"></script>
-      <script src="/angular-aria/angular-aria.js"></script>
-      <script src="/angular-debounce/dist/angular-debounce.min.js"></script>
-      <script src="/ng-file-upload/ng-file-upload.js"></script>
-      <script src="/underscore/underscore.js"></script>
-      <!-- endbuild -->
+<!-- build:js(bower_components) scripts/vendor.js -->
+<script src="/jquery/dist/jquery.js"></script>
+<script src="/underscore/underscore.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="/angular/angular.js"></script>
+<script src="/angular-local-storage/dist/angular-local-storage.js"></script>
+<script src="/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="/angular-material/angular-material.js"></script>
+<script src="/angular-animate/angular-animate.js"></script>
+<script src="/angular-aria/angular-aria.js"></script>
+<script src="/angular-debounce/dist/angular-debounce.min.js"></script>
+<script src="/ng-file-upload/ng-file-upload.js"></script>
+<script src="/underscore/underscore.js"></script>
+<!-- endbuild -->
 
-      <!-- build:js(.tmp) scripts/app.js -->
-      <!-- App -->
-      <script src="scripts/app.js"></script>
-      <!-- Factory -->
-      <script src="scripts/factory/apidatafactory.js"></script>
-      <!-- Factory -->
-      <script src="scripts/services/api.js"></script>
-      <!-- Directives -->
-      <script src="scripts/directives/autofocus.js"></script>
-      <!-- Routing -->
-      <script src="scripts/config/routeConfig.js"></script>
-      <!-- Config -->
-      <script src="scripts/config/configColorsMaterial.js"></script>
-      <!-- Shared components -->
-      <script src="scripts/shared/tagList.js"></script>
-      <script src="scripts/shared/notes.js"></script>
-      <script src="scripts/shared/search.js"></script>
-      <script src="scripts/shared/flow-item.js"></script>
-      <!-- Components -->
-      <script src="scripts/directives/vacancyCard.js"></script>
-      <script src="scripts/directives/vacancySideMain.js"></script>
-      <script src="scripts/directives/vacancySideFlow.js"></script>
-      <script src="scripts/directives/vacancySideSuggestions.js"></script>
-      <script src="scripts/directives/candidateCard.js"></script>
-      <script src="scripts/directives/candidateSideMain.js"></script>
-      <script src="scripts/directives/candidateSideFlow.js"></script>
-      <script src="scripts/directives/candidateSideSuggestions.js"></script>
-      <!-- Controllers -->
-      <script src="scripts/controllers/mainController.js"></script>
-      <!-- Vacancy -->
-      <script src="scripts/controllers/vacancyController.js"></script>
+<!-- build:js(.tmp) scripts/app.js -->
+<!-- App -->
+<script src="scripts/app.js"></script>
+<!-- Factory -->
+<script src="scripts/factory/apidatafactory.js"></script>
+<!-- Factory -->
+<script src="scripts/services/api.js"></script>
+<!-- Directives -->
+<script src="scripts/directives/autofocus.js"></script>
+<!-- Routing -->
+<script src="scripts/config/routeConfig.js"></script>
+<!-- Config -->
+<script src="scripts/config/configColorsMaterial.js"></script>
+<!-- Shared components -->
+<script src="scripts/shared/tagList.js"></script>
+<script src="scripts/shared/notes.js"></script>
+<script src="scripts/shared/search.js"></script>
+<script src="scripts/shared/flow-item.js"></script>
+<!-- Components -->
+<script src="scripts/directives/vacancyCard.js"></script>
+<script src="scripts/directives/vacancySideMain.js"></script>
+<script src="scripts/directives/vacancySideFlow.js"></script>
+<script src="scripts/directives/vacancySideSuggestions.js"></script>
+<script src="scripts/directives/candidateCard.js"></script>
+<script src="scripts/directives/candidateSideMain.js"></script>
+<script src="scripts/directives/candidateSideFlow.js"></script>
+<script src="scripts/directives/candidateSideSuggestions.js"></script>
+<!-- Controllers -->
+<script src="scripts/controllers/mainController.js"></script>
+<!-- Vacancy -->
+<script src="scripts/controllers/vacancyController.js"></script>
 <script src="scripts/controllers/vacancyDashboardController.js"></script>
-      <script src="scripts/controllers/vacancyListController.js"></script>
-      <!-- Candidate -->
-      <script src="scripts/controllers/candidateController.js"></script>
-      <script src="scripts/controllers/candidateDashboardController.js"></script>
-      <script src="scripts/controllers/candidateListController.js"></script>
-      <!-- Misc -->
-      <script src="scripts/controllers/searchbarController.js"></script>
-      <script src="scripts/controllers/searchViewController.js"></script>
-      <script src="scripts/controllers/addVacancyController.js"></script>
-      <script src="scripts/controllers/addCVController.js"></script>
-      <script src="scripts/controllers/addCandidateController.js"></script>
-      <script src="scripts/controllers/notesController.js"></script>
-      <!-- Utils -->
-      <script src="scripts/utils.js"></script>
-      <!-- endbuild -->
+<script src="scripts/controllers/vacancyListController.js"></script>
+<!-- Candidate -->
+<script src="scripts/controllers/candidateController.js"></script>
+<script src="scripts/controllers/candidateDashboardController.js"></script>
+<script src="scripts/controllers/candidateListController.js"></script>
+<!-- Misc -->
+<script src="scripts/controllers/searchbarController.js"></script>
+<script src="scripts/controllers/searchViewController.js"></script>
+<script src="scripts/controllers/addVacancyController.js"></script>
+<script src="scripts/controllers/addCVController.js"></script>
+<script src="scripts/controllers/addCandidateController.js"></script>
+<script src="scripts/controllers/notesController.js"></script>
+<!-- Utils -->
+<script src="scripts/utils.js"></script>
+<!-- endbuild -->
+
 </body>
 
 </html>

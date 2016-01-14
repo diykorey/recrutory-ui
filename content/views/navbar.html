@@ -1,18 +1,33 @@
-<div class="header">
-    <div class="clearfix wrapper-preloader">
-        <div ng-show="loader" class="progress" style="margin:0px">
-            <div class="indeterminate"></div>
-        </div>
-    </div>
-    <!-- Add your site or application content here -->
-    <nav>
-        <ul>
+<header>
+	<div class="container">
+		<!--<div class="clearfix wrapper-preloader">
+			<div ng-show="loader" class="progress" style="margin:0px">
+				<div class="indeterminate"></div>
+			</div>
+		</div>-->
+		<!-- Add your site or application content here -->
+		<a href="javascript:void(0)" class="logo"></a>
+		<nav class="nav">
+			<ul>
+				<li ng-repeat="item in tabs" ng-click="setCurrentTab(item.route)" ng-class="currentNavTab == item.route ? 'active-nav-tab' : ''" class="nav-item"><a href="/{{item.route}}">{{item.heading}}</a></li>
+			</ul>
+		</nav>
+		<nav class="nav-add">
+			<ul>
+				<li>
+					<a href="/#/addVacancy">Add vacancy</a>
+				</li>
+				<li class="active">
+					<a href="/#/addCandidate">Add candidate</a>
+				</li>
+				<li>
+					<a href="/#/uploadCV">Upload CV</a>
+				</li>
+			</ul>
+		</nav>
+		<div class="log-link">
+			<a href="#">Log Out</a>
+		</div>
+	</div>
+</header>
 
-            <li class="logo">
-                <a href="javascript:void(0)"><img src="images/logo.png"></a>
-            </li>
-            <li ng-repeat="item in tabs" ng-click="setCurrentTab(item.route)" ng-class="currentNavTab == item.route ? 'active-nav-tab' : ''" class="nav-item"><a href="/{{item.route}}">{{item.heading}}</a></li>
-        </ul>
-    </nav>
-
-    </div>
