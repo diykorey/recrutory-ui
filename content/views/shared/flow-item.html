@@ -1,49 +1,52 @@
-<div class="wrapper-flow-item" ng-class="currentFlowId == item.id ? 'active-flow' : 'hidden-flow'" ng-repeat="item in recrutoryEntityData">
-  <div class="flow-items section clearfix">
-    <div class="col-lg-2 info">
-      <div>
-        <label>Name</label>
-      </div>
-      <div class="date" ng-class="{'candidate-name-col' : entityCurrent == 'candidate'}">
-        <span ng-if="entityCurrent == 'vacancy'">{{item.candidate.summaryCard.name.fieldValue}}</span>
-        <span ng-if="entityCurrent == 'candidate'">{{item.vacancy.name}}</span>
-      </div>
-    </div>
-    <div class="col-lg-3 picker">
-      <div>
-        <label>State</label>
-      </div>
-      <md-select ng-change="changeFlowState(item.currentFlowState, item.currentFlowStateDescription, item.actions[item.actions.length - 1].flowId)" ng-model="item.currentFlowState" ng-init="item.currentFlowState = item.actions[item.actions.length - 1].state" placeholder="Pick">
-        <md-option ng-repeat="action in vacancyActions">{{action.name}}</md-option>
-      </md-select>
-    </div>
-    <div class="col-lg-5 col-md-4 text">
-      <div>
-        <label>Description</label>
-      </div>
-      <textarea ng-model="item.currentFlowStateDescription" ng-init="item.currentFlowStateDescription = item.actions[item.actions.length - 1].description" style="resize: none;" ng-blur="item.currentFlowStateDescription != item.actions[item.actions.length - 1].description ? changeFlowState(item.currentFlowState, item.currentFlowStateDescription, item.actions[item.actions.length - 1].flowId) : null"></textarea>
-    </div>
-    <div class="col-lg-2 control">
-      <button type="button pull-right" class="btn btn-default btn-full" ng-click="currentFlowId ? currentFlowId = false : currentFlowId = item.id">{{currentFlowId == item.id ? 'Hide' : 'History'}}</button>
-    </div>
-  </div>
-  <div class="clearfix flow-item-history" ng-show="currentFlowId == item.id">
-    <div class="flow-items flow-action-inner
- section clearfix" ng-repeat="action in item.actions">
-      <div class="col-lg-3 info">
-        <div class="name" ng-if="$index < 1">{{item.candidate.summaryCard.predefinedFields.NAME_SURNAME.fieldValue}}
-        </div>
-        <div class="date" ng-class="{'candidate-name-col' : entityCurrent == 'candidate'}">
-          <span ng-if="entityCurrent == 'vacancy'">{{item.candidate.summaryCard.name.fieldValue}}</span>
-          <span ng-if="entityCurrent == 'candidate'">{{item.vacancy.name}}</span>
-        </div>
-      </div>
-      <div class="col-lg-2 picker">
-        {{action.state}}
-      </div>
-      <div class="col-lg-5 text">
-        <textarea ng-model="action.description" style="resize: none;"></textarea>
-      </div>
-    </div>
-  </div>
+<div class="flow-box" ng-class="currentFlowId == item.id ? 'active-flow' : 'hidden-flow'" ng-repeat="item in recrutoryEntityData">
+	<div class="flow-items">
+		<div class="flow-items-name">Name</div>
+		<div class="flow-items-status">
+			<md-select ng-change="changeFlowState(item.currentFlowState, item.currentFlowStateDescription, item.actions[item.actions.length - 1].flowId)" ng-model="item.currentFlowState" ng-init="item.currentFlowState = item.actions[item.actions.length - 1].state" placeholder="Pick">
+				<md-option ng-repeat="action in vacancyActions">{{action.name}}</md-option>
+			</md-select>
+		</div>
+		<div class="flow-items-date" ng-class="{'candidate-name-col' : entityCurrent == 'candidate'}">
+			<span ng-if="entityCurrent == 'vacancy'">{{item.candidate.summaryCard.name.fieldValue}}</span>
+			<span ng-if="entityCurrent == 'candidate'">{{item.vacancy.name}}</span>
+		</div>
+	</div>
+	<div class="flow-main">
+		<label>Description</label>
+		<div class="text-box">
+			<!--<textarea class="textarea" ng-model="item.currentFlowStateDescription" ng-init="item.currentFlowStateDescription = item.actions[item.actions.length - 1].description" style="resize: none;" ng-blur="item.currentFlowStateDescription != item.actions[item.actions.length - 1].description ? changeFlowState(item.currentFlowState, item.currentFlowStateDescription, item.actions[item.actions.length - 1].flowId) : null"></textarea>-->
+			<div class="ellipsis">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum</p>
+			</div>
+			<div class="text-box-open" toggle-active-parent></div>
+		</div>
+		<span class="flow-main-history-show {{currentFlowId == item.id ? 'opened' : ''}}" ng-click="currentFlowId ? currentFlowId = false : currentFlowId = item.id">{{currentFlowId == item.id ? 'Hide History' : 'Show History'}}</span>
+	</div>
+	<div class="clear"></div>
+	<div class="flow-item-history" ng-show="currentFlowId == item.id">
+		<div class="flow-item-history-content">
+			<div class="flow-box" ng-repeat="action in item.actions">
+				<div class="flow-items">
+					<!--<div class="flow-items-name" ng-if="$index < 1">{{item.candidate.summaryCard.predefinedFields.NAME_SURNAME.fieldValue}}</div>-->
+					<div class="flow-items-status">{{action.state}}</div>
+					<div class="flow-items-date" ng-class="{'candidate-name-col' : entityCurrent == 'candidate'}">
+					  <span ng-if="entityCurrent == 'vacancy'">{{item.candidate.summaryCard.name.fieldValue}}</span>
+					  <span ng-if="entityCurrent == 'candidate'">{{item.vacancy.name}}</span>
+					</div>
+				</div>
+				<div class="flow-main">
+					<label>Description</label>
+					<div class="text-box">
+						<div class="ellipsis">
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum</p>
+						</div>
+						<div class="text-box-open" toggle-active-parent></div>
+						<!--<textarea class="textarea" ng-model="action.description"></textarea>-->
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<span class="flow-main-history-show {{currentFlowId == item.id ? 'opened' : ''}}" ng-click="currentFlowId ? currentFlowId = false : currentFlowId = item.id">{{currentFlowId == item.id ? 'Hide History' : 'Show History'}}</span>
+	</div>
 </div>

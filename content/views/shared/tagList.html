@@ -1,9 +1,8 @@
- <div>
-  <div class="tags clearfix" ng-if="tags.length > 0">
-         <a ng-repeat="tag in tags" ng-if="tags.length > 0">{{tag.keyword}}</a>
-      </div>
-      <div class="tags clearfix" ng-if="tags.length == 0">
-         <a class="no-tags
-            ">No tags</a>
-      </div>
-      </div>
+<div>
+	<ul class="tags clearfix" ng-if="tags.length > 0">
+		<li ng-repeat="tag in tags" ng-if="tags.length > 0">
+			<a>{{tag.keyword}}</a>
+		</li>
+	</ul>
+	<div class="tags" ng-if="tags.length == 0">No tags</div>
+</div>

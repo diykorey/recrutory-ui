@@ -1,119 +1,88 @@
 <search-view ng-show="searchProcess"></search-view>
-<div ng-hide="searchProcess" class="col-xs-11 col-centered list-view" ng-controller="vacancyCtrl">
-  <div class="filter-controls clearfix">
-        <fieldset class="col-lg-1">
-          <label>Filters</label>
-      </fieldset>
-      <fieldset class="col-lg-2">
-          <label>Name</label>
-          <input class="form-control" ng-model="nameFilterValue" ng-change="filterList.byName(nameFilterValue,emailFilterValue)" type="text">
-      </fieldset>
-
-      <fieldset class="col-lg-2">
-
-          <label>Email</label>
-          <input class="form-control" ng-model="emailFilterValue" ng-change="filterList.byEmail(nameFilterValue,emailFilterValue)" type="text">
-      </fieldset>
-
-  </div>
-    <div ng-class="currentVacancy ? 'col-lg-7' : 'col-centered row'">
-        <table class="table tableMaterial">
-            <thead>
-                <tr>
-                    <th ng-repeat="column in columnsTable">{{column.heading.toUpperCase()}}</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th ng-repeat="item in vacancyTableItems" ng-click="setOrder(item)">{{item}}<i class="glyphicon" ng-class="orderVal.active == [item.toLowerCase()] ? 'glyphicon-chevron-up active' : 'glyphicon-chevron-down'"></i></th>
-                </tr>
-                <tr ng-repeat="vacancy in vacanciesData | orderBy: [orderVal.filter] | filter: filterTextName || filterTextEmail" ng-class="vacancy == currentVacancy ? 'selectedTable' : 'none' " ng-click="selectVacancy(vacancy)">
-                    <td>{{vacancy.allowArchive ? 'Do you want to archive ' + vacancy.name + ' vacancy ?' : vacancy.name}}
-                    </td>
-                    <td ng-style="vacancy.allowArchive ? {'opacity':'0'} : {}"><a href="#!" class="collection-item"><span class="badge open">{{vacancy.state}}</span></a></td>
-                    <td ng-style="vacancy.allowArchive ? {'opacity':'0'} : {}">{{vacancy.createTime|date:'shortDate'}}</td>
-                    <td>
-                        <div ng-hide="vacancy.allowArchive" class="pull-right clearfix action-btns" style="padding:0">
-                            <md-button ng-hide="currentVacancy" ng-click="quickAction.main(vacancy)" class="md-fab main md-accent pull-right" aria-label="refresh">
-                                <md-tooltip>
-                                    Main
-                                </md-tooltip>
-                                M
-                                </md-icon>
-                            </md-button>
-                            <md-button ng-hide="currentVacancy" ng-click="quickAction.suggestions(vacancy)" class="md-fab flow md-accent pull-right" aria-label="refresh">
-                                <md-tooltip>
-                                    Suggestions
-                                </md-tooltip>
-                                S
-                                </md-icon>
-                            </md-button>
-                            <md-button ng-hide="currentVacancy" ng-click="quickAction.notes(vacancy)" class="md-fab note md-primary pull-right" aria-label="refresh">
-                                <md-tooltip>
-                                    Note
-                                </md-tooltip>
-                                N
-                                </md-icon>
-                            </md-button>
-                            <md-button ng-click="quickAction.archive(vacancy,'archive')" class="md-fab archive md-primary pull-right" aria-label="refresh">
-                                <md-tooltip>
-                                    Archive
-                                </md-tooltip>
-                                A
-                                </md-icon>
-                            </md-button>
-                        </div>
-                        <div ng-show="vacancy.allowArchive" class="pull-right">
+<h1>Vacancy Search</h1>
+<div ng-controller="vacancyCtrl">
+	<div class="clearfix" ng-class="currentVacancy ? 'col-side-visible' : ''">
+		<div class="col-main">
+			<div class="сard-table">
+				<div class="card-table-header">
+					<div class="card-table-cell" ng-repeat="item in vacancyTableItems" ng-click="setOrder(item)">{{item}}</div>
+				</div>
+				<div class="card-table-row" ng-repeat="vacancy in vacanciesData | orderBy: [orderVal.filter] | filter: filterTextName || filterTextEmail" ng-class="vacancy == currentVacancy ? 'selectedTable' : 'none' " ng-click="selectVacancy(vacancy)">
+					<div class="card-table-cell card-table-name">{{vacancy.allowArchive ? 'Do you want to archive ' + vacancy.name + ' vacancy ?' : vacancy.name}}</div>
+					<div class="card-table-cell card-table-state">
+						<span class="open">{{vacancy.state}}</span>
+					</div>
+					<div class="card-table-cell card-table-icons clearfix">
+						<ul class="card-icon-list" ng-hide="vacancy.allowArchive">
+							<li>
+								<md-button ng-click="quickAction.archive(vacancy,'archive')" class="card-icon-archive" aria-label="refresh">
+									<!--<md-tooltip>
+										Archive
+									</md-tooltip>-->
+								</md-button>
+							</li>
+							<li>
+								<md-button ng-hide="currentVacancy" ng-click="quickAction.main(vacancy)" class="card-icon-main" aria-label="refresh">
+									<!--<md-tooltip>
+										Main
+									</md-tooltip>-->
+								</md-button>
+							</li>
+							<li>
+								<md-button ng-hide="currentVacancy" ng-click="quickAction.suggestions(vacancy)" class="card-icon-flow" aria-label="refresh">
+									<!--<md-tooltip>
+										Suggestions
+									</md-tooltip>-->
+								</md-button>
+							</li>
+							<li>
+								<md-button ng-hide="currentVacancy" ng-click="quickAction.notes(vacancy)" class="card-icon-notes"  aria-label="refresh">
+									<!--<md-tooltip>
+										Note
+									</md-tooltip>-->
+								</md-button>
+							</li>
+                        </ul>
+                        <!--<div ng-show="vacancy.allowArchive" class="pull-right">
                             <md-button class="md-raised md-warn" ng-click="archiveVacancy(vacancy)">Archive</md-button>
                             <md-button class="md-raised" ng-click="quickAction.archive(vacancy,'unarchive')">Undo</md-button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <!-- End Vacancy card wrapper  -->
-    <div ng-show="currentVacancy" class="clearfix side-view
-" ng-class="currentVacancy ? 'col-lg-5' : 'hide'">
-        <!-- Vacancy side menu  -->
-        <md-toolbar md-scroll-shrink>
-            <!-- Nav Vacancy side menu  -->
-            <div class="md-toolbar-tools clearfix">
-                <div class="col-lg-11"><span class="heading-vacancy-side
-               ">{{currentVacancy.name}}</span></div>
-                <div class="col-lg-1"><span ng-show="currentVacancy.hot == true" class="badge hot">HOT</span></div>
-            </div>
-        </md-toolbar>
-        <!-- End Nav Vacancy side menu  -->
-        <md-content>
-            <!-- Content Vacancy side menu  -->
-            <div class="wrapper-sidemenu col-centered">
-                <!-- Wrapper side menu  -->
-                <md-tabs md-selected="selectedIndex" flex>
-                    <md-tab ng-repeat="tab in tabsVacancies"><a href='javascript:void(0)'>{{tab.heading}}</a> </md-tab>
-                </md-tabs>
-                <div ng-show="updateProcess" class="progress progress-details" style="margin:0px">
-                    <div class="indeterminate"></div>
-                </div>
-                <div ng-show="selectedIndex == 0">
-                    <vacancy-side-main></vacancy-side-main>
-                </div>
-                <!-- End tab Main  -->
-                <div ng-show="selectedIndex == 1">
-                    <vacancy-side-flow class="flows"></vacancy-side-flow>
-                </div>
-                <div ng-show="selectedIndex == 2">
-                    <vacancy-side-suggestions class="suggestions"></vacancy-side-suggestions>
-                </div>
-                <!-- End tab Suggestions  -->
-                <div ng-show="selectedIndex == 3">
-                    <notes class="row clearfix" style="padding:20px 0"></notes>
-                </div>
-                <!-- End tab Notes  -->
-            </div>
-            <!--  End Wrapper side menu  -->
-        </md-content>
-        <!-- End Content Vacancy side menu  -->
-    </div>
-    <!-- Vacancy side menu  -->
+                        </div>-->
+						{{vacancy.createTime|date:'shortDate'}}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-side">
+			<md-toolbar md-scroll-shrink>
+				<div class="card-info-name">
+					<span>{{currentVacancy.fieldValue}}</span>
+					<!-- <div class="col-lg-1"><span ng-show="currentVacancy.hot == true" class="badge hot">HOT</span></div> -->
+				</div>
+			</md-toolbar>
+			<md-content>
+				<div class="card-info">
+					<div class="card-info-tabs-nav clearfix">
+						<md-tabs md-selected="selectedIndex" flex>
+							<md-tab ng-repeat="tab in tabsVacancies"><a href='javascript:void(0)'>{{tab.heading}}</a> </md-tab>
+						</md-tabs>
+					</div>
+					<!--<div ng-show="updateProcess" class="progress progress-details" style="margin:0px">
+						<div class="indeterminate"></div>
+					</div>-->
+					<div ng-show="selectedIndex == 0">
+						<vacancy-side-main></vacancy-side-main>
+					</div>
+					<div ng-show="selectedIndex == 1">
+						<vacancy-side-flow class="flows"></vacancy-side-flow>
+					</div>
+					<div ng-show="selectedIndex == 2">
+						<vacancy-side-suggestions class="suggestions"></vacancy-side-suggestions>
+					</div>
+					<div ng-show="selectedIndex == 3">
+						<notes></notes>
+					</div>
+				</div>
+			</md-content>
+		</div>
+	</div>
 </div>

@@ -1,5 +1,5 @@
-<div class="col-md-11 col-centered side-container">
-    <div class="margin-t-20">
+<div>
+    <!--<div class="margin-t-20">
         <md-input-container>
             <label class="labelHeading">Name</label>
             <input ng-blur="updateInfo(currentVacancy.id)" ng-model="currentVacancy.name">
@@ -10,23 +10,17 @@
             <label class="labelHeading">Requirements</label>
             <input ng-blur="updateInfo(currentVacancy.id)" ng-model="currentVacancy.requirements">
         </md-input-container>
-    </div>
-    <div class="col-centered separator "></div>
-    <div class="col-centered section clearfix">
-        <h5 class="vacancy-heading-inner">Tags</h5>
-        <div class="tags clearfix" ng-if="currentVacancy.tags.length > 0">
-            <a ng-repeat="tag in currentVacancy.tags" ng-if="currentVacancy.tags.length > 0" ng-click="tags.delete(tag)">{{tag.keyword}}<button><i class="glyphicon glyphicon-remove"></i></button></a>
-        </div>
-        <div class="tags clearfix" ng-show="currentVacancy.tags.length == 0">
-            <a class="no-tags
-                     ">No tags</a>
-        </div>
-        <div class="col-centered section-edit">
-            <md-input-container>
-                <label class="labelHeading">Type tag name and hit Enter, Space or type comma to add it.</label>
-                <input ng-keyup="$event.keyCode == 13 || $event.keyCode == 32 || $event.keyCode == 188? tags.add() : null" ng-model="tagEdit
-                           ">
-            </md-input-container>
-        </div>
-    </div>
+    </div>-->
+    <div class="card-info-main-desc">
+		<label>Description:</label>
+		<div class="card-info-main-desc-text">Business Analysis Requirements Gathering / DocumentationTravel IndustrySalary to 40K Chester basedCall Dan Butl</div>
+	</div>
+	<div class="card-info-main-tags">
+		<label>Tags</label>
+		<div class="card-info-main-tags-list clearfix" ng-if="currentVacancy.tags.length > 0">
+			<a ng-repeat="tag in currentVacancy.tags" ng-if="currentVacancy.tags.length > 0" ng-click="tags.delete(tag)">{{tag.keyword}}</a>
+		</div>
+		<div class="card-info-main-tags-list" ng-show="currentVacancy.tags.length == 0">No tags</div>
+		<input class="textfield" ng-keyup="$event.keyCode == 13 || $event.keyCode == 32 || $event.keyCode == 188? tags.add() : null" ng-model="tagEdit" placeholder="Type tag name and hit Enter, Space or type comma to add it.">
+	</div>
 </div>

@@ -1,65 +1,65 @@
-<div class="clearfix" ng-class="currentVacancy ? 'col-md-6' : 'col-md-3'">
-    <div class="content clearfix" ng-click="selectVacancy(vacancy)" ng-class="vacancy.id == currentVacancy.id ? 'selected' :''">
-        <div ng-hide="vacancy.allowArchive == true">
-            <!-- Default card content -->
-            <div class="clearfix">
-                <div class="col-lg-4 info-top">
-                    <div class="col-lg-6 text-center number">{{vacancy.id}}</div>
-                    <div class="col-lg-6 text-center hot" ng-if="vacancy.hot == true">HOT</div>
-                </div>
-                <div class="col-lg-8 pull-right clearfix  action-btns" style="padding:0">
-                    <md-button ng-click="quickAction.main(vacancy)" class="md-fab main  pull-right" aria-label="refresh">
-                        <md-tooltip>
-                            Main
-                        </md-tooltip>
-                        M
-                        </md-icon>
-                    </md-button>
-                    <md-button ng-click="quickAction.flow(vacancy)" class="md-fab flow  pull-right" aria-label="refresh">
-                        <md-tooltip>
-                            Flow
-                        </md-tooltip>
-                        F
-                        </md-icon>
-                    </md-button>
-                    <md-button ng-click="quickAction.notes(vacancy)" class="md-fab note md-primary pull-right" aria-label="refresh">
-                        <md-tooltip>
-                            Note
-                        </md-tooltip>
-                        N
-                        </md-icon>
-                    </md-button>
-                    <md-button ng-click="quickAction.archive(vacancy,'archive')" class="md-fab archive md-primary pull-right" aria-label="refresh">
-                        <md-tooltip>
-                            Archive
-                        </md-tooltip>
-                        A
-                        </md-icon>
-                    </md-button>
-                </div>
-            </div>
-            <div class="name">{{vacancy.name}}</div>
-            <div class="desc">
-                <label>Description :</label>
-                <div>{{vacancy.requirements | limitTo: 110}}{{vacancy.requirements.length > 120 ? '...': ''}}</div>
-            </div>
-            <div class="tags">
-                <label>Tags:</label>
-                <tag-list tags="vacancy.tags"> </tag-list>
-            </div>
-            <div class="date">{{vacancy.createTime|date:'medium'}}</div>
-        </div>
-        <!-- End Default card content -->
-        <div ng-show="vacancy.allowArchive == true" class="text-center col-centered col-lg-11 archive-warn-wrapper">
-            <!-- Archive card content -->
-            <i class="glyphicon glyphicon-trash text-center"></i>
-            <p>Are you sure that you want
-                <br>to archive this vacancy ?
-            </p>
-            <div class="margin-t-20">
-                <md-button class="md-raised md-warn inline" ng-click="archiveVacancy(vacancy)">Archive</md-button>
-                <md-button ng-click="quickAction.archive(vacancy,'unarchive')">Undo</md-button>
-            </div>
-        </div>
-        <!-- End Archive card content -->
-    </div>
+<div>
+	<div class="card" ng-click="selectVacancy(vacancy)" ng-class="vacancy.id == currentVacancy.id ? 'selected' :''">
+		<div class="content clearfix">
+			<div ng-hide="vacancy.allowArchive == true">
+				<!--<div class="col-lg-6 text-center hot" ng-if="vacancy.hot == true">HOT</div>-->
+				<div class="card-name">{{vacancy.summaryCard.name.fieldValue}}</div>
+				<div class="card-number clearfix">
+					<span>{{vacancy.id}}</span>
+				</div>
+				<div class="card-desc">
+					<label>Description :</label>
+					<div class="card-desc-text">{{vacancy.requirements | limitTo: 110}}{{vacancy.requirements.length > 120 ? '...': ''}}</div>
+				</div>
+				<div class="card-tags">
+					<label>Tags:</label>
+					<tag-list tags="vacancy.tags"> </tag-list>
+				</div>
+				<div class="card-date">{{vacancy.createTime|date:'medium'}}</div>
+				<ul class="card-icon-list">
+					<li>
+						<md-button ng-click="quickAction.archive(vacancy,'archive')" class="card-icon-archive" aria-label="refresh">
+							<!--<md-tooltip>
+								Archive
+							</md-tooltip>-->
+						</md-button>
+					</li>
+					<li>
+						<md-button ng-click="quickAction.main(vacancy)" class="card-icon-main" aria-label="refresh">
+							<!--<md-tooltip>
+								Main
+							</md-tooltip>-->
+						</md-button>
+					</li>
+					<li>
+						<md-button ng-click="quickAction.flow(vacancy)" class="card-icon-flow" aria-label="refresh">
+							<!--<md-tooltip>
+								Flow
+							</md-tooltip>-->
+						</md-button>
+					</li>
+						<li>
+						<md-button ng-click="quickAction.notes(vacancy)" class="card-icon-notes" aria-label="refresh">
+							<!--<md-tooltip>
+								Note
+							</md-tooltip>-->
+						</md-button>
+					</li>
+				</ul>
+			</div>
+			<!-- End Default card content -->
+			<!-- Archive card content
+				<div ng-show="vacancy.allowArchive == true" class="text-center col-centered col-lg-11 archive-warn-wrapper">
+				<i class="glyphicon glyphicon-trash text-center"></i>
+				<p>Are you sure that you want
+					<br>to archive this vacancy ?
+				</p>
+				<div class="margin-t-20">
+					<md-button class="md-raised md-warn inline" ng-click="archiveVacancy(vacancy)">Archive</md-button>
+					<md-button ng-click="quickAction.archive(vacancy,'unarchive')">Undo</md-button>
+				</div>
+			</div>
+			End Archive card content -->
+		</div>
+	</div>
+</div>

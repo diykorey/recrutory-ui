@@ -1,29 +1,33 @@
 <div>
-    <div class="text-center margin-20">
-        <button ng-click='sendFlow()' ng-disabled="!flowData.length" class="btn btn-default">Add to flow</button>
-    </div>
-    <md-input-container class="col-lg-4 col-centered">
-        <label>Filter</label>
-        <input ng-model="filterSuggestions">
-    </md-input-container>
-    <div class="col-centered col-lg-11 margin-b-20 margin-t-20 label-red">Suggested :</div>
-    <div ng-repeat="candidate in flowSuggested | filter:filterSuggestions" class="col-centered col-lg-11 clearfix section">
-        <div class="col-lg-1">
-            <md-checkbox ng-model="flowaddModel[candidate.id]" ng-change="changeFlowData(candidate.id)" aria-label="Checkbox 1"></md-checkbox>
-        </div>
-        <div class="col-lg-11 flow-candidate-name">{{candidate.summaryCard.name.fieldValue || '**Name is absent**'}}</div>
-    </div>
-    <div class="text-center">
-        <md-button class="inline" ng-click="getSuggestions(suggestedPage,availablePage,'suggested')">More</md-button>
-    </div>
-    <div class="col-centered col-lg-11 margin-b-20 margin-t-20 label-red">Available :</div>
-    <div ng-repeat="candidate in flowAvailable | filter:filterSuggestions" class="col-centered col-lg-11 clearfix section">
-        <div class="col-lg-1">
-            <md-checkbox ng-model="flowaddModel[candidate.id]" ng-change="changeFlowData(candidate.id)" aria-label="Checkbox 1"></md-checkbox>
-        </div>
-        <div class="col-lg-4 flow-candidate-name">{{candidate.summaryCard.name.fieldValue || '**Name is absent**'}}</div>
-    </div>
-    <div class="text-center">
-        <md-button class="inline" ng-click="getSuggestions(suggestedPage,availablePage,'available')">More</md-button>
-    </div>
+	<div class="card-info-top clearfix">
+		<div class="pull-left">
+			<button class="small-button c1" ng-click='sendFlow()' ng-disabled="!flowData.length" ng-click="selectedIndex = 2">+ Add to flow</button>
+		</div>
+		<div class="pull-right">
+			<input class="textfield filter-input" ng-change="getSuggestions.search()" ng-model="filterSuggestions" placeholder="Filter">
+		</div>
+	</div>
+	<div class="suggestions-box">
+		<label>Suggested :</label>
+		<div class="suggestions-box-item clearfix" ng-repeat="candidate in flowSuggested | filter:filterSuggestions">
+			<div class="suggestions-box-item-name">
+				<md-checkbox class="md-checkbox" ng-model="flowaddModel[candidate.id]" ng-change="changeFlowData(candidate.id)" aria-label="Checkbox 1"></md-checkbox>
+				<span>{{candidate.summaryCard.name.fieldValue || '**Name is absent**'}}</span>
+			</div>
+			<div class="suggestions-box-item-text">Good english, experience to build highload project, some english, experience to build highload project</div>
+		</div>
+		<md-button class="suggestions-box-more" ng-click="getSuggestions(suggestedPage,availablePage,'suggested')">Show</md-button>
+	</div>
+	<div class="suggestions-box">
+		<label>Available :</label>
+		<div class="suggestions-box-item clearfix" ng-repeat="candidate in flowAvailable | filter:filterSuggestions">
+			<div class="suggestions-box-item-name">
+				<md-checkbox class="md-checkbox" ng-model="flowaddModel[candidate.id]" ng-change="changeFlowData(candidate.id)" aria-label="Checkbox 1"></md-checkbox>
+				<span>{{candidate.summaryCard.name.fieldValue || '**Name is absent**'}}</span>
+			</div>
+			<div class="suggestions-box-item-text">Good english, experience to build highload project, some english, experience to build highload project</div>
+		</div>
+		<md-button class="suggestions-box-more" ng-click="getSuggestions(suggestedPage,availablePage,'available')">Show</md-button>
+	</div>
 </div>
+

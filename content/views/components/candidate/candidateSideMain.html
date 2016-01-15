@@ -1,135 +1,124 @@
 <div>
-  <div class="col-centered col-lg-11 clearfix">
-    <div class="text-center margin-t-20 margin-b-20">
-      <md-button class="md-raised inline add-flow-btn" ng-click='addProgress = true' ng-hide="addProgress">
-        <i src="glyphicon glyphicon-upload"></i>
-        Add Field
-      </md-button>
-    </div>
-  </div>
-  <div class="row newField">
-    <div class="col-sm-11 col-centered" ng-show="addProgress">
-      <div class="col-lg-6" mass-autocomplete>
-        <md-input-container>
-          <label>Field text</label>
-          <input mass-autocomplete-item="autocomplete_options" ng-model="newField.type.name" type="text">
-        </md-input-container>
-      </div>
-      <div class="col-lg-6">
-        <md-input-container>
-          <label>Field text</label>
-          <input ng-model="newField.fieldValue" type="text">
-        </md-input-container>
-      </div>
-      <div class="col-lg-6">
-        <md-checkbox aria-label="prime" ng-model="newField.type.prime">
-          Prime
-        </md-checkbox>
-      </div>
-      <div class="col-lg-6">
-        <md-button class="md-raised inline add-flow-btn" ng-click='customField.save()'>
-          <i src="glyphicon glyphicon-upload"></i>
-          Save
-        </md-button>
-        <md-button class="md-raised inline add-flow-btn" ng-click='customField.cancel()'>
-          <i src="glyphicon glyphicon-upload"></i>
-          Cancel
-        </md-button>
-      </div>
-    </div>
-  </div>
-<div class="closure-wrapper">
-  <!-- PREDEFINED -->
-  <div class="col-centered section col-lg-11 clearfix closure-block" ng-class="hidePredefined ? '' : 'border-visible'" style="margin-top:20px">
-    <div class="col-lg-6 text-center label
-">Predefined</div>
-    <div class="col-lg-6 text-center">
-      <md-button ng-click="hidePredefined = !hidePredefined">{{hidePredefined ? 'SHOW' : 'HIDE'}}</md-button>
-    </div>
-  </div>
-  <!-- PREDEFINED CLOSURE -->
-  <div class="closure col-lg-11 col-centered" ng-hide="hidePredefined">
-    <div class="row">
-      <div ng-show="currentCandidate.summaryCard.predefinedFields.length == 0">
-        No results
-      </div>
-      <div ng-repeat="field in currentCandidate.summaryCard.predefinedFields" ng-show="currentCandidate.summaryCard.predefinedFields.length > 0">
-        <md-input-container class="col-lg-11">
-          <label class="labelHeading">{{field.type.name}}</label>
-          <input ng-blur="updateField(field)" ng-focus="customField.set(field)" ng-model="field.fieldValue">
-        </md-input-container>
-      </div>
-    </div>
-  </div>
-  <!-- PRIME -->
-  <div class="col-centered section col-lg-11 clearfix closure-block" ng-class="hidePrime ? '' : 'border-visible'">
-    <div class="col-lg-6 text-center label">Prime</div>
-    <div class="col-lg-6 text-center">
-      <md-button ng-click="hidePrime = !hidePrime">{{hidePrime ? 'SHOW' : 'HIDE'}}</md-button>
-    </div>
-  </div>
-  <!-- PRIME CLOSURE -->
-  <div class="closure col-lg-11 col-centered" ng-hide="hidePrime">
-    <div class="row">
-      <div ng-show="currentCandidate.summaryCard.primeFields.length == 0">
-        No results
-      </div>
-      <div ng-repeat="field in currentCandidate.summaryCard.customFields" >
-        <md-input-container class="col-lg-8">
-          <label class="labelHeading">{{field.type.name}}</label>
-          <input ng-blur="updateField(field)" ng-focus="customField.set(field)" ng-model="field.fieldValue">
-        </md-input-container>
-        <div class="col-lg-4">
-          <md-button class="md-raised" ng-click="customField.delete(field)">Delete</md-button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- COMMON -->
-  <div class="col-centered section col-lg-11 clearfix closure-block" ng-class="hideCustom ? '' : 'border-visible'">
-    <div class="col-lg-6 text-center label">Common</div>
-    <div class="col-lg-6 text-center">
-      <md-button ng-click="hideCustom = !hideCustom">{{hideCustom ? 'SHOW' : 'HIDE'}}</md-button>
-    </div>
-  </div>
-  <!-- COMMON CLOSURE -->
-  <div class="closure col-lg-11 col-centered" ng-hide="hideCustom">
-    <div class="row">
-      <div class="text-center" ng-show="currentCandidate.summaryCard.customFields.length == 0">
-        No results
-      </div>
-      <div ng-repeat="field in currentCandidate.summaryCard.customFields">
-        <md-input-container class="col-lg-8">
-          <label class="labelHeading">{{field.type.name}}</label>
-          <input ng-blur="updateField(field)" ng-focus="customField.set(field)" ng-model="field.fieldValue">
-        </md-input-container>
-        <div class="col-lg-4">
-          <md-button class="md-raised" ng-click="customField.delete(field)">Delete</md-button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  </div>
-  <div class="col-centered separator col-lg-12"></div>
-  <div class="col-centered section col-lg-11 clearfix">
-    <h5 class="vacancy-heading-inner">Tags</h5>
-    <div class="tags clearfix" ng-if="currentCandidateData.tags.length > 0">
-      <a ng-click="tags.delete(tag)" ng-if="currentCandidateData.tags.length > 0" ng-repeat="tag in currentCandidateData.tags">{{tag.keyword}}
-        <button>
-          <i class="glyphicon glyphicon-remove"></i>
-        </button>
-      </a>
-    </div>
-    <div class="tags clearfix" ng-show="currentCandidateData.tags.length == 0">
-      <a class="no-tags">No tags</a>
-    </div>
-    <div class="col-centered section-edit col-lg-11">
-      <md-input-container>
-        <label class="labelHeading">Type tag name and hit Enter, Space or type comma to add it.</label>
-        <input ng-keyup="$event.keyCode == 13 || $event.keyCode == 32 || $event.keyCode == 188? tags.add() : null" ng-model="tagEdit">
-      </md-input-container>
-    </div>
-  </div>
+	<div class="card-info-top clearfix">
+		<div class="pull-left">
+			<md-button class="small-button c1" ng-click='addProgress = true' ng-hide="addProgress">+ Add Field</md-button>
+		</div>
+		<div class="pull-right">
+			<a href="#" class="full-profile-link">Full Profile</a>
+		</div>
+	</div>
+		<!--<div class="row newField">
+		<div class="col-sm-11 col-centered" ng-show="addProgress">
+		  <div class="col-lg-6" mass-autocomplete>
+			<md-input-container>
+			  <label>Field text</label>
+			  <input mass-autocomplete-item="autocomplete_options" ng-model="newField.type.name" type="text">
+			</md-input-container>
+		  </div>
+		  <div class="col-lg-6">
+			<md-input-container>
+			  <label>Field text</label>
+			  <input ng-model="newField.fieldValue" type="text">
+			</md-input-container>
+		  </div>
+		  <div class="col-lg-6">
+			<md-checkbox aria-label="prime" ng-model="newField.type.prime">
+			  Prime
+			</md-checkbox>
+		  </div>
+		  <div class="col-lg-6">
+			<md-button class="md-raised inline add-flow-btn" ng-click='customField.save()'>
+			  <i src="glyphicon glyphicon-upload"></i>
+			  Save
+			</md-button>
+			<md-button class="md-raised inline add-flow-btn" ng-click='customField.cancel()'>
+			  <i src="glyphicon glyphicon-upload"></i>
+			  Cancel
+			</md-button>
+		  </div>
+		</div>
+		</div>
+		-->
+	<div class="closure-wrapper">
+		<div class="closure-block" ng-class="hidePredefined ? '' : 'border-visible'">
+			<label>Predefined</label>
+			<md-button class="{{hidePredefined ? '' : 'opened'}}" ng-click="hidePredefined = !hidePredefined">{{hidePredefined ? 'Show' : 'Hide'}}</md-button>
+		</div>
+		<!-- PREDEFINED CLOSURE -->
+		<div class="closure clearfix" ng-hide="hidePredefined">
+			<div class="card-info-main-cv">
+				<p>
+					<a href="#">CV_URL</a>
+				</p>
+				<button type="button">+ Add CV</button>
+			</div>
+			<div class="card-info-main-list">
+				<div ng-show="currentCandidate.summaryCard.predefinedFields.length == 0">No results</div>
+				<div class="card-info-main-list-item clearfix" ng-repeat="field in currentCandidate.summaryCard.predefinedFields" ng-show="currentCandidate.summaryCard.predefinedFields.length > 0">
+					<!--<md-input-container>-->
+					<label>{{field.type.name}}</label>
+					<input class="textfield" type="text" ng-blur="updateField(field)" ng-focus="customField.set(field)" ng-model="field.fieldValue">
+					<!--</md-input-container>-->
+				</div>
+			</div>
+		</div>
+		<!-- PRIME -->
+		<div class="closure-block" ng-class="hidePrime ? '' : 'border-visible'">
+			<label>Prime</label>
+			<md-button class="{{hidePrime ? '' : 'opened'}}" ng-click="hidePrime = !hidePrime">{{hidePrime ? 'Show' : 'Hide'}}</md-button>
+		</div>
+		<!-- PRIME CLOSURE -->
+		<div class="closure clearfix" ng-hide="hidePrime">
+			<div class="card-info-main-cv">
+				<p>
+					<a href="#">CV_URL</a>
+				</p>
+				<button type="button">+ Add CV</button>
+			</div>
+			<div class="card-info-main-list">
+				<div ng-show="currentCandidate.summaryCard.predefinedFields.length == 0">No results</div>
+				<div class="card-info-main-list-item clearfix" ng-repeat="field in currentCandidate.summaryCard.customFields" >
+					<!--<md-input-container>-->
+					<label>{{field.type.name}}</label>
+					<input class="textfield" size="" type="text" ng-blur="updateField(field)" ng-focus="customField.set(field)" ng-model="field.fieldValue">
+					<!--</md-input-container>-->
+					<button type="button" class="edit-icon"></button>
+					<md-button class="del-icon" ng-click="customField.delete(field)"></md-button>
+				</div>
+			</div>
+		</div>
+		<!-- COMMON -->
+		<div class="closure-block" ng-class="hideCustom ? '' : 'border-visible'">
+			<label>Common</label>
+			<md-button class="{{hideCustom ? '' : 'opened'}}" ng-click="hideCustom = !hideCustom">{{hideCustom ? 'Show' : 'Hide'}}</md-button>
+		</div>
+		<!-- COMMON CLOSURE -->
+		<div class="closure clearfix" ng-hide="hideCustom">
+			<div class="card-info-main-cv">
+				<p>
+					<a href="#">CV_URL</a>
+				</p>
+				<button type="button">+ Add CV</button>
+			</div>
+			<div class="card-info-main-list">
+				<div ng-show="currentCandidate.summaryCard.predefinedFields.length == 0">No results</div>
+				<div class="card-info-main-list-item clearfix" ng-repeat="field in currentCandidate.summaryCard.customFields">
+					<!--<md-input-container>-->
+					<label>{{field.type.name}}</label>
+					<input class="textfield" type="text" ng-blur="updateField(field)" ng-focus="customField.set(field)" ng-model="field.fieldValue">
+					<!--</md-input-container>-->
+					<button type="button" class="edit-icon"></button>
+					<md-button class="del-icon" ng-click="customField.delete(field)"></md-button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="card-info-main-tags">
+		<label>Tags</label>
+		<div class="card-info-main-tags-list clearfix" ng-if="currentCandidateData.tags.length > 0">
+			<a ng-repeat="tag in currentCandidateData.tags" ng-if="currentCandidateData.tags.length > 0" ng-click="tags.delete(tag)">{{tag.keyword}}</a>
+		</div>
+		<div class="card-info-main-tags-list" ng-show="currentCandidateData.tags.length == 0">No tags</div>
+		<input class="textfield" ng-keyup="$event.keyCode == 13 || $event.keyCode == 32 || $event.keyCode == 188? tags.add() : null" ng-model="tagEdit" placeholder="Type tag name and hit Enter, Space or type comma to add it.">
+	</div>
 </div>
