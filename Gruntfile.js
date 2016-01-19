@@ -190,6 +190,11 @@ module.exports = function(grunt) {
                     cwd: 'bower_components/components-font-awesome/fonts',
                     src: '*.*',
                     dest: '<%= app.dist %>/fonts'
+                }, {
+                    expand: true,
+                    cwd: '<%= app.source %>/views',
+                    src: '**/*.*',
+                    dest: '<%= app.dist %>/views'
                 }]
             },
             styles: {
