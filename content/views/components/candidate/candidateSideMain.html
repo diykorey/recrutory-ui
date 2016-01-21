@@ -7,7 +7,7 @@
 			<a href="#" class="full-profile-link">Full Profile</a>
 		</div>
 	</div>
-		<!--<div class="row newField">
+		<div class="row newField">
 		<div class="col-sm-11 col-centered" ng-show="addProgress">
 		  <div class="col-lg-6" mass-autocomplete>
 			<md-input-container>
@@ -38,7 +38,6 @@
 		  </div>
 		</div>
 		</div>
-		-->
 	<div class="closure-wrapper">
 		<div class="closure-block" ng-class="hidePredefined ? '' : 'border-visible'">
 			<label>Predefined</label>
@@ -69,12 +68,6 @@
 		</div>
 		<!-- PRIME CLOSURE -->
 		<div class="closure clearfix" ng-hide="hidePrime">
-			<div class="card-info-main-cv">
-				<p>
-					<a href="#">CV_URL</a>
-				</p>
-				<button type="button">+ Add CV</button>
-			</div>
 			<div class="card-info-main-list">
 				<div ng-show="currentCandidate.summaryCard.predefinedFields.length == 0">No results</div>
 				<div class="card-info-main-list-item clearfix" ng-repeat="field in currentCandidate.summaryCard.customFields" >
@@ -94,12 +87,6 @@
 		</div>
 		<!-- COMMON CLOSURE -->
 		<div class="closure clearfix" ng-hide="hideCustom">
-			<div class="card-info-main-cv">
-				<p>
-					<a href="#">CV_URL</a>
-				</p>
-				<button type="button">+ Add CV</button>
-			</div>
 			<div class="card-info-main-list">
 				<div ng-show="currentCandidate.summaryCard.predefinedFields.length == 0">No results</div>
 				<div class="card-info-main-list-item clearfix" ng-repeat="field in currentCandidate.summaryCard.customFields">

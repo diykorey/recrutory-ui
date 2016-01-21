@@ -1,5 +1,5 @@
 <div>
-	<div class="card" ng-click="selectCandidate(candidate)" ng-class="candidate.id == currentCandidate.id ? 'selected' :''">
+	<div class="card" ng-click="selectCandidate(candidate);" ng-class="candidate.id == currentCandidate.id ? 'selected' :''">
 		<div class="content clearfix">
 			<div ng-hide="candidate.allowArchive == true">
 				<!-- Default card content -->
@@ -38,7 +38,7 @@
 				</ul>
 			</div>
 			<!-- End Default card content -->
-			<!-- Archive card content
+			<!-- Archive card content -->
 			<div ng-show="candidate.allowArchive == true" class="text-center col-centered col-lg-11 archive-warn-wrapper">
 				<i class="glyphicon glyphicon-trash text-center"></i>
 				<p>Are you sure that you want
@@ -49,7 +49,7 @@
 					<md-button ng-click="quickAction.archive(candidate,'unarchive')">UNDO</md-button>
 				</div>
 			</div>
-			End Archive card content -->
+			<!--End Archive card content -->
 		</div>
 	</div>
 </div>

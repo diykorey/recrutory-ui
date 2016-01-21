@@ -156,14 +156,15 @@ $scope.reloadSubMenu = function(index) {
     console.log($scope.currentCandidate)
     if(!$scope.selectedIndex){
     $timeout(function() {
-      $scope.selectedIndex = 1
+      $scope.selectedIndex = 1;
     }, 0);
     }
     else{
         $rootScope.updateProcess = true;
 $scope.reloadSubMenu($scope.selectedIndex)
     }
-    $scope.getCandidatesFields()
+    $scope.getCandidatesFields();
+	
   }
 
 
@@ -547,9 +548,6 @@ $scope.loadSuggestions = function () {
   /**
    * Mass auto complete
    */
-
-
-
 
   function suggest_state(term) {
     var q = term.toLowerCase().trim();

@@ -3,9 +3,10 @@
 		<div class="pull-left">
 			<button class="small-button c1" ng-click='sendFlow()' ng-disabled="!flowData.length" ng-click="selectedIndex = 2">+ Add to flow</button>
 		</div>
-		<div class="pull-right">
-			<input class="textfield filter-input" ng-change="getSuggestions.search()" ng-model="filterSuggestions" placeholder="Filter">
-		</div>
+		<label class="pull-right filter-block">
+			<input class="textfield filter-input" ng-change="getSuggestions.search()" ng-model="filterSuggestions">
+			<span>Filter</span>
+		</label>
 	</div>
 	<div class="suggestions-box">
 		<label>Suggested :</label>

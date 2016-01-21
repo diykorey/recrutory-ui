@@ -1,15 +1,15 @@
 <div>
-	<!--<div class="col-lg-7 col-centered">
+	<div>
 		<md-input-container flex ng-show="notes[notes.length - 1].new == true">
 			<h5>{{note.placeholder}}</h5>
 			<textarea autofocus="true" ng-model="notes[notes.length - 1].comment" columns="1"></textarea>
 		</md-input-container>
-	</div>-->
+	</div>
 	<div class="card-info-top">
 		<md-button class="small-button c2" ng-click='noteAction.add()' ng-hide="notes[notes.length - 1].new == true">+ Add note</md-button>
 	</div>
-	<!--<md-button class="small-button c2" ng-click='noteAction.save()' ng-show="notes[notes.length - 1].new == true">Save</md-button>-->
-	<!--<md-button class="small-button c2" ng-click='noteAction.discard()' ng-show="notes[notes.length - 1].new == true">Discard</md-button>-->
+	<md-button class="small-button c2" ng-click='noteAction.save()' ng-show="notes[notes.length - 1].new == true">Save</md-button>
+	<md-button class="small-button c2" ng-click='noteAction.discard()' ng-show="notes[notes.length - 1].new == true">Discard</md-button>
 	<div ng-show="!note.new" ng-repeat="note in notes">
 		<div class="notes">
 			<div class="notes-row">
@@ -17,7 +17,7 @@
 					<h5>Note {{note.creationDate|date:'medium'}}</h5>
 					<p ng-show="!note.editNote">{{note.comment}}</p>
 					<md-input-container flex ng-show="note.editNote">
-						<textarea autofocus="note.editNote" ng-model="note.comment" columns="1"></textarea>
+						<textarea class="textarea" autofocus="note.editNote" ng-model="note.comment" columns="1"></textarea>
 					</md-input-container>
 				</div>
 				<div class="notes-cell" ng-show="note.deleteNote">Are you sure you want to delete this note ?</div>

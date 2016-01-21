@@ -2,9 +2,16 @@
 	<div class="flow-items">
 		<div class="flow-items-name">Name</div>
 		<div class="flow-items-status">
-			<md-select ng-change="changeFlowState(item.currentFlowState, item.currentFlowStateDescription, item.actions[item.actions.length - 1].flowId)" ng-model="item.currentFlowState" ng-init="item.currentFlowState = item.actions[item.actions.length - 1].state" placeholder="Pick">
+			<!--<md-select ng-change="changeFlowState(item.currentFlowState, item.currentFlowStateDescription, item.actions[item.actions.length - 1].flowId)" ng-model="item.currentFlowState" ng-init="item.currentFlowState = item.actions[item.actions.length - 1].state" placeholder="Pick">
 				<md-option ng-repeat="action in vacancyActions">{{action.name}}</md-option>
-			</md-select>
+			</md-select>-->
+			<select class="select">
+				<option>INTERVIEW</option>
+				<option>INTERVIEW</option>
+				<option>INTERVIEW</option>
+				<option>INTERVIEW</option>
+				<option>INTERVIEW</option>
+			</select>
 		</div>
 		<div class="flow-items-date" ng-class="{'candidate-name-col' : entityCurrent == 'candidate'}">
 			<span ng-if="entityCurrent == 'vacancy'">{{item.candidate.summaryCard.name.fieldValue}}</span>

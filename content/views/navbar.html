@@ -15,13 +15,13 @@
 		<nav class="nav-add">
 			<ul>
 				<li>
-					<a href="/#/addVacancy">Add vacancy</a>
-				</li>
-				<li class="active">
-					<a href="/#/addCandidate">Add candidate</a>
+					<a href="/#/addVacancy" ng-click="setCurrentTab('addVacancy')" ng-class="currentNavTab == 'addVacancy' ? 'active-nav-tab' : ''" >Add vacancy</a>
 				</li>
 				<li>
-					<a href="/#/uploadCV">Upload CV</a>
+					<a href="/#/addCandidate" ng-click="setCurrentTab('addCandidate')" ng-class="currentNavTab == 'addCandidate' ? 'active-nav-tab' : ''">Add candidate</a>
+				</li>
+				<li>
+					<a href="/#/uploadCV" ng-click="setCurrentTab('uploadCV')" ng-class="currentNavTab == 'uploadCV' ? 'active-nav-tab' : ''">Upload CV</a>
 				</li>
 			</ul>
 		</nav>

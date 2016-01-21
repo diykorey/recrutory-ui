@@ -1,5 +1,20 @@
 <search-view ng-show="searchProcess"></search-view>
-<h1>Vacancy Search</h1>
+<div class="titleInput">
+	<input type="text" placeholder="Vacancy Search">
+</div>
+<div class="filter-controls clearfix">
+	<fieldset class="col-lg-1">
+		<label>Filters</label>
+	</fieldset>
+	<fieldset class="col-lg-2">
+		<label>Name</label>
+		<input class="form-control" ng-model="nameFilterValue" ng-change="filterList.byName(nameFilterValue,emailFilterValue)" type="text">
+	</fieldset>
+	<fieldset class="col-lg-2">
+		<label>Email</label>
+		<input class="form-control" ng-model="emailFilterValue" ng-change="filterList.byEmail(nameFilterValue,emailFilterValue)" type="text">
+	</fieldset>
+</div>
 <div ng-controller="vacancyCtrl">
 	<div class="clearfix" ng-class="currentVacancy ? 'col-side-visible' : ''">
 		<div class="col-main">
@@ -43,10 +58,10 @@
 								</md-button>
 							</li>
                         </ul>
-                        <!--<div ng-show="vacancy.allowArchive" class="pull-right">
+                        <div ng-show="vacancy.allowArchive" class="pull-right">
                             <md-button class="md-raised md-warn" ng-click="archiveVacancy(vacancy)">Archive</md-button>
                             <md-button class="md-raised" ng-click="quickAction.archive(vacancy,'unarchive')">Undo</md-button>
-                        </div>-->
+                        </div>
 						{{vacancy.createTime|date:'shortDate'}}
 					</div>
 				</div>

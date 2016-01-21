@@ -96,6 +96,7 @@ kandidatoApp.controller('vacancyCtrl', function($scope, $rootScope, $log, ApiDat
 
     }
 
+
     /**
      * Sets current vacancy
      */

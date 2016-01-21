@@ -1,5 +1,20 @@
 <search-view ng-show="searchProcess"></search-view>
-<h1>Vacancy Search</h1>
+<div class="titleInput">
+	<input type="text" placeholder="Vacancy Search">
+</div>
+<div class="filter-controls clearfix">
+	<fieldset class="col-lg-1">
+		<label>Filters</label>
+	</fieldset>
+	<fieldset class="col-lg-2">
+		<label>Name</label>
+		<input class="form-control" ng-model="nameFilterValue" ng-change="filterList.byName(nameFilterValue,emailFilterValue)" type="text">
+	</fieldset>
+	<fieldset class="col-lg-2">
+		<label>Email</label>
+		<input class="form-control" ng-model="emailFilterValue" ng-change="filterList.byEmail(nameFilterValue,emailFilterValue)" type="text">
+	</fieldset>
+</div>
 <div ng-controller="candidateCtrl">
 	<div class="clearfix" ng-class="currentCandidate ? 'col-side-visible' : ''">
 		<div class="col-main">
@@ -8,12 +23,13 @@
 					<div class="card-table-cell" ng-repeat="item in candidateTableItems" ng-click="setOrder(item)">{{item}}</div>
 				</div>
 				<div class="card-table-row" ng-repeat="candidate in candidatesData | orderBy: [orderVal.filter] | filter: filterTextName || filterTextEmail " ng-class="candidate == currentCandidate ? 'selectedTable' : '' " ng-click="selectCandidate(candidate)">
+					<div class="card-table-cell">{{candidate.createTime|date:'shortDate'}}</div>
 					<div class="card-table-cell card-table-name">{{candidate.summaryCard.name.fieldValue}}</div>
-					<div class="card-table-cell card-table-mail">{{candidate.summaryCard.predefinedFields[0].fieldValue || "-"}}</div>
-					<div class="card-table-cell card-table-skype">{{candidate.summaryCard.predefinedFields.SKYPE.fieldValue || "-"}}</div>
-					<div class="card-table-cell">{{candidate.summaryCard.predefinedFields.PHONE.fieldValue || "-"}}</div>
-					<div class="card-table-cell">{{candidate.summaryCard.predefinedFields[1].fieldValue || "-"}}</div>
-					<div class="card-table-cell">-</div>
+					<div class="card-table-cell card-table-mail">{{candidate.summaryCard.predefinedFields[0].fieldValue}}</div>
+					<div class="card-table-cell card-table-skype">{{candidate.summaryCard.predefinedFields.SKYPE.fieldValue}}</div>
+					<div class="card-table-cell">{{candidate.summaryCard.predefinedFields.PHONE.fieldValue}}</div>
+					<div class="card-table-cell">{{candidate.summaryCard.predefinedFields[1].fieldValue}}</div>
+					<div class="card-table-cell"></div>
 					<div class="card-table-cell">{{candidate.createTime|date:'shortDate'}}</div>
 					<!--<div ng-hide="currentCandidate">
 						<div class="col-lg-8 pull-right clearfix action-btns">
