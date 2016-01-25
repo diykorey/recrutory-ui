@@ -22,7 +22,7 @@ function fixed(){
 			fixed.removeAttr('style').removeClass('scroll');
 		} else if($(window).scrollTop() >= pointStart && $(window).scrollTop() <= pointEnd){
 			fixed.removeAttr('style').addClass('scroll');
-			fixed.width(fixedParent.width());
+			fixed.width(fixed.parent().width());
 		} else if($(window).scrollTop() > pointEnd){
 			fixed.removeAttr('style').removeClass('scroll');
 			var marginTop = base.outerHeight() - fixed.height();

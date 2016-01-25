@@ -1,18 +1,16 @@
 <search-view ng-show="searchProcess"></search-view>
 <div class="titleInput">
-	<input type="text" placeholder="Vacancy Search">
+	<input placeholder="Candidate Search" ng-change="search()" ng-model="searchText">
 </div>
 <div class="filter-controls clearfix">
-	<fieldset class="col-lg-1">
+	<fieldset>
 		<label>Filters</label>
 	</fieldset>
-	<fieldset class="col-lg-2">
-		<label>Name</label>
-		<input class="form-control" ng-model="nameFilterValue" ng-change="filterList.byName(nameFilterValue,emailFilterValue)" type="text">
+	<fieldset>
+		<input class="textfield" ng-model="nameFilterValue" ng-change="filterList.byName(nameFilterValue,emailFilterValue)" type="text" placeholder="Name">
 	</fieldset>
-	<fieldset class="col-lg-2">
-		<label>Email</label>
-		<input class="form-control" ng-model="emailFilterValue" ng-change="filterList.byEmail(nameFilterValue,emailFilterValue)" type="text">
+	<fieldset>
+		<input class="textfield" ng-model="emailFilterValue" ng-change="filterList.byEmail(nameFilterValue,emailFilterValue)" type="text" placeholder="Email">
 	</fieldset>
 </div>
 <div ng-controller="candidateCtrl">
@@ -21,9 +19,9 @@
 			<div class="сard-table">
 				<div class="card-table-header">
 					<div class="card-table-cell" ng-repeat="item in candidateTableItems" ng-click="setOrder(item)">{{item}}</div>
+					<div class="card-table-cell no-sort" ng-hide="currentCandidate"></div>
 				</div>
 				<div class="card-table-row" ng-repeat="candidate in candidatesData | orderBy: [orderVal.filter] | filter: filterTextName || filterTextEmail " ng-class="candidate == currentCandidate ? 'selectedTable' : '' " ng-click="selectCandidate(candidate)">
-					<div class="card-table-cell">{{candidate.createTime|date:'shortDate'}}</div>
 					<div class="card-table-cell card-table-name">{{candidate.summaryCard.name.fieldValue}}</div>
 					<div class="card-table-cell card-table-mail">{{candidate.summaryCard.predefinedFields[0].fieldValue}}</div>
 					<div class="card-table-cell card-table-skype">{{candidate.summaryCard.predefinedFields.SKYPE.fieldValue}}</div>
@@ -31,31 +29,19 @@
 					<div class="card-table-cell">{{candidate.summaryCard.predefinedFields[1].fieldValue}}</div>
 					<div class="card-table-cell"></div>
 					<div class="card-table-cell">{{candidate.createTime|date:'shortDate'}}</div>
-					<!--<div ng-hide="currentCandidate">
-						<div class="col-lg-8 pull-right clearfix action-btns">
-							<md-button ng-click="quickAction.main(candidate)" class="md-fab main md-accent pull-right" aria-label="refresh">
-								<md-tooltip>
-									Main
-								</md-tooltip>
-								M
-								</md-icon>
-							</md-button>
-							<md-button ng-click="quickAction.suggestions(candidate)" class="md-fab flow md-accent pull-right" aria-label="refresh">
-								<md-tooltip>
-									Suggestions
-								</md-tooltip>
-								S
-								</md-icon>
-							</md-button>
-							<md-button ng-click="quickAction.notes(candidate)" class="md-fab note md-primary pull-right" aria-label="refresh">
-								<md-tooltip>
-									Note
-								</md-tooltip>
-								N
-								</md-icon>
-							</md-button>
-						</div>
-					</div>-->
+					<div class="card-table-cell card-table-icons clearfix" ng-hide="currentCandidate">
+						<ul class="card-icon-list">
+							<li>
+								<md-button ng-click="quickAction.main(candidate)" class="card-icon-main" aria-label="refresh"></md-button>
+							</li>
+							<li>
+								<md-button ng-click="quickAction.suggestions(candidate)" class="card-icon-flow" aria-label="refresh"></md-button>
+							</li>
+							<li>
+								<md-button ng-click="quickAction.notes(candidate)" class="card-icon-notes" aria-label="refresh"></md-button>
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>

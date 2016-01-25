@@ -1,19 +1,6 @@
 <search-view ng-show="searchProcess"></search-view>
 <div class="titleInput">
-	<input type="text" placeholder="Vacancy Search">
-</div>
-<div class="filter-controls clearfix">
-	<fieldset class="col-lg-1">
-		<label>Filters</label>
-	</fieldset>
-	<fieldset class="col-lg-2">
-		<label>Name</label>
-		<input class="form-control" ng-model="nameFilterValue" ng-change="filterList.byName(nameFilterValue,emailFilterValue)" type="text">
-	</fieldset>
-	<fieldset class="col-lg-2">
-		<label>Email</label>
-		<input class="form-control" ng-model="emailFilterValue" ng-change="filterList.byEmail(nameFilterValue,emailFilterValue)" type="text">
-	</fieldset>
+	<input type="text" placeholder="Candidate Search">
 </div>
 <div ng-controller="candidateCtrl">
 	<div class="clearfix" ng-class="currentCandidate ? 'col-side-visible' : ''">

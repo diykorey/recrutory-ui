@@ -3,40 +3,23 @@
 	<div class="center-box-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sollicitudin cursus ante. Praesent faucibus lacus ornare nunc aliquet luctus. Etiam vulputate eu tellus quis cursus. Donec arcu metus, pulvinar finibus magna quis, fringilla dapibus nisl. Donec nec nisl eu arcu hendrerit tempor.</div>
 	<div class="simple-form">
 		<div class="simple-form-field">
-			<input type="text" class="textfield" placeholder="Name">
+			<input type="text" ng-model="candidate.fields[0].fieldValue" class="textfield" placeholder="Name">
 		</div>
 		<div class="simple-form-field">
-			<input type="text" class="textfield" placeholder="Email">
+			<input type="text" ng-model="candidate.tags" class="textfield" placeholder="Tags">
 		</div>
-		<div class="simple-form-field">
-			<input type="text" class="textfield" placeholder="More">
+		<!--<div class="simple-form-field">
+			<md-chips ng-model="candidate.tags" readonly="false" class="textfield" placeholder="Enter a tag" delete-button-label="Remove Tag" delete-hint="Press delete to remove tag" secondary-placeholder="Enter tags here"></md-chips>
 		</div>
+		<div ng-repeat="field in fieldSet">
+            <md-input-container>
+                <label>{{field.fieldName}}</label>
+                <input type="text" ng-model="field.fieldValue">
+            </md-input-container>
+        </div>-->
 		<div class="simple-form-button">
+			<md-button ngf-select ngf-change="upload($files)" class="big-button">Upload CV</md-button>
 			<md-button ng-click="addCandidate()" class="big-button">Add Candidate</md-button>
 		</div>
 	</div>
 </div>
-
-<!--<div class="card container">
-    <h2 class="text-center margin-t-20">Add new candidate</h2>
-    <div class="col-lg-4 col-centered ">
-        <md-input-container class="margin-t-20">
-            <label>Name</label>
-            <input type="text" ng-model="candidate.fields[0].fieldValue">
-        </md-input-container>
-        <p>Type tags in field and press <code>Enter</code> to add it</p>
-        <md-chips ng-model="candidate.tags" readonly="false" placeholder="Enter a tag" delete-button-label="Remove Tag" delete-hint="Press delete to remove tag" secondary-placeholder="Enter tags here"></md-chips>
-
-        <div ng-repeat="field in fieldSet">
-            <md-input-container class="margin-t-20">
-                <label>{{field.fieldName}}</label>
-                <input type="text" ng-model="field.fieldValue">
-            </md-input-container>
-        </div>
-
-        <div class="text-center margin-t-20">
-           <md-button  ngf-select ngf-change="upload($files)" class="md-raised inline">Upload CV</md-button>
-            <md-button ng-click="addCandidate()" class="md-raised inline">add candidate</md-button>
-        </div>
-    </div>
-</div>-->

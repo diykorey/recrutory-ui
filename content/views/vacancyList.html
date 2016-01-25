@@ -1,18 +1,16 @@
 <search-view ng-show="searchProcess"></search-view>
 <div class="titleInput">
-	<input type="text" placeholder="Vacancy Search">
+	<input placeholder="Vacancy Search" ng-change="search()" ng-model="searchText">
 </div>
 <div class="filter-controls clearfix">
-	<fieldset class="col-lg-1">
+	<fieldset>
 		<label>Filters</label>
 	</fieldset>
-	<fieldset class="col-lg-2">
-		<label>Name</label>
-		<input class="form-control" ng-model="nameFilterValue" ng-change="filterList.byName(nameFilterValue,emailFilterValue)" type="text">
+	<fieldset>
+		<input class="textfield" ng-model="nameFilterValue" ng-change="filterList.byName(nameFilterValue,emailFilterValue)" type="text" placeholder="Name">
 	</fieldset>
-	<fieldset class="col-lg-2">
-		<label>Email</label>
-		<input class="form-control" ng-model="emailFilterValue" ng-change="filterList.byEmail(nameFilterValue,emailFilterValue)" type="text">
+	<fieldset>
+		<input class="textfield" ng-model="emailFilterValue" ng-change="filterList.byEmail(nameFilterValue,emailFilterValue)" type="text" placeholder="Email">
 	</fieldset>
 </div>
 <div ng-controller="vacancyCtrl">
@@ -30,32 +28,16 @@
 					<div class="card-table-cell card-table-icons clearfix">
 						<ul class="card-icon-list" ng-hide="vacancy.allowArchive">
 							<li>
-								<md-button ng-click="quickAction.archive(vacancy,'archive')" class="card-icon-archive" aria-label="refresh">
-									<!--<md-tooltip>
-										Archive
-									</md-tooltip>-->
-								</md-button>
+								<md-button ng-click="quickAction.archive(vacancy,'archive')" class="card-icon-archive" aria-label="refresh"></md-button>
 							</li>
 							<li>
-								<md-button ng-hide="currentVacancy" ng-click="quickAction.main(vacancy)" class="card-icon-main" aria-label="refresh">
-									<!--<md-tooltip>
-										Main
-									</md-tooltip>-->
-								</md-button>
+								<md-button ng-hide="currentVacancy" ng-click="quickAction.main(vacancy)" class="card-icon-main" aria-label="refresh"></md-button>
 							</li>
 							<li>
-								<md-button ng-hide="currentVacancy" ng-click="quickAction.suggestions(vacancy)" class="card-icon-flow" aria-label="refresh">
-									<!--<md-tooltip>
-										Suggestions
-									</md-tooltip>-->
-								</md-button>
+								<md-button ng-hide="currentVacancy" ng-click="quickAction.suggestions(vacancy)" class="card-icon-flow" aria-label="refresh"></md-button>
 							</li>
 							<li>
-								<md-button ng-hide="currentVacancy" ng-click="quickAction.notes(vacancy)" class="card-icon-notes"  aria-label="refresh">
-									<!--<md-tooltip>
-										Note
-									</md-tooltip>-->
-								</md-button>
+								<md-button ng-hide="currentVacancy" ng-click="quickAction.notes(vacancy)" class="card-icon-notes"  aria-label="refresh"></md-button>
 							</li>
                         </ul>
                         <div ng-show="vacancy.allowArchive" class="pull-right">

@@ -2,19 +2,6 @@
 <div class="titleInput">
 	<input type="text" placeholder="Vacancy Search">
 </div>
-<div class="filter-controls clearfix">
-	<fieldset class="col-lg-1">
-		<label>Filters</label>
-	</fieldset>
-	<fieldset class="col-lg-2">
-		<label>Name</label>
-		<input class="form-control" ng-model="nameFilterValue" ng-change="filterList.byName(nameFilterValue,emailFilterValue)" type="text">
-	</fieldset>
-	<fieldset class="col-lg-2">
-		<label>Email</label>
-		<input class="form-control" ng-model="emailFilterValue" ng-change="filterList.byEmail(nameFilterValue,emailFilterValue)" type="text">
-	</fieldset>
-</div>
 <div ng-controller="vacancyCtrl">
 	<div class="clearfix" ng-class="currentVacancy ? 'col-side-visible' : ''">
 		<div class="col-main fixed-base">

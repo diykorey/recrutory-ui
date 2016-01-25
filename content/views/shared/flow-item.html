@@ -1,6 +1,9 @@
 <div class="flow-box" ng-class="currentFlowId == item.id ? 'active-flow' : 'hidden-flow'" ng-repeat="item in recrutoryEntityData">
 	<div class="flow-items">
-		<div class="flow-items-name">Name</div>
+		<div class="flow-items-name" ng-class="{'candidate-name-col' : entityCurrent == 'candidate'}">
+			<span ng-if="entityCurrent == 'vacancy'">{{item.candidate.summaryCard.name.fieldValue}}</span>
+			<span ng-if="entityCurrent == 'candidate'">{{item.vacancy.name}}</span>
+		</div>
 		<div class="flow-items-status">
 			<!--<md-select ng-change="changeFlowState(item.currentFlowState, item.currentFlowStateDescription, item.actions[item.actions.length - 1].flowId)" ng-model="item.currentFlowState" ng-init="item.currentFlowState = item.actions[item.actions.length - 1].state" placeholder="Pick">
 				<md-option ng-repeat="action in vacancyActions">{{action.name}}</md-option>
@@ -13,18 +16,11 @@
 				<option>INTERVIEW</option>
 			</select>
 		</div>
-		<div class="flow-items-date" ng-class="{'candidate-name-col' : entityCurrent == 'candidate'}">
-			<span ng-if="entityCurrent == 'vacancy'">{{item.candidate.summaryCard.name.fieldValue}}</span>
-			<span ng-if="entityCurrent == 'candidate'">{{item.vacancy.name}}</span>
-		</div>
 	</div>
 	<div class="flow-main">
 		<label>Description</label>
 		<div class="text-box">
-			<!--<textarea class="textarea" ng-model="item.currentFlowStateDescription" ng-init="item.currentFlowStateDescription = item.actions[item.actions.length - 1].description" style="resize: none;" ng-blur="item.currentFlowStateDescription != item.actions[item.actions.length - 1].description ? changeFlowState(item.currentFlowState, item.currentFlowStateDescription, item.actions[item.actions.length - 1].flowId) : null"></textarea>-->
-			<div class="ellipsis">
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum</p>
-			</div>
+			<textarea class="textarea" ng-model="item.currentFlowStateDescription" ng-init="item.currentFlowStateDescription = item.actions[item.actions.length - 1].description" style="resize: none;" ng-blur="item.currentFlowStateDescription != item.actions[item.actions.length - 1].description ? changeFlowState(item.currentFlowState, item.currentFlowStateDescription, item.actions[item.actions.length - 1].flowId) : null"></textarea>
 			<div class="text-box-open" toggle-active-parent></div>
 		</div>
 		<span class="flow-main-history-show {{currentFlowId == item.id ? 'opened' : ''}}" ng-click="currentFlowId ? currentFlowId = false : currentFlowId = item.id">{{currentFlowId == item.id ? 'Hide History' : 'Show History'}}</span>
@@ -44,11 +40,8 @@
 				<div class="flow-main">
 					<label>Description</label>
 					<div class="text-box">
-						<div class="ellipsis">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum</p>
-						</div>
+						<textarea class="textarea" nng-model="action.description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum</textarea>
 						<div class="text-box-open" toggle-active-parent></div>
-						<!--<textarea class="textarea" ng-model="action.description"></textarea>-->
 					</div>
 				</div>
 				<div class="clear"></div>

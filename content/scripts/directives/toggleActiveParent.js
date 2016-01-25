@@ -3,7 +3,16 @@ kandidatoApp.directive('toggleActiveParent', function($timeout) {
         restrict: 'A',
         link: function(scope, element, attrs) {
             element.bind('click', function() {
-                element.parent().toggleClass('active');
+				var parent = element.parent();
+				if(parent.hasClass('active')){
+					element.parent().removeClass('active');
+					element.parent().find('.textarea').removeAttr('style');
+				} else {
+					element.parent().addClass('active');
+					s_height = element.parent().find('.textarea').scrollHeight;
+					alert(s_height);
+					element.parent().find('.textarea').height(s_height);
+				}
             });
         }
     };

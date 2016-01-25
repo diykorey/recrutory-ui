@@ -2,14 +2,14 @@
 	<div>
 		<md-input-container flex ng-show="notes[notes.length - 1].new == true">
 			<h5>{{note.placeholder}}</h5>
-			<textarea autofocus="true" ng-model="notes[notes.length - 1].comment" columns="1"></textarea>
+			<textarea class="textarea" autofocus="true" ng-model="notes[notes.length - 1].comment" columns="1"></textarea>
 		</md-input-container>
 	</div>
 	<div class="card-info-top">
-		<md-button class="small-button c2" ng-click='noteAction.add()' ng-hide="notes[notes.length - 1].new == true">+ Add note</md-button>
+		<md-button class="small-button c1" ng-click='noteAction.add()' ng-hide="notes[notes.length - 1].new == true">+ Add note</md-button>
 	</div>
-	<md-button class="small-button c2" ng-click='noteAction.save()' ng-show="notes[notes.length - 1].new == true">Save</md-button>
-	<md-button class="small-button c2" ng-click='noteAction.discard()' ng-show="notes[notes.length - 1].new == true">Discard</md-button>
+	<md-button class="small-button c1" ng-click='noteAction.save()' ng-show="notes[notes.length - 1].new == true">Save</md-button>
+	<md-button class="small-button c1" ng-click='noteAction.discard()' ng-show="notes[notes.length - 1].new == true">Discard</md-button>
 	<div ng-show="!note.new" ng-repeat="note in notes">
 		<div class="notes">
 			<div class="notes-row">
@@ -22,13 +22,13 @@
 				</div>
 				<div class="notes-cell" ng-show="note.deleteNote">Are you sure you want to delete this note ?</div>
 				<div class="notes-cell notes-cell-button">
-					<!--<md-button ng-click="note.deleteNote = false" ng-show="note.deleteNote">Undo</md-button>-->
+					<md-button ng-click="note.deleteNote = false" ng-show="note.deleteNote" class="button-undo"></md-button>
 					<md-button class="edit-button" ng-click="note.editNote = true" ng-hide="note.deleteNote || note.editNote"></md-button>
-					<!--<md-button ng-show="note.editNote" ng-click="noteAction.edit(note)">Save</md-button>-->
+					<md-button ng-show="note.editNote" ng-click="noteAction.edit(note)" class="button-do"></md-button>
 				</div>
 				<div class="notes-cell notes-cell-button">
 					<md-button class="del-button" ng-hide="note.editNote" ng-click="noteAction.deletenote(note)"></md-button>
-					<!--<md-button ng-click="note.editNote = false" ng-show="note.editNote">Cancel</md-button>-->
+					<md-button ng-click="note.editNote = false" ng-show="note.editNote" class="button-undo"></md-button>
 				</div>
 			</div>
 		</div>
