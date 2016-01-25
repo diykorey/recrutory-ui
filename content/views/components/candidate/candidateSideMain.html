@@ -7,37 +7,32 @@
 			<a href="#" class="full-profile-link">Full Profile</a>
 		</div>
 	</div>
-		<div class="row newField">
-		<div class="col-sm-11 col-centered" ng-show="addProgress">
-		  <div class="col-lg-6" mass-autocomplete>
-			<md-input-container>
-			  <label>Field text</label>
-			  <input mass-autocomplete-item="autocomplete_options" ng-model="newField.type.name" type="text">
-			</md-input-container>
-		  </div>
-		  <div class="col-lg-6">
-			<md-input-container>
-			  <label>Field text</label>
-			  <input ng-model="newField.fieldValue" type="text">
-			</md-input-container>
-		  </div>
-		  <div class="col-lg-6">
-			<md-checkbox aria-label="prime" ng-model="newField.type.prime">
-			  Prime
-			</md-checkbox>
-		  </div>
-		  <div class="col-lg-6">
-			<md-button class="md-raised inline add-flow-btn" ng-click='customField.save()'>
-			  <i src="glyphicon glyphicon-upload"></i>
-			  Save
-			</md-button>
-			<md-button class="md-raised inline add-flow-btn" ng-click='customField.cancel()'>
-			  <i src="glyphicon glyphicon-upload"></i>
-			  Cancel
-			</md-button>
-		  </div>
+	<div class="add-field" ng-show="addProgress">
+		<md-button class="add-field-cancel" ng-click='customField.cancel()'></md-button>
+		<div class="add-field-prime">
+			<label><md-checkbox class="md-checkbox" aria-label="prime" ng-model="newField.type.prime"></md-checkbox>make it prime</label>
 		</div>
+		<div class="col">
+			<div class="add-field-cell cell-name" mass-autocomplete>
+				<md-input-container>
+					<label>Name new field type</label>
+					<input class="textfield" mass-autocomplete-item="autocomplete_options" ng-model="newField.type.name" type="text">
+				</md-input-container>
+			</div>
+			<div class="add-field-cell cell-value">
+				<md-input-container>
+					<label>Enter its value</label>
+					<input class="textfield" ng-model="newField.fieldValue" type="text">
+				</md-input-container>
+			</div>
+			<div class="clear"></div>
+			<div class="add-field-cell">&nbsp;</div>
+			<div class="add-field-cell">
+				<md-button class="small-button c1" ng-click='customField.save()'>Done</md-button>
+			</div>
+			<div class="clear"></div>
 		</div>
+	</div>
 	<div class="closure-wrapper">
 		<div class="closure-block" ng-class="hidePredefined ? '' : 'border-visible'">
 			<label>Predefined</label>
@@ -103,7 +98,7 @@
 	<div class="card-info-main-tags">
 		<label>Tags</label>
 		<div class="card-info-main-tags-list clearfix" ng-if="currentCandidateData.tags.length > 0">
-			<a ng-repeat="tag in currentCandidateData.tags" ng-if="currentCandidateData.tags.length > 0" ng-click="tags.delete(tag)">{{tag.keyword}}</a>
+			<a ng-repeat="tag in currentCandidateData.tags" ng-if="currentCandidateData.tags.length > 0" ng-click="tags.delete(tag)">{{tag.keyword}}<i></i></a>
 		</div>
 		<div class="card-info-main-tags-list" ng-show="currentCandidateData.tags.length == 0">No tags</div>
 		<input class="textfield" ng-keyup="$event.keyCode == 13 || $event.keyCode == 32 || $event.keyCode == 188? tags.add() : null" ng-model="tagEdit" placeholder="Type tag name and hit Enter, Space or type comma to add it.">

@@ -20,7 +20,7 @@
 	<div class="flow-main">
 		<label>Description</label>
 		<div class="text-box">
-			<textarea class="textarea" ng-model="item.currentFlowStateDescription" ng-init="item.currentFlowStateDescription = item.actions[item.actions.length - 1].description" style="resize: none;" ng-blur="item.currentFlowStateDescription != item.actions[item.actions.length - 1].description ? changeFlowState(item.currentFlowState, item.currentFlowStateDescription, item.actions[item.actions.length - 1].flowId) : null"></textarea>
+			<textarea class="textarea" data-autoresize rows="2" ng-model="item.currentFlowStateDescription" ng-init="item.currentFlowStateDescription = item.actions[item.actions.length - 1].description" style="resize: none;" ng-blur="item.currentFlowStateDescription != item.actions[item.actions.length - 1].description ? changeFlowState(item.currentFlowState, item.currentFlowStateDescription, item.actions[item.actions.length - 1].flowId) : null"></textarea>
 			<div class="text-box-open" toggle-active-parent></div>
 		</div>
 		<span class="flow-main-history-show {{currentFlowId == item.id ? 'opened' : ''}}" ng-click="currentFlowId ? currentFlowId = false : currentFlowId = item.id">{{currentFlowId == item.id ? 'Hide History' : 'Show History'}}</span>
@@ -40,7 +40,7 @@
 				<div class="flow-main">
 					<label>Description</label>
 					<div class="text-box">
-						<textarea class="textarea" nng-model="action.description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum</textarea>
+						<textarea class="textarea" data-autoresize rows="2" ng-model="action.description"></textarea>
 						<div class="text-box-open" toggle-active-parent></div>
 					</div>
 				</div>
