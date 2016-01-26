@@ -1531,6 +1531,7 @@ header .nav > ul > li > a {
 	line-height: 30px;
 	text-decoration: none;
 	font-weight: 300;
+  	transition: all 200ms ease;
 }
 
 header .nav .active-nav-tab > a {
