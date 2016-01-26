@@ -2,7 +2,9 @@
 	<div>
 		<md-input-container flex ng-show="notes[notes.length - 1].new == true">
 			<h5>{{note.placeholder}}</h5>
-			<textarea class="textarea" autofocus="true" ng-model="notes[notes.length - 1].comment" columns="1"></textarea>
+			<md-input-container>
+				<textarea class="textarea" autofocus="true" ng-model="notes[notes.length - 1].comment" columns="1"></textarea>
+			</md-input-container>
 		</md-input-container>
 	</div>
 	<div class="card-info-top">

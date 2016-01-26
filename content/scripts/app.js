@@ -16,8 +16,9 @@ var kandidatoApp = angular.module('kandidatoApp', [
     'ngMaterial',
     'ngAnimate',
     'rt.debounce',
-    'ngFileUpload'
-])
+    'ngFileUpload',
+    'monospaced.elastic'
+]);
 
 
 kandidatoApp.config(function($locationProvider) {

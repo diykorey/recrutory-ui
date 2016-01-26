@@ -22,11 +22,11 @@
 					<div class="card-table-cell no-sort" ng-hide="currentCandidate"></div>
 				</div>
 				<div class="card-table-row" ng-repeat="candidate in candidatesData | orderBy: [orderVal.filter] | filter: filterTextName || filterTextEmail " ng-class="candidate == currentCandidate ? 'selectedTable' : '' " ng-click="selectCandidate(candidate)">
-					<div class="card-table-cell card-table-name">{{candidate.summaryCard.name.fieldValue}}</div>
-					<div class="card-table-cell card-table-mail">{{candidate.summaryCard.predefinedFields[0].fieldValue}}</div>
-					<div class="card-table-cell card-table-skype">{{candidate.summaryCard.predefinedFields.SKYPE.fieldValue}}</div>
-					<div class="card-table-cell">{{candidate.summaryCard.predefinedFields.PHONE.fieldValue}}</div>
-					<div class="card-table-cell">{{candidate.summaryCard.predefinedFields[1].fieldValue}}</div>
+					<div class="card-table-cell card-table-name" ng-show="candidate.summaryCard.name.fieldValue">{{candidate.summaryCard.name.fieldValue}}</div>
+					<div class="card-table-cell card-table-mail" ng-show="candidate.summaryCard.predefinedFields[0].fieldValue">{{candidate.summaryCard.predefinedFields[0].fieldValue}}</div>
+					<div class="card-table-cell card-table-skype" ng-show="candidate.summaryCard.predefinedFields.SKYPE.fieldValue">{{candidate.summaryCard.predefinedFields.SKYPE.fieldValue}}</div>
+					<div class="card-table-cell" ng-show="candidate.summaryCard.predefinedFields.PHONE.fieldValue">{{candidate.summaryCard.predefinedFields.PHONE.fieldValue}}</div>
+					<div class="card-table-cell" ng-show="candidate.summaryCard.predefinedFields[1].fieldValue">{{candidate.summaryCard.predefinedFields[1].fieldValue}}</div>
 					<div class="card-table-cell"></div>
 					<div class="card-table-cell">{{candidate.createTime|date:'shortDate'}}</div>
 					<div class="card-table-cell card-table-icons clearfix" ng-hide="currentCandidate">

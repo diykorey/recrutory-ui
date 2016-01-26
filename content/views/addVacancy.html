@@ -6,7 +6,9 @@
 			<input type="text" ng-model="vacancy.name" class="textfield" placeholder="Name">
 		</div>
 		<div class="simple-form-field">
-			<textarea ng-model="vacancy.requirements" rows="4" columns="1" md-maxlength="150" class="textarea" placeholder="Requierements"></textarea>
+			<md-input-container>
+				<textarea ng-model="vacancy.requirements" rows="4" columns="1" md-maxlength="150" class="textarea" placeholder="Requierements"></textarea>
+			</md-input-container>
 		</div>
 		<div class="simple-form-field">
 			<input type="text" ng-model="vacancy.tags" class="textfield" placeholder="Tags">
