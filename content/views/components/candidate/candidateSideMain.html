@@ -12,12 +12,22 @@
 		<div class="add-field-prime">
 			<label><md-checkbox class="md-checkbox" aria-label="prime" ng-model="newField.type.prime"></md-checkbox>make it prime</label>
 		</div>
-		<div class="col">
-			<div class="add-field-cell cell-name" mass-autocomplete>
-				<md-input-container>
-					<label>Name new field type</label>
-					<input class="textfield" mass-autocomplete-item="autocomplete_options" ng-model="newField.type.name" type="text">
-				</md-input-container>
+		<div class="add-field-col">
+			<div class="add-field-cell cell-name">
+				<label>Name new field type</label>
+				<div class="combobox">
+					<input type="text" name="comboboxfieldname" id="field-name" class="textfield" type="text">
+					<span></span>
+					<div class="dropdownlist">
+						<a>Item1</a>
+						<a>Item2</a>
+						<a>Item22</a>
+						<a>Item234</a>
+						<a>Item212</a>
+						<a>Item2145</a>
+						<a>Item3333</a>
+					</div>
+				</div>
 			</div>
 			<div class="add-field-cell cell-value">
 				<md-input-container>

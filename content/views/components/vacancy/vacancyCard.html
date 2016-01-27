@@ -1,7 +1,7 @@
 <div>
 	<div class="card" fixed-aside ng-class="vacancy.id == currentVacancy.id ? 'selected' :''">
 		<div class="content clearfix">
-			<div ng-click="selectVacancy(vacancy);">
+			<div ng-click="selectVacancy(vacancy); fixedAside(vacancy.id);" id="card-{{vacancy.id}}">
 				<!--<div class="col-lg-6 text-center hot" ng-if="vacancy.hot == true">HOT</div>-->
 				<div class="card-name">{{vacancy.summaryCard.name.fieldValue}}</div>
 				<div class="card-number clearfix">

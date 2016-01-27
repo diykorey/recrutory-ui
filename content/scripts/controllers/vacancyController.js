@@ -121,7 +121,38 @@ kandidatoApp.controller('vacancyCtrl', function($scope, $rootScope, $log, ApiDat
         }, 0);
     }
 
-
+	$scope.fixedAside = function(id) {
+		
+		if($('.fixed').length){
+		
+			var fixed = $('.fixed');
+			var base = $('.fixed-base');
+			var pointStart = base.offset().top - 20;
+			var pointEnd = base.offset().top + base.outerHeight() - fixed.height() - 20;
+			
+			if($(window).scrollTop() < pointStart){
+				fixed.removeAttr('style').removeClass('scroll');
+			} else if($(window).scrollTop() >= pointStart && $(window).scrollTop() <= pointEnd){
+				fixed.removeAttr('style').addClass('scroll');
+				fixed.width(fixed.parent().width());
+			} else if($(window).scrollTop() > pointEnd){
+				fixed.removeAttr('style').removeClass('scroll');
+				var marginTop = base.outerHeight() - fixed.height();
+				fixed.css('margin-top',marginTop);
+			}
+			
+			setTimeout(function(){
+				destination = $('#card-' + id).offset().top;
+				$('html,body').stop().animate({
+					scrollTop: destination
+				},{
+					duration: 200
+				});
+			},100);
+			
+		}
+	
+  }
 
 
 

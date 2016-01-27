@@ -15,13 +15,13 @@
 </div>
 <div ng-controller="candidateCtrl">
 	<div class="clearfix" ng-class="currentCandidate ? 'col-side-visible' : ''">
-		<div class="col-main">
+		<div class="col-main fixed-base">
 			<div class="сard-table">
 				<div class="card-table-header">
 					<div class="card-table-cell" ng-repeat="item in candidateTableItems" ng-click="setOrder(item)">{{item}}</div>
 					<div class="card-table-cell no-sort" ng-hide="currentCandidate"></div>
 				</div>
-				<div class="card-table-row" ng-repeat="candidate in candidatesData | orderBy: [orderVal.filter] | filter: filterTextName || filterTextEmail " ng-class="candidate == currentCandidate ? 'selectedTable' : '' " ng-click="selectCandidate(candidate)">
+				<div class="card-table-row" ng-repeat="candidate in candidatesData | orderBy: [orderVal.filter] | filter: filterTextName || filterTextEmail " ng-class="candidate == currentCandidate ? 'selectedTable' : '' " ng-click="selectCandidate(candidate); fixedAside(candidate.id);" id="card-{{candidate.id}}">
 					<div class="card-table-cell card-table-name" ng-show="candidate.summaryCard.name.fieldValue">{{candidate.summaryCard.name.fieldValue}}</div>
 					<div class="card-table-cell card-table-mail" ng-show="candidate.summaryCard.predefinedFields[0].fieldValue">{{candidate.summaryCard.predefinedFields[0].fieldValue}}</div>
 					<div class="card-table-cell card-table-skype" ng-show="candidate.summaryCard.predefinedFields.SKYPE.fieldValue">{{candidate.summaryCard.predefinedFields.SKYPE.fieldValue}}</div>
@@ -46,36 +46,38 @@
 			</div>
 		</div>
 		<div class="col-side">
-			<md-toolbar md-scroll-shrink>
-				<div class="card-info-name">
-					<span>{{currentCandidate.summaryCard.name.fieldValue}}</span>
-					<!-- <div class="col-lg-1"><span ng-show="currentCandidate.hot == true" class="badge hot">HOT</span></div> -->
-				</div>
-			</md-toolbar>
-			<md-content>
-				<div class="card-info">
-					<div class="card-info-tabs-nav clearfix">
-						<md-tabs md-no-pagination md-selected="selectedIndex" flex>
-							<md-tab ng-repeat="tab in tabsCandidateDetails"><a href='javascript:void(0)'>{{tab.heading}}</a> </md-tab>
-						</md-tabs>
+			<div class="fixed">
+				<md-toolbar md-scroll-shrink>
+					<div class="card-info-name">
+						<span>{{currentCandidate.summaryCard.name.fieldValue}}</span>
+						<!-- <div class="col-lg-1"><span ng-show="currentCandidate.hot == true" class="badge hot">HOT</span></div> -->
 					</div>
-					<!--<div ng-show="updateProcess" class="progress progress-details" style="margin:0px">
-						<div class="indeterminate"></div>
-					</div>-->
-					<div ng-show="selectedIndex == 0">
-						<candidate-side-main></candidate-side-main>
+				</md-toolbar>
+				<md-content>
+					<div class="card-info">
+						<div class="card-info-tabs-nav clearfix">
+							<md-tabs md-no-pagination md-selected="selectedIndex" flex>
+								<md-tab ng-repeat="tab in tabsCandidateDetails"><a href='javascript:void(0)'>{{tab.heading}}</a> </md-tab>
+							</md-tabs>
+						</div>
+						<!--<div ng-show="updateProcess" class="progress progress-details" style="margin:0px">
+							<div class="indeterminate"></div>
+						</div>-->
+						<div ng-show="selectedIndex == 0">
+							<candidate-side-main></candidate-side-main>
+						</div>
+						<div ng-show="selectedIndex == 1">
+							<candidate-side-flow class="flows"></candidate-side-flow>
+						</div>
+						<div ng-show="selectedIndex == 2">
+							<candidate-side-suggestions class="suggestions"></candidate-side-suggestions>
+						</div>
+						<div ng-show="selectedIndex == 3">
+							<notes></notes>
+						</div>
 					</div>
-					<div ng-show="selectedIndex == 1">
-						<candidate-side-flow class="flows"></candidate-side-flow>
-					</div>
-					<div ng-show="selectedIndex == 2">
-						<candidate-side-suggestions class="suggestions"></candidate-side-suggestions>
-					</div>
-					<div ng-show="selectedIndex == 3">
-						<notes></notes>
-					</div>
-				</div>
-			</md-content>
+				</md-content>
+			</div>
 		</div>
 	</div>
 </div>
