@@ -15,12 +15,12 @@
 </div>
 <div ng-controller="vacancyCtrl">
 	<div class="clearfix" ng-class="currentVacancy ? 'col-side-visible' : ''">
-		<div class="col-main">
+		<div class="col-main fixed-base">
 			<div class="сard-table">
 				<div class="card-table-header">
 					<div class="card-table-cell" ng-repeat="item in vacancyTableItems" ng-click="setOrder(item)">{{item}}</div>
 				</div>
-				<div class="card-table-row" ng-repeat="vacancy in vacanciesData | orderBy: [orderVal.filter] | filter: filterTextName || filterTextEmail" ng-class="vacancy == currentVacancy ? 'selectedTable' : 'none' " ng-click="selectVacancy(vacancy)">
+				<div class="card-table-row" ng-repeat="vacancy in vacanciesData | orderBy: [orderVal.filter] | filter: filterTextName || filterTextEmail" ng-class="vacancy == currentVacancy ? 'selectedTable' : 'none' " ng-click="selectVacancy(vacancy); fixedAside(vacancy.id);" id="card-{{vacancy.id}}">
 					<div class="card-table-cell card-table-name">{{vacancy.allowArchive ? 'Do you want to archive ' + vacancy.name + ' vacancy ?' : vacancy.name}}</div>
 					<div class="card-table-cell card-table-state">
 						<span class="open">{{vacancy.state}}</span>
@@ -50,36 +50,38 @@
 			</div>
 		</div>
 		<div class="col-side">
-			<md-toolbar md-scroll-shrink>
-				<div class="card-info-name">
-					<span>{{currentVacancy.fieldValue}}</span>
-					<!-- <div class="col-lg-1"><span ng-show="currentVacancy.hot == true" class="badge hot">HOT</span></div> -->
-				</div>
-			</md-toolbar>
-			<md-content>
-				<div class="card-info">
-					<div class="card-info-tabs-nav clearfix">
-						<md-tabs md-selected="selectedIndex" flex>
-							<md-tab ng-repeat="tab in tabsVacancies"><a href='javascript:void(0)'>{{tab.heading}}</a> </md-tab>
-						</md-tabs>
+			<div class="fixed">
+				<md-toolbar md-scroll-shrink>
+					<div class="card-info-name">
+						<span>{{currentVacancy.fieldValue}}</span>
+						<!-- <div class="col-lg-1"><span ng-show="currentVacancy.hot == true" class="badge hot">HOT</span></div> -->
 					</div>
-					<!--<div ng-show="updateProcess" class="progress progress-details" style="margin:0px">
-						<div class="indeterminate"></div>
-					</div>-->
-					<div ng-show="selectedIndex == 0">
-						<vacancy-side-main></vacancy-side-main>
+				</md-toolbar>
+				<md-content>
+					<div class="card-info">
+						<div class="card-info-tabs-nav clearfix">
+							<md-tabs md-selected="selectedIndex" flex>
+								<md-tab ng-repeat="tab in tabsVacancies"><a href='javascript:void(0)'>{{tab.heading}}</a> </md-tab>
+							</md-tabs>
+						</div>
+						<!--<div ng-show="updateProcess" class="progress progress-details" style="margin:0px">
+							<div class="indeterminate"></div>
+						</div>-->
+						<div ng-show="selectedIndex == 0">
+							<vacancy-side-main></vacancy-side-main>
+						</div>
+						<div ng-show="selectedIndex == 1">
+							<vacancy-side-flow class="flows"></vacancy-side-flow>
+						</div>
+						<div ng-show="selectedIndex == 2">
+							<vacancy-side-suggestions class="suggestions"></vacancy-side-suggestions>
+						</div>
+						<div ng-show="selectedIndex == 3">
+							<notes></notes>
+						</div>
 					</div>
-					<div ng-show="selectedIndex == 1">
-						<vacancy-side-flow class="flows"></vacancy-side-flow>
-					</div>
-					<div ng-show="selectedIndex == 2">
-						<vacancy-side-suggestions class="suggestions"></vacancy-side-suggestions>
-					</div>
-					<div ng-show="selectedIndex == 3">
-						<notes></notes>
-					</div>
-				</div>
-			</md-content>
+				</md-content>
+			</div>
 		</div>
 	</div>
 </div>
