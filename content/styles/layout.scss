@@ -674,6 +674,7 @@ p {
 	padding-bottom: 14px;
 	margin-bottom: 15px;
 	border-bottom: 1px solid #969696;
+  	overflow: hidden;
 }
 
 .textarea {
@@ -936,7 +937,8 @@ p {
 
 .сard-table .card-table-row .card-table-cell.card-table-icons .card-icon-list {
 	float: right;
-	margin-left: 80px;
+	width: 200px;
+  	text-align: right;
 }
 
 .сard-table .card-table-row .card-table-cell.card-table-icons .card-icon-list > li {
@@ -1130,7 +1132,7 @@ p {
 }
 
 .col-side-visible .сard-table .card-table-row .card-table-cell {
-	padding: 8px;
+	padding: 1px 10px;
 	border: 0 none;
 	display: block;
 }
