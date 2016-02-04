@@ -164,24 +164,24 @@ $scope.reloadSubMenu = function(index) {
 $scope.reloadSubMenu($scope.selectedIndex)
     }
     $scope.getCandidatesFields();
-	
+
   }
 
-  
-  
+
+
   $scope.fixedAside = function(id) {
-	
+
 	if($('#field-name').length){
 		var n = new ComboBox('field-name');
 	}
-	
+
 	if($('.fixed').length){
-	
+
 		var fixed = $('.fixed');
 		var base = $('.fixed-base');
 		var pointStart = base.offset().top - 20;
 		var pointEnd = base.offset().top + base.outerHeight() - fixed.height() - 20;
-		
+
 		if($(window).scrollTop() < pointStart){
 			fixed.removeAttr('style').removeClass('scroll');
 		} else if($(window).scrollTop() >= pointStart && $(window).scrollTop() <= pointEnd){
@@ -192,7 +192,7 @@ $scope.reloadSubMenu($scope.selectedIndex)
 			var marginTop = base.outerHeight() - fixed.height();
 			fixed.css('margin-top',marginTop);
 		}
-		
+
 		setTimeout(function(){
 			destination = $('#card-' + id).offset().top - 30;
 			$('html,body').stop().animate({
@@ -201,9 +201,9 @@ $scope.reloadSubMenu($scope.selectedIndex)
 				duration: 200
 			});
 		},100);
-		
+
 	}
-	
+
   }
 
 
@@ -215,30 +215,7 @@ $scope.reloadSubMenu($scope.selectedIndex)
 
     ApiDataFactory.queryGet('candidate/findFieldTypes').then(function(result) {
       $rootScope.updateProcess = false;
-      $scope.fieldTypes = _.map(result, function(num) {
-        return num.name
-
-        function checkEmptyPredefined() {
-          console.log($scope.fieldTypes);
-          return false
-        }
-
-        function checkEmptyPrimary() {
-          console.log($scope.fieldTypes);
-          return false
-        }
-
-        function checkEmptyCommon() {
-          console.log($scope.fieldTypes);
-          return false
-        }
-
-        $scope.disableClosure = {
-          predefined: checkEmptyPredefined(),
-          primary: checkEmptyPrimary(),
-          common: checkEmptyCommon()
-        }
-      }); // response data
+      $scope.fieldTypes = result;
     });
 
 

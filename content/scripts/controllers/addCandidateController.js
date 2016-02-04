@@ -20,9 +20,7 @@ kandidatoApp.controller('addCandidate', function($scope, $rootScope, $location, 
 
     ApiDataFactory.queryGet('candidate/findFieldTypes').then(function(result) {
         $rootScope.updateProcess = false;
-        $scope.fieldTypes = _.map(result, function(num) {
-            return num.name
-        }); // response data
+        $scope.fieldTypes = result;
         console.log($scope.fieldTypes)
     });
 

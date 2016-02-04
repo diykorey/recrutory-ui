@@ -16,16 +16,10 @@
 			<div class="add-field-cell cell-name">
 				<label>Name new field type</label>
 				<div class="combobox">
-					<input type="text" name="comboboxfieldname" id="field-name" class="textfield" type="text">
+					<input type="text" name="comboboxfieldname" id="field-name" class="textfield" ng-model="newField.type.name" >
 					<span></span>
 					<div class="dropdownlist">
-						<a>Item1</a>
-						<a>Item2</a>
-						<a>Item22</a>
-						<a>Item234</a>
-						<a>Item212</a>
-						<a>Item2145</a>
-						<a>Item3333</a>
+						<a ng-repeat="fieldType in fieldTypes">{{fieldType.name}}</a>
 					</div>
 				</div>
 			</div>
