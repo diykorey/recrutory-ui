@@ -1,4 +1,6 @@
+
 <div>
+
 	<div class="card-info-top clearfix">
 		<div class="pull-left">
 			<md-button class="small-button c1" ng-click='addProgress = true' ng-hide="addProgress">+ Add Field</md-button>
@@ -13,16 +15,29 @@
 			<label><md-checkbox class="md-checkbox" aria-label="prime" ng-model="newField.type.prime"></md-checkbox>make it prime</label>
 		</div>
 		<div class="add-field-col">
+
 			<div class="add-field-cell cell-name">
 				<label>Name new field type</label>
+				<!--<select kendo-combo-box
+								k-placeholder="'Select type'"
+								k-data-text-field="'name'"
+								k-data-value-field="'name'"
+								k-filter="'contains'"
+								k-auto-bind="false"
+								k-min-length="1"
+								k-data-source="fieldTypes"
+								style="width: 150px"
+								ng-model="newField.type.name" >
+				</select-->
 				<div class="combobox">
 					<input type="text" name="comboboxfieldname" id="field-name" class="textfield" ng-model="newField.type.name" >
 					<span></span>
 					<div class="dropdownlist">
-						<a ng-repeat="fieldType in fieldTypes">{{fieldType.name}}</a>
+						<a ng-repeat="fieldType in fieldTypes" ng-click="changeType(fieldType)">{{fieldType.name}}</a>
 					</div>
 				</div>
 			</div>
+
 			<div class="add-field-cell cell-value">
 				<md-input-container>
 					<label>Enter its value</label>

@@ -312,7 +312,7 @@ p {
 	text-align: center;
 	padding-top: 30%;
 	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;	
+	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
 
@@ -339,7 +339,7 @@ p {
 	overflow: visible;
 	white-space: nowrap;
 	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;	
+	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	outline: 0;
 	margin: 0;
@@ -363,7 +363,7 @@ p {
 	-webkit-appearance: none;
 	overflow: visible;
 	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;	
+	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	outline: 0;
 	margin: 0;
@@ -391,7 +391,7 @@ p {
 	-webkit-appearance: none;
 	overflow: visible;
 	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;	
+	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	outline: 0;
 	margin: 0;
@@ -635,7 +635,7 @@ p {
 	overflow: visible;
 	white-space: nowrap;
 	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;	
+	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	outline: 0;
 	margin: 0;
@@ -1229,7 +1229,7 @@ p {
 	-webkit-appearance: none;
 	overflow: visible;
 	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;	
+	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	outline: 0;
 	margin: 0;
@@ -1253,7 +1253,7 @@ p {
 	-webkit-appearance: none;
 	overflow: visible;
 	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;	
+	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	outline: 0;
 	margin: 0;
@@ -1277,7 +1277,7 @@ p {
 	-webkit-appearance: none;
 	overflow: visible;
 	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;	
+	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	outline: 0;
 	margin: 0;
@@ -1301,7 +1301,7 @@ p {
 	-webkit-appearance: none;
 	overflow: visible;
 	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;	
+	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	outline: 0;
 	margin: 0;
@@ -1798,7 +1798,7 @@ header .nav-add .active-nav-tab {
 	overflow: visible;
 	white-space: nowrap;
 	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;	
+	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	outline: 0;
 	margin: 0;
@@ -2009,19 +2009,19 @@ header .nav-add .active-nav-tab {
 }
 
 @media screen and (max-width: 1200px) {
-	
+
 	.card-list .card-box {
 		width: 33.3333%;
 	}
-	
+
 	header {
 		margin-bottom: 50px;
 	}
-	
+
 	header .log-link {
 		margin-top: 60px;
 	}
-	
+
 	header .nav {
 		margin: 15px 0 0 160px;
 	}
@@ -2033,7 +2033,7 @@ header .nav-add .active-nav-tab {
 }
 
 @media screen and (max-width: 1130px) {
-	
+
 	.col-side-visible .col-side {
 		width: 60%;
 	}
@@ -2041,7 +2041,7 @@ header .nav-add .active-nav-tab {
 	.col-side-visible .col-main {
 		width: 38%;
 	}
-	
+
 	.col-side-visible .col-main .card-list .card-box {
 		width: 100%;
 	}
@@ -2049,7 +2049,7 @@ header .nav-add .active-nav-tab {
 }
 
 @media screen and (max-width: 1000px) {
-	
+
 	.card.selected {
 		margin: -10px;
 		padding: 24px 80px 39px 24px;
@@ -2059,7 +2059,7 @@ header .nav-add .active-nav-tab {
 		top: 39px;
 		right: 36px;
 	}
-	
+
 	.card-info .card-info-tabs-nav .md-tab {
 		margin-left: 25px;
 	}
@@ -2067,15 +2067,15 @@ header .nav-add .active-nav-tab {
 	.card-info .card-info-tabs-nav .md-tab:first-child {
 		margin: 0;
 	}
-	
+
 	.card-list .card-box {
 		width: 50%;
 	}
-	
+
 	footer .footer-nav {
 		margin: 0;
 	}
-	
+
 }
 
 @media screen and (max-width: 820px) {
@@ -2092,4 +2092,44 @@ header .nav-add .active-nav-tab {
 		margin-left: 40px;
 	}
 
+}
+
+
+
+.k-input, .k-multiselect-wrap, .k-textbox > input, input.k-textbox, input.k-textbox:hover, textarea.k-textbox, textarea.k-textbox:hover {
+    background-color: transparent;
+}
+.k-autocomplete.k-state-default, .k-dropdown-wrap.k-state-default, .k-numeric-wrap.k-state-default, .k-picker-wrap.k-state-default {
+    background-color: transparent;
+}
+.k-combobox, .k-datepicker, .k-datetimepicker, .k-timepicker {
+    background-color: transparent;
+}
+
+
+
+.k-input, .k-textbox > input {
+
+	height: 26px;
+  background: transparent;
+
+  }
+
+    .k-icon.k-i-arrow-s {
+      background: rgba(0, 0, 0, 0) url("../images/a-down.png") no-repeat scroll right center;
+        cursor: pointer;
+        height: 100%;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 7px;
+
+}
+.k-autocomplete .k-input, .k-dropdown-wrap .k-input, .k-numeric-wrap .k-input, .k-picker-wrap .k-input, .k-selectbox .k-input, .k-textbox > input {
+    border: 0 none;
+    height: 26px;
+}
+
+.k-combobox .k-dropdown-wrap::before, .k-numeric-wrap::before, .k-picker-wrap::before {
+    height: 26px;
 }

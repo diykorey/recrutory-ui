@@ -112,6 +112,9 @@ kandidatoApp.controller('candidateCtrl', function($scope, $rootScope, $log, ApiD
     }
 
   }
+  $scope.changeType = function(fieldType){
+    $scope.newField.type.name = fieldType.name;
+  };
 
 
 
