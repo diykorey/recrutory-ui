@@ -1,6 +1,6 @@
 kandidatoApp.controller('MainCtrl', function($scope, $rootScope, $location, $mdToast, $timeout, ApiDataFactory) {
 
-    $location.path("/candidateDashboard")
+    $location.path("/vacancyDashboard")
 
     function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -21,11 +21,11 @@ kandidatoApp.controller('MainCtrl', function($scope, $rootScope, $location, $mdT
 
     var tabs = [{
 
-        heading: 'Dashboard',
+        heading: 'Vacancy Dashboard',
         type: 'link',
         route: 'vacancyDashboard'
     }, {
-        heading: 'Vacancies list',
+        heading: 'Vacancy List',
         type: 'link',
         route: 'vacancyList'
     }, {

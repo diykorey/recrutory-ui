@@ -33,7 +33,7 @@
 					<input type="text" name="comboboxfieldname" id="field-name" class="textfield" ng-model="newField.type.name" >
 					<span></span>
 					<div class="dropdownlist">
-						<a ng-repeat="fieldType in fieldTypes" ng-click="changeType(fieldType)">{{fieldType.name}}</a>
+						<a ng-repeat="fieldType in fieldTypes"  ng-click="changeType(fieldType)">{{fieldType.name}}</a>
 					</div>
 				</div>
 			</div>
@@ -70,8 +70,9 @@
 				<div class="card-info-main-list-item clearfix" ng-repeat="field in currentCandidate.summaryCard.predefinedFields" ng-show="currentCandidate.summaryCard.predefinedFields.length > 0">
 					<!--<md-input-container>-->
 					<label>{{field.type.name}}</label>
-					<input class="textfield" type="text" ng-blur="updateField(field)" ng-focus="customField.set(field)" ng-model="field.fieldValue">
+					<input class="textfield" type="text" ng-blur="updateField(field)" ng-focus="customField.set(field)" ng-model="field.fieldValue">&nbsp;
 					<!--</md-input-container>-->
+					<md-button class="del-icon" ng-click="customField.delete(field)"></md-button>
 				</div>
 			</div>
 		</div>
@@ -83,13 +84,13 @@
 		<!-- PRIME CLOSURE -->
 		<div class="closure clearfix" ng-hide="hidePrime">
 			<div class="card-info-main-list">
-				<div ng-show="currentCandidate.summaryCard.predefinedFields.length == 0">No results</div>
-				<div class="card-info-main-list-item clearfix" ng-repeat="field in currentCandidate.summaryCard.customFields" >
+				<div ng-show="currentCandidate.summaryCard.primeFields.length == 0">No results</div>
+				<div class="card-info-main-list-item clearfix" ng-repeat="field in currentCandidate.summaryCard.primeFields" >
 					<!--<md-input-container>-->
 					<label>{{field.type.name}}</label>
 					<input class="textfield" size="" type="text" ng-blur="updateField(field)" ng-focus="customField.set(field)" ng-model="field.fieldValue">
 					<!--</md-input-container>-->
-					<button type="button" class="edit-icon"></button>
+						<!--<<button type="button" class="edit-icon"></button>-->
 					<md-button class="del-icon" ng-click="customField.delete(field)"></md-button>
 				</div>
 			</div>
@@ -108,7 +109,7 @@
 					<label>{{field.type.name}}</label>
 					<input class="textfield" type="text" ng-blur="updateField(field)" ng-focus="customField.set(field)" ng-model="field.fieldValue">
 					<!--</md-input-container>-->
-					<button type="button" class="edit-icon"></button>
+						<!--<<button type="button" class="edit-icon"></button>-->
 					<md-button class="del-icon" ng-click="customField.delete(field)"></md-button>
 				</div>
 			</div>

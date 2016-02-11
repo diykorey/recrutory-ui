@@ -4,11 +4,11 @@ kandidatoApp.controller('NavCtrl', function($scope, $rootScope, $location, $time
         type: 'image',
         route: '/'
     }, {
-        heading: 'Dashboard',
+        heading: 'Vacancy Dashboard',
         type: 'link',
         route: 'dashboard'
     }, {
-        heading: 'Vacancies list',
+        heading: 'Vacancy List',
         type: 'link',
         route: 'list'
     }, {

@@ -93,44 +93,56 @@ kandidatoApp.controller('candidateCtrl', function($scope, $rootScope, $log, ApiD
       ApiDataFactory.queryPost(URL, tag).then(function(result) {
         $rootScope.updateProcess = false
         $scope.showToast()
-        $scope.currentCandidate = result
+        $scope.currentCandidate.tags = result.tags
       })
       $scope.tagEdit = ""
     },
     delete: function(tag) {
       var i = 0
+      var spotedTagIndex = 0;
       _.each($scope.currentCandidate.tags, function(tagEach) {
 
         if (tagEach.keyword === tag.keyword) {
-          $scope.currentCandidate.tags.splice(i, 1);
+          spotedTagIndex=i;
           var URL = 'candidate/' + $scope.currentCandidate.id + '/tags/' + tag.id
           ApiDataFactory.queryDelete(URL).then(function(result) {})
           return
         };
         i++
       })
+        $scope.currentCandidate.tags.splice(spotedTagIndex, 1);
     }
 
   }
   $scope.changeType = function(fieldType){
     $scope.newField.type.name = fieldType.name;
+    var editElement = document.getElementById("field-name");
+  	var parent = editElement.parentNode;
+  	var t = parent.getElementsByTagName("DIV");
+  	var dropdownlist = t[0];
+    dropdownlist.style.display="none";
   };
+
 
 
 
 $scope.reloadSubMenu = function(index) {
   console.log(index)
+  if (index == 0) {
+    console.log("load main")
+  //  $scope.getCandidatesFields();
+  }
   if (index == 1) {
     console.log("load flow")
-  $scope.loadFlow();
+    $scope.loadFlow();
   }
   if (index == 3) {
     console.log("load notes")
-  getCandidateNotes()
+    getCandidateNotes()
   }
   if (index == 2) {
     console.log("load suggestions")
-  $scope.loadSuggestions()
+    $scope.loadSuggestions()
   }
 
 }
@@ -166,7 +178,7 @@ $scope.reloadSubMenu = function(index) {
         $rootScope.updateProcess = true;
 $scope.reloadSubMenu($scope.selectedIndex)
     }
-    $scope.getCandidatesFields();
+    //$scope.getCandidatesFields();
 
   }
 
@@ -223,6 +235,7 @@ $scope.reloadSubMenu($scope.selectedIndex)
 
 
   }
+  $scope.getCandidatesFields();
 
 
 
@@ -323,8 +336,10 @@ $scope.reloadSubMenu($scope.selectedIndex)
         $scope.newField = {}
         $scope.newField.type = {}
         $rootScope.updateProcess = false
+        $scope.getCandidatesFields();
         $scope.showToast()
-      })
+      });
+
     },
     cancel: function() {
 
@@ -503,7 +518,10 @@ $scope.loadSuggestions = function () {
 
 
   $scope.$watch('selectedIndex', function(indexNew, indexOld) {
-
+    if (indexNew == 0) {
+      console.log("load main");
+    //  $scope.getCandidatesFields();
+    };
     if (indexNew == 1) {
       console.log("load flow")
     $scope.loadFlow();
