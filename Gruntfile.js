@@ -7,7 +7,7 @@ module.exports = function(grunt) {
         app: {
             source: 'content',
             bower: 'bower_components',
-            dist: 'dist'
+            dist: 'dist/'
         },
 
         clean: {
@@ -22,6 +22,8 @@ module.exports = function(grunt) {
                 }]
             },
         },
+
+        
 
         sass: {
             dist: {

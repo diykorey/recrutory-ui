@@ -4,8 +4,8 @@
   "description": "Shumble Web",
   "private": true,
   "scripts": {
-    "start" : "grunt",
-    "build" : "grunt build",
+    "start": "grunt",
+    "build": "grunt build",
     "server": "grunt"
   },
   "repository": {
