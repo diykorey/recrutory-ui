@@ -1,8 +1,12 @@
-kandidatoApp.controller('MainCtrl', function($scope, $rootScope, $location, $mdToast, $timeout, ApiDataFactory) {
+kandidatoApp.controller('MainCtrl', function($scope, $rootScope, $location, $mdToast, $timeout, $cookies, ApiDataFactory) {
     if(location.pathname =='/'){
-      $location.path("/vacancyDashboard")
+      $location.path("/vacancyDashboard");
+    }
+    if(location.pathname =='login'){
+      $location.path("/vacancyDashboard");
 
     }
+
     $scope.currentNavTab = location.pathname.substring(1);
 
     function capitalizeFirstLetter(string) {

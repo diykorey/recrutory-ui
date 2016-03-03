@@ -16,8 +16,9 @@ var kandidatoApp = angular.module('kandidatoApp', [
     'ngMaterial',
     'ngAnimate',
     'rt.debounce',
-    'ngFileUpload'//,
-    //'monospaced.elastic'//,
+    'ngFileUpload',
+    'ngCookies'//,
+    //'monospaced.elastic'//,//maybe we need it
   //  'kendo.directives'
 ]);
 
