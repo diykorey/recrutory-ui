@@ -2,9 +2,9 @@ kandidatoApp.controller('MainCtrl', function($scope, $rootScope, $location, $mdT
     if(location.pathname =='/'){
       $location.path("/vacancyDashboard");
     }
-    if(location.pathname =='login'){
+    if(location.pathname =='/login'){
       $location.path("/vacancyDashboard");
-
+console.log($location);
     }
 
     $scope.currentNavTab = location.pathname.substring(1);
