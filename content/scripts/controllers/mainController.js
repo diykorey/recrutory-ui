@@ -4,7 +4,8 @@ kandidatoApp.controller('MainCtrl', function($scope, $rootScope, $location, $mdT
     }
     if(location.pathname =='/login'){
       $location.path("/vacancyDashboard");
-console.log($location);
+console.log($location.search().token);
+$location.search('token', null)
     }
 
     $scope.currentNavTab = location.pathname.substring(1);
