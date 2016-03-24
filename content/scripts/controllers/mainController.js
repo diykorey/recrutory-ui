@@ -4,8 +4,11 @@ kandidatoApp.controller('MainCtrl', function($scope, $rootScope, $location, $mdT
     }
     if(location.pathname =='/login'){
       $location.path("/vacancyDashboard");
-console.log($location.search().token);
-$location.search('token', null)
+      var authtoken = $location.search().token;
+      console.log(authtoken);
+      console.log("cookies: " +   $cookies.get('authtoken'));
+      $cookies.put('authtoken', authtoken);
+      $location.search('token', null);
     }
 
     $scope.currentNavTab = location.pathname.substring(1);
