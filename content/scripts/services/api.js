@@ -1,4 +1,4 @@
-kandidatoApp.service('api', function($http, $q) {
+kandidatoApp.service('api', function($http, $q, $cookies) {
     this.search = function(type, keyword) {
         var d = $q.defer();
         $http.get('http://recrutory-web-dev.cloudapp.net:8080/recrutory/search/' + type + '/byKeywords?query=' + keyword + '&page=0&size=10').then(function(response) {

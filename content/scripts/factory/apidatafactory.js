@@ -1,10 +1,11 @@
 'use strict';
 
-kandidatoApp.factory('ApiDataFactory', ['$http', '$q', '$log', function($http, $q, $log) {
+kandidatoApp.factory('ApiDataFactory', ['$http', '$q', '$log', '$cookies', function($http, $q, $log, $cookies) {
 
 
-    var apiURL = "http://recrutory-web-dev.cloudapp.net:8080/recrutory/"
-
+    var apiURL = "http://recrutory-web-dev.cloudapp.net:8080/recrutory/";
+    var authtoken = $cookies.get('authtoken');
+    $http.defaults.headers.common['Auth-Token'] = authtoken;
     var factory = {
         queryGet: function(url) {
             var URL = apiURL + url;
