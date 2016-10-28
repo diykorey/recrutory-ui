@@ -40,7 +40,11 @@ kandidatoApp.controller('addCandidate', function($scope, $rootScope, $location, 
         if (files && files.length) {
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
-                Upload.upload({
+                  ApiDataFactory.upload('resume/upload/one', file,   function (data, status, headers, config) {
+                      console.log(data);
+                      $scope.addCandidate()
+                  } ).then(function(result) {console.log(result);});
+              /*  Upload.upload({
                     url: 'http://recrutory-web-dev.cloudapp.net:8080/recrutory/resume/upload/one',
                     file: file
                 }).progress(function (evt) {
@@ -52,7 +56,7 @@ kandidatoApp.controller('addCandidate', function($scope, $rootScope, $location, 
                     $scope.addCandidate()
                 }).error(function (data, status, headers, config) {
                     console.log('error status: ' + status);
-                })
+                })*/
             }
         }
     };

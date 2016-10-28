@@ -1,9 +1,9 @@
 'use strict';
 
-kandidatoApp.factory('ApiDataFactory', ['$http', '$q', '$log', '$cookies', function($http, $q, $log, $cookies) {
+kandidatoApp.factory('ApiDataFactory', ['$http', '$q', '$log', '$cookies', 'Upload', function($http, $q, $log, $cookies, Upload) {
 
 
-    var apiURL = "http://recrutory-web-dev.cloudapp.net:8080/recrutory/";
+    var apiURL = "http://localhost:8080/recrutory/";//recrutory-web-dev.cloudapp.net
     var authtoken = $cookies.get('authtoken');
     $http.defaults.headers.common['Auth-Token'] = authtoken;
     var factory = {
@@ -48,6 +48,25 @@ kandidatoApp.factory('ApiDataFactory', ['$http', '$q', '$log', '$cookies', funct
                 $log.info("Delete operation successfull");
             }, function(result) {
                 $log.error("Delete operation unsuccessfull");
+            });
+
+            return data;
+        },
+
+        upload:function(url, files, onSuccess){
+            var uploadUrl = apiURL + url;
+          var data =  Upload.upload({
+                url: uploadUrl,
+                file: files
+            }).progress(function (evt) {
+                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
+
+            }).success(function (data, status, headers, config) {
+                console.log(data);
+                onSuccess();
+            }).error(function (data, status, headers, config) {
+                console.log('error status: ' + status);
             });
 
             return data;
