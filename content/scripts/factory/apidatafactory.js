@@ -1,10 +1,14 @@
 'use strict';
 
 kandidatoApp.factory('ApiDataFactory', ['$http', '$q', '$log', '$cookies', 'Upload', function($http, $q, $log, $cookies, Upload) {
+//http://recrutory-web-dev.cloudapp.net:8080/recrutory/auth/linkedinAccessToken?code=AQQOM1ObnGUgWtQRo-o8g6AxtNnNYLxpWcWoc_J25pMAukVOV5EXpEJJn_sQFdFTp6msXzCCs9b3IlokXfdJGLsd63agzO77i0PQcsbDzOcxtNoVrQU&state=1234567890
+//http://localhost:8080/recrutory/auth/linkedinAccessToken?code=AQQOM1ObnGUgWtQRo-o8g6AxtNnNYLxpWcWoc_J25pMAukVOV5EXpEJJn_sQFdFTp6msXzCCs9b3IlokXfdJGLsd63agzO77i0PQcsbDzOcxtNoVrQU&state=1234567890
 
-
-    var apiURL = "http://localhost:8080/recrutory/";//recrutory-web-dev.cloudapp.net
-    var authtoken = $cookies.get('authtoken');
+    var apiURL = "recrutory-web-dev.cloudapp.net";//"http://localhost:8080/recrutory/";//"recrutory-web-dev.cloudapp.net"
+    var authtoken = $cookies.get('auth-token');
+    var cookies = $cookies.getAll();
+    $log.info("authtoken = " + authtoken);
+    $log.info("cookies = " +  cookies);
     $http.defaults.headers.common['Auth-Token'] = authtoken;
     var factory = {
         queryGet: function(url) {

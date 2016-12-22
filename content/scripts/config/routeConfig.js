@@ -1,5 +1,5 @@
 kandidatoApp.config(function($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/404');
+    $urlRouterProvider.otherwise('/vacancyDashboard');
 
     $stateProvider
         .state('root',{
@@ -15,7 +15,6 @@ kandidatoApp.config(function($stateProvider, $urlRouterProvider) {
             }
           }
     })
-
     .state('root.vacancyDash', {
           url: '/vacancyDashboard',
           views: {

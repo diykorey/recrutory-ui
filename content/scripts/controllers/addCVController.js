@@ -1,4 +1,4 @@
-kandidatoApp.controller('addCvCtrl', function($scope, $rootScope, $location, /*$route,*/ Upload, ApiDataFactory) {
+kandidatoApp.controller('addCvCtrl', function($scope, $rootScope, $location,  Upload, ApiDataFactory) {
 
     $scope.upload = function(files) {
         if (files && files.length) {
