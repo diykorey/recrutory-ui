@@ -4,15 +4,16 @@ kandidatoApp.factory('ApiDataFactory', ['$http', '$q', '$log', '$cookies', 'Uplo
 //http://recrutory-web-dev.cloudapp.net:8080/recrutory/auth/linkedinAccessToken?code=AQQOM1ObnGUgWtQRo-o8g6AxtNnNYLxpWcWoc_J25pMAukVOV5EXpEJJn_sQFdFTp6msXzCCs9b3IlokXfdJGLsd63agzO77i0PQcsbDzOcxtNoVrQU&state=1234567890
 //http://localhost:8080/recrutory/auth/linkedinAccessToken?code=AQQOM1ObnGUgWtQRo-o8g6AxtNnNYLxpWcWoc_J25pMAukVOV5EXpEJJn_sQFdFTp6msXzCCs9b3IlokXfdJGLsd63agzO77i0PQcsbDzOcxtNoVrQU&state=1234567890
 
-    var apiURL = "recrutory-web-dev.cloudapp.net";//"http://localhost:8080/recrutory/";//"recrutory-web-dev.cloudapp.net"
-    var authtoken = $cookies.get('auth-token');
+    var apiURL = "http://api.recrutory.com:8080/recrutory/";//"http://localhost:8080/recrutory/";//"http://recrutory-web-dev.cloudapp.net/"
+    var authtoken = $cookies.getObject('auth-token');
     var cookies = $cookies.getAll();
     $log.info("authtoken = " + authtoken);
-    $log.info("cookies = " +  cookies);
+    $log.info("cookies = ",  cookies);
     $http.defaults.headers.common['Auth-Token'] = authtoken;
     var factory = {
         queryGet: function(url) {
             var URL = apiURL + url;
+              $log.info("Execute GET request to " + URL);
             var data = $http({
                 method: 'GET',
                 url: URL
@@ -29,6 +30,7 @@ kandidatoApp.factory('ApiDataFactory', ['$http', '$q', '$log', '$cookies', 'Uplo
         queryPost: function(url, dataPost) {
             var URL = apiURL + url;
             var dataPost = dataPost
+            $log.info("Execute POST request to " + URL + " with data " + dataPost);
             var data = $http({
                 method: 'POST',
                 data: dataPost,
@@ -45,6 +47,7 @@ kandidatoApp.factory('ApiDataFactory', ['$http', '$q', '$log', '$cookies', 'Uplo
         },
         queryDelete: function(url) {
             var URL = apiURL + url;
+            $log.info("Execute DELETE request to " + URL);
             var data = $http({
                 method: 'DELETE',
                 url: URL
@@ -59,6 +62,7 @@ kandidatoApp.factory('ApiDataFactory', ['$http', '$q', '$log', '$cookies', 'Uplo
 
         upload:function(url, files, onSuccess){
             var uploadUrl = apiURL + url;
+            $log.info("Execute UPLOAD request to " + uploadUrl);
           var data =  Upload.upload({
                 url: uploadUrl,
                 file: files

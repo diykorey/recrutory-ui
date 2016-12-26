@@ -67,7 +67,7 @@ function textareaFlex(){
 
 }
 
-ComboBox=function(e){
+function ComboBox(e){
 	console.log(e)
 	var editElement = document.getElementById(e);
 	editElement.value="";
