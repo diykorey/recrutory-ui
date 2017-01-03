@@ -4,11 +4,12 @@ kandidatoApp.controller('MainCtrl', function($scope, $rootScope, $location, $mdT
     }
     if(location.pathname =='/login'){
       $location.path("/vacancyDashboard");
-      var authtoken = $location.search().token;
+      //delete token from path
+    /*  var authtoken = $location.search().token;
       console.log(authtoken);
       console.log("cookies: " +   $cookies.get('authtoken'));
       $cookies.put('authtoken', authtoken);
-      $location.search('token', null);
+      $location.search('token', null);*/
     }
 
     $scope.currentNavTab = location.pathname.substring(1);
@@ -28,7 +29,10 @@ kandidatoApp.controller('MainCtrl', function($scope, $rootScope, $location, $mdT
           $scope.$broadcast('changeTab', $scope.currentNavTab);
     }
 
-
+      $scope.logout = function () {
+        $cookies.remove('auth-token',{domain : ".recrutory.com"});
+        $log.info("logout");
+    }
 
     var tabs = [{
 
