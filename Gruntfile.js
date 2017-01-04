@@ -194,15 +194,10 @@ module.exports = function(grunt) {
                     dest: '<%= app.dist %>/fonts'
                 }, {
                     expand: true,
-                    cwd: '<%= app.source %>',
-                    src: '**/web.config',
-                    dest: '<%= app.dist %>'
-                }, {
-                    expand: true,
-                    cwd: '<%= app.source %>/fonts',
+                    cwd: '<%= app.source %>/views',
                     src: '**/*.*',
-                    dest: '<%= app.dist %>/fonts'
-                } ]
+                    dest: '<%= app.dist %>/views'
+                }]
             },
             styles: {
                 expand: true,
