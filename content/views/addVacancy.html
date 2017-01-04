@@ -1,20 +1,23 @@
 <h1>Add new vacancy</h1>
 <div class="center-box">
-	<div class="center-box-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sollicitudin cursus ante. Praesent faucibus lacus ornare nunc aliquet luctus. Etiam vulputate eu tellus quis cursus. Donec arcu metus, pulvinar finibus magna quis, fringilla dapibus nisl. Donec nec nisl eu arcu hendrerit tempor.</div>
+	<div class="center-box-text"></div>
 	<div class="simple-form">
 		<div class="simple-form-field">
 			<input type="text" ng-model="vacancy.name" class="textfield" placeholder="Name">
 		</div>
-		<div class="simple-form-field">
+		<div class="simple-form-field" style="text-align:left;">
+
 			<md-input-container>
-				<textarea ng-model="vacancy.requirements" rows="4" columns="1" md-maxlength="150" class="textarea" placeholder="Requierements"></textarea>
+				<textarea ng-model="vacancy.requirements" rows="4" columns="1" md-maxlength="150" class="textarea" ng-attr-placeholder="Requirements" style="width:80%;"></textarea>
 			</md-input-container>
+			<br>
 		</div>
 		<div class="simple-form-field">
 			<input type="text" ng-model="vacancy.tags" class="textfield" placeholder="Tags">
 		</div>
 		<div class="simple-form-button">
-			<button class="big-button">Add New Vacancy</button>
+
+			<md-button ng-click="addVacancy()" class="big-button">Add New Vacancy</md-button>
 		</div>
 		<!--<div class="simple-form-field">
 			<md-input-container flex>
@@ -26,6 +29,7 @@
         </div
 		<div class="simple-form-button">
 			<md-button ng-click="addVacancy()" class="big-button">Add New Vacancy</md-button>
+			<button class="big-button">Add New Vacancy</button>
 		</div>-->
 	</div>
 </div>
