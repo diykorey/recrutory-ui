@@ -16,7 +16,12 @@ $(window).resize(function(){
 			delta = 0;
 		}
 		setTimeout(function(){
-			destination = $('#card-' + id).offset().top - delta;
+			var selectedCardList = document.getElementsByClassName("selected");
+			if(selectedCardList.length==0){
+				return;
+			}
+			var selectedCard = selectedCardList[0];
+			destination = selectedCard.offsetTop - delta;
 			$('html,body').stop().animate({
 				scrollTop: destination
 			},{

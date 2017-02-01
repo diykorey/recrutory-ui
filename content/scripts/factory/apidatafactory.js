@@ -4,7 +4,7 @@ kandidatoApp.factory('ApiDataFactory', ['$http', '$q', '$log', '$cookies', 'Uplo
 //http://recrutory-web-dev.cloudapp.net:8080/recrutory/auth/linkedinAccessToken?code=AQQOM1ObnGUgWtQRo-o8g6AxtNnNYLxpWcWoc_J25pMAukVOV5EXpEJJn_sQFdFTp6msXzCCs9b3IlokXfdJGLsd63agzO77i0PQcsbDzOcxtNoVrQU&state=1234567890
 //http://localhost:8080/recrutory/auth/linkedinAccessToken?code=AQQOM1ObnGUgWtQRo-o8g6AxtNnNYLxpWcWoc_J25pMAukVOV5EXpEJJn_sQFdFTp6msXzCCs9b3IlokXfdJGLsd63agzO77i0PQcsbDzOcxtNoVrQU&state=1234567890
 
-    var apiURL = "http://api.recrutory.com:8080/recrutory/";//"http://localhost:8080/recrutory/";//"http://recrutory-web-dev.cloudapp.net/"
+    var apiURL = "http://localhost:8080/recrutory/";//"http://localhost:8080/recrutory/";//"http://recrutory-web-dev.cloudapp.net/"
     var authtoken = $cookies.get('auth-token');
     var cookies = $cookies.getAll();
     $log.info("authtoken = " + authtoken);

@@ -14,9 +14,9 @@
 				<md-checkbox class="md-checkbox" ng-model="flowaddModel[vacancy.id]" ng-change="changeFlowData(vacancy.id)" aria-label="Checkbox 1"></md-checkbox>
 				<span>Vacancy [ {{vacancy.id}} ]</span>
 			</div>
-			<div class="suggestions-box-item-text">Good english, experience to build highload project, some english, experience to build highload project</div>
+			<div class="suggestions-box-item-text">{{vacancy.requirements}}</div>
 		</div>
-		<md-button class="suggestions-box-more" ng-click="getSuggestions.suggested(true)">Show</md-button>
+		<md-button class="suggestions-box-more" ng-click="getSuggestions.suggested(true)">More</md-button>
 	</div>
 	<div class="suggestions-box">
 		<label>Available :</label>
@@ -25,8 +25,8 @@
 				<md-checkbox class="md-checkbox" ng-model="flowaddModel[vacancy.id]" ng-change="changeFlowData(vacancy.id)" aria-label="Checkbox 1"></md-checkbox>
 				<span>Vacancy [ {{vacancy.id}} ]</span>
 			</div>
-			<div class="suggestions-box-item-text">Good english, experience to build highload project, some english, experience to build highload project</div>
+			<div class="suggestions-box-item-text">{{vacancy.requirements}}</div>
 		</div>
-		<md-button class="suggestions-box-more" ng-click="getSuggestions.available(true)">Show</md-button>
+		<md-button class="suggestions-box-more" ng-click="getSuggestions.available(true)">More</md-button>
 	</div>
 </div>

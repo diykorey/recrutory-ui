@@ -14,7 +14,7 @@
     <div class="card-info-main-desc">
 		<label>Description:</label>
         <md-input-container>
-            <textarea class="textarea" onload="ALERT('111');textareaFlex();">Business Analysis Requirements Gathering / DocumentationTravel IndustrySalary to 40K Chester basedCall Dan Butl</textarea>
+            <textarea class="textarea" onload="textareaFlex();" ng-blur="updateInfo(currentVacancy.id)" ng-model="currentVacancy.requirements"></textarea>
         </md-input-container>
 	</div>
 	<div class="card-info-main-tags">

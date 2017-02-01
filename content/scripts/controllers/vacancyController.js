@@ -102,7 +102,7 @@ kandidatoApp.controller('vacancyCtrl', function($scope, $rootScope, $log, ApiDat
      */
 
     $scope.selectVacancy = function(vacancy) {
-        document.title = "Recrutory - " + vacancy.name;
+        document.title = "Recruitory - " + vacancy.name;
 
         if ($scope.returnSelectDefault == true) {
             $scope.returnSelectDefault = false
@@ -111,7 +111,7 @@ kandidatoApp.controller('vacancyCtrl', function($scope, $rootScope, $log, ApiDat
         };
         if (vacancy.id === $scope.currentVacancy.id && $scope.currentVacancy) {
             $scope.currentVacancy = false;
-            document.title = "Recrutory"
+            document.title = "Recruitory"
             return
         };
         window.scrollTo(0, 0);
@@ -122,14 +122,14 @@ kandidatoApp.controller('vacancyCtrl', function($scope, $rootScope, $log, ApiDat
     }
 
 	$scope.fixedAside = function(id) {
-		
+
 		if($('.fixed').length){
-		
+
 			var fixed = $('.fixed');
 			var base = $('.fixed-base');
 			var pointStart = base.offset().top - 20;
 			var pointEnd = base.offset().top + base.outerHeight() - fixed.height() - 20;
-			
+
 			if($(window).scrollTop() < pointStart){
 				fixed.removeAttr('style').removeClass('scroll');
 			} else if($(window).scrollTop() >= pointStart && $(window).scrollTop() <= pointEnd){
@@ -140,7 +140,7 @@ kandidatoApp.controller('vacancyCtrl', function($scope, $rootScope, $log, ApiDat
 				var marginTop = base.outerHeight() - fixed.height();
 				fixed.css('margin-top',marginTop);
 			}
-			
+
 			setTimeout(function(){
 				destination = $('#card-' + id).offset().top;
 				$('html,body').stop().animate({
@@ -149,9 +149,9 @@ kandidatoApp.controller('vacancyCtrl', function($scope, $rootScope, $log, ApiDat
 					duration: 200
 				});
 			},100);
-			
+
 		}
-	
+
   }
 
 
