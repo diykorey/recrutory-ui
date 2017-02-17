@@ -19,7 +19,7 @@
 			<md-input-container>
 				<textarea class="textarea" columns="1" ng-model="item.currentFlowStateDescription" ng-init="item.currentFlowStateDescription = item.actions[item.actions.length - 1].description"  ng-blur="item.currentFlowStateDescription != item.actions[item.actions.length - 1].description ? changeFlowState(item.currentFlowState, item.currentFlowStateDescription, item.actions[item.actions.length - 1].flowId) : null"></textarea>
 			</md-input-container>
-			<div class="text-box-open" toggle-active-parent></div>
+			<!--div class="text-box-open" toggle-active-parent></div-->
 		</div>
 		<span class="flow-main-history-show {{currentFlowId == item.id ? 'opened' : ''}}" ng-click="currentFlowId ? currentFlowId = false : currentFlowId = item.id">{{currentFlowId == item.id ? 'Hide History' : 'Show History'}}</span>
 	</div>
@@ -41,7 +41,7 @@
 						<md-input-container>
 							<textarea class="textarea" columns="1" ng-model="action.description"></textarea>
 						</md-input-container>
-						<div class="text-box-open" toggle-active-parent></div>
+						<!--div class="text-box-open" toggle-active-parent></div-->
 					</div>
 				</div>
 				<div class="clear"></div>

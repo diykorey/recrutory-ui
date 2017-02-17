@@ -20,7 +20,7 @@
 	<div class="card-info-main-tags">
 		<label>Tags</label>
 		<div class="card-info-main-tags-list clearfix" ng-if="currentVacancy.tags.length > 0">
-			<a ng-repeat="tag in currentVacancy.tags" ng-if="currentVacancy.tags.length > 0" ng-click="tags.delete(tag)">{{tag.keyword}}</a>
+			<a ng-repeat="tag in currentVacancy.tags" ng-if="currentVacancy.tags.length > 0" >{{tag.keyword}}<i ng-click="tags.delete(tag)"></i></a>
 		</div>
 		<div class="card-info-main-tags-list" ng-show="currentVacancy.tags.length == 0">No tags</div>
 		<input class="textfield" ng-keyup="$event.keyCode == 13 || $event.keyCode == 32 || $event.keyCode == 188? tags.add() : null" ng-model="tagEdit" placeholder="Type tag name and hit Enter, Space or type comma to add it.">

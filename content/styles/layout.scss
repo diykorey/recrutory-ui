@@ -553,12 +553,9 @@ p {
 	margin-bottom: 6px;
 }
 
-.card .card-tags .tags > li {
-	float: left;
-	margin: 0 5px 5px 0;
-}
-
-.card .card-tags .tags > li > a {
+.card .card-tags .tags > li  {
+  float: left;
+  margin: 0 5px 5px 0;
 	font-size: 13px;
 	color: #FFFFFF;
 	line-height: 18px;
