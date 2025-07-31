@@ -1,0 +1,63 @@
+<div class="candidate-dashboard-container">
+  <h1>Candidate Dashboard</h1>
+
+  <div class="stats-cards">
+    <mat-card class="stat-card">
+      <mat-card-content>
+        <div class="stat-content">
+          <mat-icon class="stat-icon">people_outline</mat-icon>
+          <div class="stat-numbers">
+            <h2>{{stats.totalCandidates}}</h2>
+            <p>Total Candidates</p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card active">
+      <mat-card-content>
+        <div class="stat-content">
+          <mat-icon class="stat-icon">person</mat-icon>
+          <div class="stat-numbers">
+            <h2>{{stats.activeCandidates}}</h2>
+            <p>Active Candidates</p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card hired">
+      <mat-card-content>
+        <div class="stat-content">
+          <mat-icon class="stat-icon">check_circle</mat-icon>
+          <div class="stat-numbers">
+            <h2>{{stats.hiredCandidates}}</h2>
+            <p>Hired Candidates</p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <mat-card class="recent-candidates">
+    <mat-card-header>
+      <mat-card-title>Recent Candidates</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="recent-list" *ngIf="stats.recentCandidates.length > 0; else noCandidates">
+        <div class="recent-item" *ngFor="let candidate of stats.recentCandidates">
+          <div class="candidate-info">
+            <h3>{{candidate.name}}</h3>
+            <p>{{candidate.position}} - {{candidate.email}}</p>
+          </div>
+          <mat-chip [color]="getStatusColor(candidate.status)">
+            {{candidate.status}}
+          </mat-chip>
+        </div>
+      </div>
+      <ng-template #noCandidates>
+        <p>No recent candidates found.</p>
+      </ng-template>
+    </mat-card-content>
+  </mat-card>
+</div>

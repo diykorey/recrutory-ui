@@ -1,0 +1,63 @@
+<div class="vacancy-dashboard-container">
+  <h1>Vacancy Dashboard</h1>
+
+  <div class="stats-cards">
+    <mat-card class="stat-card">
+      <mat-card-content>
+        <div class="stat-content">
+          <mat-icon class="stat-icon">work_outline</mat-icon>
+          <div class="stat-numbers">
+            <h2>{{stats.totalVacancies}}</h2>
+            <p>Total Vacancies</p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card active">
+      <mat-card-content>
+        <div class="stat-content">
+          <mat-icon class="stat-icon">work</mat-icon>
+          <div class="stat-numbers">
+            <h2>{{stats.activeVacancies}}</h2>
+            <p>Active Vacancies</p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card closed">
+      <mat-card-content>
+        <div class="stat-content">
+          <mat-icon class="stat-icon">work_off</mat-icon>
+          <div class="stat-numbers">
+            <h2>{{stats.closedVacancies}}</h2>
+            <p>Closed Vacancies</p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <mat-card class="recent-vacancies">
+    <mat-card-header>
+      <mat-card-title>Recent Vacancies</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="recent-list" *ngIf="stats.recentVacancies.length > 0; else noVacancies">
+        <div class="recent-item" *ngFor="let vacancy of stats.recentVacancies">
+          <div class="vacancy-info">
+            <h3>{{vacancy.title}}</h3>
+            <p>{{vacancy.company}} - {{vacancy.location}}</p>
+          </div>
+          <mat-chip [color]="vacancy.status === 'active' ? 'primary' : 'accent'">
+            {{vacancy.status}}
+          </mat-chip>
+        </div>
+      </div>
+      <ng-template #noVacancies>
+        <p>No recent vacancies found.</p>
+      </ng-template>
+    </mat-card-content>
+  </mat-card>
+</div>

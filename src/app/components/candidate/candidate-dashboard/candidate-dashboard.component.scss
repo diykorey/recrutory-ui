@@ -1,0 +1,144 @@
+// Component-specific styles for candidate dashboard
+.candidate-dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+
+  h1 {
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+}
+
+.stats-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.stat-card {
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &.active {
+    border-left: 5px solid #4caf50;
+  }
+
+  &.closed {
+    border-left: 5px solid #f44336;
+  }
+
+  &.hired {
+    border-left: 5px solid #4caf50;
+
+    .stat-icon {
+      color: #4caf50;
+    }
+  }
+
+  mat-card-content {
+    padding: 24px;
+  }
+}
+
+.stat-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.stat-icon {
+  font-size: 48px;
+  height: 48px;
+  width: 48px;
+  margin-bottom: 16px;
+  color: #666;
+}
+
+.stat-numbers {
+  h2 {
+    margin: 0;
+    font-size: 2.5em;
+    font-weight: 300;
+    color: #333;
+  }
+
+  p {
+    margin: 8px 0 0 0;
+    color: #666;
+    font-size: 1em;
+    font-weight: 500;
+  }
+}
+
+.recent-candidates {
+  margin-top: 32px;
+
+  mat-card {
+    border-radius: 12px;
+  }
+
+  mat-card-title {
+    color: #333;
+    font-size: 1.5em;
+  }
+}
+
+.recent-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.recent-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #e0e0e0;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: #f0f1f2;
+    border-left-color: #3f51b5;
+  }
+}
+
+.candidate-info {
+  flex: 1;
+
+  h3 {
+    margin: 0 0 4px 0;
+    color: #2e7d32;
+    font-size: 1.1em;
+    font-weight: 500;
+  }
+
+  p {
+    margin: 0;
+    color: #666;
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 768px) {
+  .stats-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .recent-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
