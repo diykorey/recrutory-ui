@@ -4,7 +4,7 @@ kandidatoApp.directive('flowItem', function() {
         replace: 'true',
         templateUrl: 'views/shared/flow-item.html',
         scope: {
-            recrutoryEntityData: '='
+            flowList: '='
         }
     };
 });

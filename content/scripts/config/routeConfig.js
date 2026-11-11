@@ -11,7 +11,7 @@ kandidatoApp.config(function($stateProvider, $urlRouterProvider) {
             },
              'searchbar': {
               templateUrl: '/views/searchbar.html',
-              controller: 'searchBar'
+              controller: 'searchbarCtrl'
             }
           }
     })

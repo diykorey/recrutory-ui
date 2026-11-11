@@ -45,6 +45,24 @@ kandidatoApp.factory('ApiDataFactory', ['$http', '$q', '$log', '$cookies', 'Uplo
 
             return data;
         },
+        queryPut: function(url, dataPut) {
+            var URL = apiURL + url;
+            //var dataPut= dataPut
+            $log.info("Execute PUT request to " + URL + " with data " + dataPut);
+            var data = $http({
+                method: 'PUT',
+                data: dataPut,
+                url: URL
+            }).then(function(result) {
+                $log.info("API data got, request successfull");
+                return result.data
+
+            }, function(result) {
+                $log.error("No API data returned, check your internet connection or try later.");
+            });
+
+            return data;
+        },
         queryDelete: function(url) {
             var URL = apiURL + url;
             $log.info("Execute DELETE request to " + URL);

@@ -8,8 +8,10 @@ kandidatoApp.controller('candidateCtrl', function($scope, $rootScope, $log, ApiD
   $scope.addFieldProgress = false
   $scope.flowSuggested = []
   $scope.flowAvailable = []
+  $scope.selectedFieldType = {}
   $scope.newField = {}
   $scope.newField.type = {}
+  $scope.newField.type.name = ''
   $rootScope.entityCurrent = "candidate";
   /**
    * Gets all candidates data from API
@@ -32,8 +34,8 @@ kandidatoApp.controller('candidateCtrl', function($scope, $rootScope, $log, ApiD
     }
   }
 
-  $scope.updateField = function (data) {
-    api.updateCandidateField(data).then(function (res) {
+  $scope.updateField = function(data) {
+    api.updateCandidateField(data).then(function(res) {
       $scope.showToast();
     })
   }
@@ -45,11 +47,10 @@ kandidatoApp.controller('candidateCtrl', function($scope, $rootScope, $log, ApiD
     $scope.getCandidatesData(data)
   });
 
-  $scope.$on("listFilterSearch", function (event, data) {
-    if(data){
-    $scope.candidatesData = data
-    }
-    else{
+  $scope.$on("listFilterSearch", function(event, data) {
+    if (data) {
+      $scope.candidatesData = data
+    } else {
       $scope.getCandidatesData()
     }
   })
@@ -103,49 +104,67 @@ kandidatoApp.controller('candidateCtrl', function($scope, $rootScope, $log, ApiD
       _.each($scope.currentCandidate.tags, function(tagEach) {
 
         if (tagEach.keyword === tag.keyword) {
-          spotedTagIndex=i;
+          spotedTagIndex = i;
           var URL = 'candidate/' + $scope.currentCandidate.id + '/tags/' + tag.id
           ApiDataFactory.queryDelete(URL).then(function(result) {})
           return
         };
         i++
       })
-        $scope.currentCandidate.tags.splice(spotedTagIndex, 1);
+      $scope.currentCandidate.tags.splice(spotedTagIndex, 1);
     }
 
   }
-  $scope.changeType = function(fieldType){
-    $scope.newField.type.name = fieldType.name;
+  $scope.changeType = function(fieldType) {
+    $scope.selectedFieldType = fieldType;
+    $scope.newField.type = fieldType;
     var editElement = document.getElementById("field-name");
-  	var parent = editElement.parentNode;
-  	var t = parent.getElementsByTagName("DIV");
-  	var dropdownlist = t[0];
-    dropdownlist.style.display="none";
+    var parent = editElement.parentNode;
+    var t = parent.getElementsByTagName("DIV");
+    var dropdownlist = t[0];
+    dropdownlist.style.display = "none";
+
+    $scope.newField.type.prime = (fieldType.priorityGroup == 2);
+
+  };
+
+  $scope.debounceInitCustomType = debounce(500, function() {
+
+     $scope.initCustomType()
+
+  });
+
+  $scope.initCustomType = function() {
+    console.log($scope.newField);
+    if ($scope.selectedFieldType) {
+      $scope.newField.type.prime = false;
+        $scope.newField.type.priorityGroup = 3;
+    }
+    $scope.selectedFieldType = {};
+
   };
 
 
+  $scope.reloadSubMenu = function(index) {
+    console.log(index)
+    if (index == 0) {
+      console.log("load main")
+      //  $scope.getCandidatesFields();
+    }
+    if (index == 1) {
+      console.log("load flow")
+      $scope.loadFlow();
+    }
+    if (index == 3) {
+      console.log("load notes")
+      getCandidateNotes()
+    }
+    if (index == 2) {
+      console.log("load suggestions")
+      $scope.loadSuggestions()
+    }
 
-
-$scope.reloadSubMenu = function(index) {
-  console.log(index)
-  if (index == 0) {
-    console.log("load main")
-  //  $scope.getCandidatesFields();
   }
-  if (index == 1) {
-    console.log("load flow")
-    $scope.loadFlow();
-  }
-  if (index == 3) {
-    console.log("load notes")
-    getCandidateNotes()
-  }
-  if (index == 2) {
-    console.log("load suggestions")
-    $scope.loadSuggestions()
-  }
-
-}
 
 
 
@@ -169,14 +188,13 @@ $scope.reloadSubMenu = function(index) {
     // window.scrollTo(0, 0);
     $scope.currentCandidate = candidate
     console.log($scope.currentCandidate)
-    if(!$scope.selectedIndex){
-    $timeout(function() {
-      $scope.selectedIndex = 1;
-    }, 0);
-    }
-    else{
-        $rootScope.updateProcess = true;
-$scope.reloadSubMenu($scope.selectedIndex)
+    if (!$scope.selectedIndex) {
+      $timeout(function() {
+        $scope.selectedIndex = 1;
+      }, 0);
+    } else {
+      $rootScope.updateProcess = true;
+      $scope.reloadSubMenu($scope.selectedIndex)
     }
     //$scope.getCandidatesFields();
 
@@ -186,38 +204,38 @@ $scope.reloadSubMenu($scope.selectedIndex)
 
   $scope.fixedAside = function(id) {
 
-	if($('#field-name').length){
-		var n = new ComboBox('field-name');
-	}
+    if ($('#field-name').length) {
+      var n = new ComboBox('field-name');
+    }
 
-	if($('.fixed').length){
+    if ($('.fixed').length) {
 
-		var fixed = $('.fixed');
-		var base = $('.fixed-base');
-		var pointStart = base.offset().top - 20;
-		var pointEnd = base.offset().top + base.outerHeight() - fixed.height() - 20;
+      var fixed = $('.fixed');
+      var base = $('.fixed-base');
+      var pointStart = base.offset().top - 20;
+      var pointEnd = base.offset().top + base.outerHeight() - fixed.height() - 20;
 
-		if($(window).scrollTop() < pointStart){
-			fixed.removeAttr('style').removeClass('scroll');
-		} else if($(window).scrollTop() >= pointStart && $(window).scrollTop() <= pointEnd){
-			fixed.removeAttr('style').addClass('scroll');
-			fixed.width(fixed.parent().width());
-		} else if($(window).scrollTop() > pointEnd){
-			fixed.removeAttr('style').removeClass('scroll');
-			var marginTop = base.outerHeight() - fixed.height();
-			fixed.css('margin-top',marginTop);
-		}
+      if ($(window).scrollTop() < pointStart) {
+        fixed.removeAttr('style').removeClass('scroll');
+      } else if ($(window).scrollTop() >= pointStart && $(window).scrollTop() <= pointEnd) {
+        fixed.removeAttr('style').addClass('scroll');
+        fixed.width(fixed.parent().width());
+      } else if ($(window).scrollTop() > pointEnd) {
+        fixed.removeAttr('style').removeClass('scroll');
+        var marginTop = base.outerHeight() - fixed.height();
+        fixed.css('margin-top', marginTop);
+      }
 
-		setTimeout(function(){
-			destination = $('#card-' + id).offset().top - 30;
-			$('html,body').stop().animate({
-				scrollTop: destination
-			},{
-				duration: 200
-			});
-		},100);
+      setTimeout(function() {
+        destination = $('#card-' + id).offset().top - 30;
+        $('html,body').stop().animate({
+          scrollTop: destination
+        }, {
+          duration: 200
+        });
+      }, 100);
 
-	}
+    }
 
   }
 
@@ -347,6 +365,10 @@ $scope.reloadSubMenu($scope.selectedIndex)
       $scope.newFieldName = ''
       $scope.newFieldPrime = ''
       $scope.newFieldValue = ''
+      $scope.selectedFieldType = {}
+      $scope.newField = {}
+      $scope.newField.type = {}
+      $scope.newField.type.name = ''
     },
     set: function(field) {
       $scope.currentField = field
@@ -357,14 +379,14 @@ $scope.reloadSubMenu($scope.selectedIndex)
     delete: function(field) {
       var URL = 'candidate/removefield/' + field.id
       ApiDataFactory.queryDelete(URL).then(function(result) {
-      api.getCandidate($scope.currentCandidate.id).then(function (data) {
-        $scope.currentCandidate = data.data;
-        _.each($scope.candidatesData, function(candidate, index) {
-    if (candidate.id == $scope.currentCandidate.id ) {
-      $scope.candidatesData[index] = $scope.currentCandidate
-    }
-        });
-      })
+        api.getCandidate($scope.currentCandidate.id).then(function(data) {
+          $scope.currentCandidate = data;
+          _.each($scope.candidatesData, function(candidate, index) {
+            if (candidate.id == $scope.currentCandidate.id) {
+              $scope.candidatesData[index] = $scope.currentCandidate
+            }
+          });
+        })
 
         // _.each($scope.candidatesData, function(candidate) {
         //   candidate.id == $scope.currentCandidate.id ? delete candidate.summaryCard.customFields[field.type.name] : candidate
@@ -467,7 +489,7 @@ $scope.reloadSubMenu($scope.selectedIndex)
 
         } else {
           $scope.flowSuggested = result;
-          console.log(result)
+          console.log("Recommended vacancies: " + result)
         }
         $rootScope.updateProcess = false
       });
@@ -484,7 +506,7 @@ $scope.reloadSubMenu($scope.selectedIndex)
         if ($scope.availablePage > 0) {
           _.each(result, function(vacancy) {
             $scope.flowAvailable.push(vacancy)
-
+            console.log("Available vacancies: " + result)
           });
 
         } else {
@@ -497,20 +519,24 @@ $scope.reloadSubMenu($scope.selectedIndex)
     }
   }
 
+  $scope.loadSuggestions = function() {
+    $scope.suggestedPage = 0;
+    $scope.availablePage = 0;
+    $scope.filterSuggestions = "";
+    $scope.getSuggestions.suggested($scope.suggestedPage)
+    $scope.getSuggestions.available($scope.availablePage)
+  }
 
-$scope.loadFlow = function () {
-  ApiDataFactory.queryGet('workflow/byCandidate/' + $scope.currentCandidateData.id).then(function(result) {
-    $rootScope.updateProcess = false;
-    $scope.candidatesFlowData = result // response data
-  });
-}
+  //loadflow
 
-$scope.loadSuggestions = function () {
-  $scope.suggestedPage = 0;
-  $scope.availablePage = 0;
-  $scope.getSuggestions.suggested($scope.suggestedPage)
-  $scope.getSuggestions.available($scope.availablePage)
-}
+  $scope.loadFlow = function() {
+    ApiDataFactory.queryGet('workflow/byCandidate/' + $scope.currentCandidateData.id).then(function(result) {
+      $rootScope.updateProcess = false;
+      $scope.candidatesFlowData = result // response data
+    });
+  }
+
+
 
   /**
    * Selected tab watcher
@@ -520,19 +546,19 @@ $scope.loadSuggestions = function () {
   $scope.$watch('selectedIndex', function(indexNew, indexOld) {
     if (indexNew == 0) {
       console.log("load main");
-    //  $scope.getCandidatesFields();
+      //  $scope.getCandidatesFields();
     };
     if (indexNew == 1) {
       console.log("load flow")
-    $scope.loadFlow();
+      $scope.loadFlow();
     };
     if (indexNew == 3) {
       console.log("load notes")
-    getCandidateNotes()
+      getCandidateNotes()
     };
     if (indexNew == 2) {
       console.log("load suggestions")
-    $scope.loadSuggestions()
+      $scope.loadSuggestions()
     };
 
   });
@@ -608,19 +634,36 @@ $scope.loadSuggestions = function () {
   };
 
 
-  $scope.changeFlowState = function(state, desc, flowid) {
-    console.log(state)
+  $scope.updateActionDescription = function(actionId, desc) {
+
+
     var data = {
-  "state": state,
-  "description": desc,
-  "flowId": flowid
-}
-    api.positionStateForCadindate(data).then(
+      "description": desc
+    }
+    api.updateActionDescription(actionId, data).then(
       function(data) {
-console.info("Success");
+        console.info("Update action: " + actionId + " description success");
       },
       function(error) {
-console.error("Fail");
+        console.error("Update action description fail");
+      })
+  }
+
+
+  $scope.addFlowAction = function(state, desc, flowId) {
+
+
+    var data = {
+      "state": state,
+      "description": desc,
+      "flowId": flowId
+    }
+    api.addFlowAction(data).then(
+      function(data) {
+        console.info("Add flow action success");
+      },
+      function(error) {
+        console.error("Add flow action fail");
       })
   }
 

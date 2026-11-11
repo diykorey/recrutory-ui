@@ -51,8 +51,8 @@
 			<!-- Archive card content -->
 			<div ng-show="vacancy.allowArchive == true" class="archive-warn-wrapper">
 				<p>Are you sure that you want<br>to archive this candidate ?</p>
-				<md-button class="button-do" ng-click="archivecandidate(candidate)"></md-button>
-				<md-button class="button-undo" ng-click="quickAction.archive(candidate,'unarchive')"></md-button>
+				<md-button class="button-undo" aria-label="cancel archive" ng-click="quickAction.archive(vacancy,'unarchive')"></md-button>&nbsp;&nbsp;&nbsp;&nbsp;
+				<md-button class="del-button" aria-label="archive" ng-click="archiveVacancy(vacancy)"></md-button>
 			</div>
 			<!-- End Archive card content -->
 		</div>
