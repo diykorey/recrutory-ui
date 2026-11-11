@@ -3,7 +3,7 @@
 		<md-input-container flex ng-show="notes[notes.length - 1].new == true">
 			<h5>{{note.placeholder}}</h5>
 			<md-input-container>
-				<textarea class="textarea" autofocus="true" ng-model="notes[notes.length - 1].comment" columns="1"></textarea>
+				<textarea class="textarea" aria-label="comment" autofocus="true" ng-model="notes[notes.length - 1].comment" columns="1"></textarea>
 			</md-input-container>
 		</md-input-container>
 	</div>
@@ -19,7 +19,7 @@
 					<h5>Note {{note.creationDate|date:'medium'}}</h5>
 					<p ng-show="!note.editNote">{{note.comment}}</p>
 					<md-input-container flex ng-show="note.editNote">
-						<textarea class="textarea" autofocus="note.editNote" ng-model="note.comment" columns="1"></textarea>
+						<textarea class="textarea" aria-label="comment" autofocus="note.editNote" ng-model="note.comment" columns="1"></textarea>
 					</md-input-container>
 				</div>
 				<div class="notes-cell" ng-show="note.deleteNote">Are you sure you want to delete this note ?</div>
@@ -30,7 +30,7 @@
 				</div>
 				<div class="notes-cell notes-cell-button">
 					<md-button class="del-button" ng-hide="note.editNote" ng-click="noteAction.deletenote(note)"></md-button>
-					<md-button ng-click="note.editNote = false" ng-show="note.editNote" class="button-undo"></md-button>
+					<md-button class="button-undo" ng-show="note.editNote" ng-click="note.editNote = false"></md-button>
 				</div>
 			</div>
 		</div>

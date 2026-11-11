@@ -4,7 +4,7 @@
 			<button class="small-button c1" ng-click='sendFlow()' ng-disabled="!flowData.length">+ Add to flow</button>
 		</div>
 		<label class="pull-right filter-block">
-			<input class="textfield filter-input" ng-change="getSuggestions.search()" ng-model="filterSuggestions" placeholder="Filter">
+			<input class="textfield filter-input" ng-change="suggestionSearch()" ng-model="filterSuggestions" placeholder="Filter">
 		</label>
 	</div>
 	<div class="suggestions-box">
@@ -13,7 +13,7 @@
 		<div class="suggestions-box-item clearfix" ng-repeat="candidate in flowSuggested">
 			<div class="suggestions-box-item-name">
 				<md-checkbox class="md-checkbox" ng-model="flowaddModel[candidate.id]" ng-change="changeFlowData(candidate.id)" aria-label="Choose candidate"></md-checkbox>
-				<span>{{candidate.summaryCard.name.fieldValue || '&nbsp;&nbsp; * * * *'}}</span>
+				<div>{{candidate.summaryCard.name.fieldValue || '&nbsp;&nbsp; * * * *'}}</div>
 			</div>
 			<div class="suggestions-box-item-text">	<span ng-repeat="tag in candidate.tags" ng-if="candidate.tags.length > 0">
 					<a>{{tag.keyword}}</a>{{$last ? '' : ($index==candidate.tags.length-2) ? ' and ' : ', '}}
@@ -21,7 +21,7 @@
 			</div>
 		</div>
 		<div ng-if="flowSuggested.length > 0">
-			<md-button class="suggestions-box-more" ng-click="getSuggestions(suggestedPage,availablePage,'suggested')">More</md-button>
+			<md-button class="suggestions-box-more" ng-click="getSuggestions.suggested(true)">More</md-button>
 		</div>
 	</div>
 	<div class="suggestions-box">
@@ -30,7 +30,7 @@
 		<div class="suggestions-box-item clearfix" ng-repeat="candidate in flowAvailable">
 			<div class="suggestions-box-item-name">
 				<md-checkbox class="md-checkbox" ng-model="flowaddModel[candidate.id]" ng-change="changeFlowData(candidate.id)" aria-label="Choose candidate"></md-checkbox>
-				<span>{{candidate.summaryCard.name.fieldValue || '&nbsp;&nbsp;* * * *'}}</span>
+				<div>{{candidate.summaryCard.name.fieldValue || '&nbsp;&nbsp;* * * *'}}</div>
 			</div>
 			<div class="suggestions-box-item-text">
 				<span ng-repeat="tag in candidate.tags" ng-if="candidate.tags.length > 0">
@@ -39,7 +39,7 @@
 			</div>
 		</div>
 		<div ng-if="flowAvailable.length > 0">
-			<md-button class="suggestions-box-more"  ng-click="getSuggestions(suggestedPage,availablePage,'available')">More</md-button>
+			<md-button class="suggestions-box-more"  ng-click="getSuggestions.available(true)">More</md-button>
 	  </div>
 	</div>
 </div>

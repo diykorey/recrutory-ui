@@ -1,4 +1,4 @@
-kandidatoApp.controller('vacancyCtrl', function($scope, $rootScope, $log, ApiDataFactory, $http, $timeout,$location,api) {
+kandidatoApp.controller('vacancyCtrl', function($scope, $rootScope, $log, ApiDataFactory, $http, $timeout, $location, debounce, api) {
 
     // Init dashCtrl scope values
     $scope.disableSuggestions = true
@@ -11,30 +11,30 @@ kandidatoApp.controller('vacancyCtrl', function($scope, $rootScope, $log, ApiDat
      * Gets all vacancies data from API
      */
     $scope.getVacancyData = function(data) {
-      if(!data){
+        if (!data) {
 
 
-        $rootScope.loader = true
-        ApiDataFactory.queryGet('vacancy/byState/open').then(function(result) {
-            $rootScope.loader = false
-            $scope.vacanciesData = result // response data
-        })
-        }
-        else{
-          $scope.vacanciesData = data;
+            $rootScope.loader = true
+            ApiDataFactory.queryGet('vacancy/byState/open').then(function(result) {
+                $rootScope.loader = false
+                $scope.vacanciesData = result // response data
+            })
+        } else {
+            $scope.vacanciesData = data;
         }
         console.log($scope.vacanciesData)
     }
     var data = false;
     $scope.getVacancyData(data);
-    $scope.$on('searchVacancyDataArrived', function(event, data) { $scope.getVacancyData(data); });
-    $scope.$on("listFilterSearch", function (event, data) {
-      if(data){
-      $scope.vacanciesData = data
-      }
-      else{
-        $scope.getVacancyData()
-      }
+    $scope.$on('searchVacancyDataArrived', function(event, data) {
+        $scope.getVacancyData(data);
+    });
+    $scope.$on("listFilterSearch", function(event, data) {
+        if (data) {
+            $scope.vacanciesData = data
+        } else {
+            $scope.getVacancyData()
+        }
     })
 
     /**
@@ -84,7 +84,7 @@ kandidatoApp.controller('vacancyCtrl', function($scope, $rootScope, $log, ApiDat
             var i = 0
             _.each($scope.currentVacancy.tags, function(tagEach) {
 
-                if (tagEach.keyword === tag.keyword) {
+                if (tagEach && tagEach.keyword === tag.keyword) {
                     $scope.currentVacancy.tags.splice(i, 1);
                     var URL = 'vacancy/' + $scope.currentVacancy.id + '/tags/' + tag.id
                     ApiDataFactory.queryDelete(URL).then(function(result) {})
@@ -121,38 +121,38 @@ kandidatoApp.controller('vacancyCtrl', function($scope, $rootScope, $log, ApiDat
         }, 0);
     }
 
-	$scope.fixedAside = function(id) {
+    $scope.fixedAside = function(id) {
 
-		if($('.fixed').length){
+        if ($('.fixed').length) {
 
-			var fixed = $('.fixed');
-			var base = $('.fixed-base');
-			var pointStart = base.offset().top - 20;
-			var pointEnd = base.offset().top + base.outerHeight() - fixed.height() - 20;
+            var fixed = $('.fixed');
+            var base = $('.fixed-base');
+            var pointStart = base.offset().top - 20;
+            var pointEnd = base.offset().top + base.outerHeight() - fixed.height() - 20;
 
-			if($(window).scrollTop() < pointStart){
-				fixed.removeAttr('style').removeClass('scroll');
-			} else if($(window).scrollTop() >= pointStart && $(window).scrollTop() <= pointEnd){
-				fixed.removeAttr('style').addClass('scroll');
-				fixed.width(fixed.parent().width());
-			} else if($(window).scrollTop() > pointEnd){
-				fixed.removeAttr('style').removeClass('scroll');
-				var marginTop = base.outerHeight() - fixed.height();
-				fixed.css('margin-top',marginTop);
-			}
+            if ($(window).scrollTop() < pointStart) {
+                fixed.removeAttr('style').removeClass('scroll');
+            } else if ($(window).scrollTop() >= pointStart && $(window).scrollTop() <= pointEnd) {
+                fixed.removeAttr('style').addClass('scroll');
+                fixed.width(fixed.parent().width());
+            } else if ($(window).scrollTop() > pointEnd) {
+                fixed.removeAttr('style').removeClass('scroll');
+                var marginTop = base.outerHeight() - fixed.height();
+                fixed.css('margin-top', marginTop);
+            }
 
-			setTimeout(function(){
-				destination = $('#card-' + id).offset().top;
-				$('html,body').stop().animate({
-					scrollTop: destination
-				},{
-					duration: 200
-				});
-			},100);
+            setTimeout(function() {
+                destination = $('#card-' + id).offset().top;
+                $('html,body').stop().animate({
+                    scrollTop: destination
+                }, {
+                    duration: 200
+                });
+            }, 100);
 
-		}
+        }
 
-  }
+    }
 
 
 
@@ -207,12 +207,12 @@ kandidatoApp.controller('vacancyCtrl', function($scope, $rootScope, $log, ApiDat
         },
 
         suggestions: function(vacancy) {
-          $scope.returnSelectDefault = true
-          $scope.currentVacancy = vacancy
+            $scope.returnSelectDefault = true
+            $scope.currentVacancy = vacancy
 
-          $timeout(function() {
-              $scope.selectedIndex = 2
-          }, 0);
+            $timeout(function() {
+                $scope.selectedIndex = 2
+            }, 0);
 
         }
     }
@@ -224,17 +224,16 @@ kandidatoApp.controller('vacancyCtrl', function($scope, $rootScope, $log, ApiDat
     $scope.archiveVacancy = function(vacancy) {
 
         $scope.loader = true
-        delete $scope.currentVacancy
-        var URL = 'vacancy/' + vacancy.id + 'archive/'
-            // ApiDataFactory.queryDelete(URL).then(function(result) {
-            //     $scope.loader = true;
-            //
-            // })
-        var i = 0;
-        $scope.vacanciesData.splice(_.indexOf($scope.vacanciesData, vacancy), 1);
-        $scope.loader = false
-        $scope.returnSelectDefault = false
-        $scope.currentVacancy = false
+
+        api.archiveVacancy(vacancy.id).then(function(res) {
+            delete $scope.currentVacancy
+            var i = 0;
+            $scope.vacanciesData.splice(_.indexOf($scope.vacanciesData, vacancy), 1);
+            $scope.loader = false
+            $scope.returnSelectDefault = false
+            $scope.currentVacancy = false
+        })
+
 
     }
 
@@ -311,7 +310,7 @@ Notes() )  with note id to delete.
             if (note.deleteNote) {
                 $scope.notes.splice(_.indexOf($scope.notes, note), 1)
                 var URL = 'comment/' + note.id
-                    ApiDataFactory.queryDelete(URL).then(function(result) {})
+                ApiDataFactory.queryDelete(URL).then(function(result) {})
             };
             note.deleteNote = true
         },
@@ -341,22 +340,20 @@ Notes() )  with note id to delete.
         }
     }
 
-
-
     /**
      * Update vacancy info, API request
      */
 
     $scope.updateInfo = function(vacancyId) {
         var dataToSend = {}
-            dataToSend.name = $scope.currentVacancyData.name
-            dataToSend.requirements = $scope.currentVacancyData.requirements
-            $rootScope.updateProcess = true
-            var URL = 'vacancy/' + vacancyId
-            ApiDataFactory.queryPost(URL, dataToSend).then(function(result) {
-                $rootScope.updateProcess = false
-                $scope.showToast()
-            })
+        dataToSend.name = $scope.currentVacancyData.name
+        dataToSend.requirements = $scope.currentVacancyData.requirements
+        $rootScope.updateProcess = true
+        var URL = 'vacancy/' + vacancyId
+        ApiDataFactory.queryPost(URL, dataToSend).then(function(result) {
+            $rootScope.updateProcess = false
+            $scope.showToast()
+        })
         angular.copy($scope.currentVacancyData, $scope.currentVacancy);
     }
 
@@ -405,7 +402,8 @@ Notes() )  with note id to delete.
             });
         };
         if (indexNew == 2) {
-            $scope.getSuggestions(-1, -1, 'all')
+            //$scope.getSuggestions(-1, -1, 'all')
+            $scope.loadSuggestions();
         };
         if (indexNew != 2) {
             $scope.suggestedPage = 0
@@ -415,74 +413,110 @@ Notes() )  with note id to delete.
         if (indexNew == 3) {
             getVacancyNotes()
         };
-
-
-
     });
-
 
     /**
      * Gets currentVacancy suggestions
      */
 
+    $scope.suggestionSearch = debounce(500, function() {
+        $scope.getSuggestions.suggested()
+        $scope.getSuggestions.available()
+    });
 
-    $scope.getSuggestions = function(pageSuggested, availablePage, type) {
 
+    $scope.getSuggestions = {
+        search: function() {
+            $scope.suggestionSearch()
+        },
+        suggested: function(loadMore) {
 
-        if (type == 'available' || type == 'all') {
             $rootScope.updateProcess = true
-            $scope.availablePage = availablePage
-            $scope.availablePage++;
-            ApiDataFactory.queryGet('candidate/findAvailable?vacancyId=' + $scope.currentVacancy.id + '&page=' + $scope.availablePage + '&size=5').then(function(result) {
-                if ($scope.availablePage > 0) {
-                    _.each(result, function(vacancy) {
-                        $scope.flowAvailable.push(vacancy)
+            if (loadMore) {
+                $scope.suggestedPage++
+                    console.log($scope.suggestedPage++)
 
-                    });
+            };
 
-                } else {
-                    $scope.flowAvailable = result;
-                }
-                $rootScope.updateProcess = false
-
-            });
-        };
-
-
-        if (type == 'suggested' || type == 'all') {
-            $rootScope.updateProcess = true
-            $scope.suggestedPage = pageSuggested
-            $scope.suggestedPage++;
-            ApiDataFactory.queryGet('candidate/findRecommended?vacancyId=' + $scope.currentVacancy.id + '&page=' + $scope.suggestedPage + '&size=5').then(function(result) {
+            ApiDataFactory.queryGet('candidate/findRecommended?search=' + $scope.filterSuggestions + '&vacancyId=' + $scope.currentVacancy.id + '&page=' + $scope.suggestedPage + '&size=5').then(function(result) {
                 if ($scope.suggestedPage > 0) {
                     _.each(result, function(vacancy) {
                         $scope.flowSuggested.push(vacancy)
-
                     });
 
                 } else {
                     $scope.flowSuggested = result;
+                    console.log("Recommended candidates: " + result)
                 }
                 $rootScope.updateProcess = false
             });
-        };
+
+        },
+        available: function(loadMore) {
+            $rootScope.updateProcess = true
+            if (loadMore) {
+                $scope.availablePage++
+                    console.log($scope.availablePage++)
+            };
+
+            ApiDataFactory.queryGet('candidate/findAvailable?search=' + $scope.filterSuggestions + '&vacancyId=' + $scope.currentVacancy.id + '&page=' + $scope.availablePage + '&size=5').then(function(result) {
+                if ($scope.availablePage > 0) {
+                    _.each(result, function(vacancy) {
+                        $scope.flowAvailable.push(vacancy)
+                    });
+
+                } else {
+                    $scope.flowAvailable = result;
+                    console.log("Available candidates: " + result)
+                }
+                $rootScope.updateProcess = false
+
+            });
+
+        }
     }
 
-    $scope.changeFlowState = function(state, desc, flowid) {
+    $scope.loadSuggestions = function() {
+        $scope.suggestedPage = 0;
+        $scope.availablePage = 0;
+        $scope.filterSuggestions = "";
+        $scope.getSuggestions.suggested($scope.suggestedPage)
+        $scope.getSuggestions.available($scope.availablePage)
+    }
 
 
-      var data = {
-    "state": state,
-    "description": desc || "Some dummy text",
-    "flowId": flowid
-  }
-      api.positionStateForCadindate(data).then(
-        function(data) {
-  console.info("Success");
-        },
-        function(error) {
-  console.error("Fail");
-        })
+
+
+    $scope.updateActionDescription = function(actionId, desc) {
+
+
+        var data = {
+            "description": desc
+        }
+        api.updateActionDescription(actionId, data).then(
+            function(data) {
+                console.info("Update actionId: " + actionId + " description success");
+            },
+            function(error) {
+                console.error("Update action description fail");
+            })
+    }
+
+    $scope.addFlowAction = function(state, desc, flowId) {
+
+
+        var data = {
+            "state": state,
+            "description": desc,
+            "flowId": flowId
+        }
+        api.addFlowAction(data).then(
+            function(data) {
+                console.info("Add flow action success");
+            },
+            function(error) {
+                console.error("Add flow action fail");
+            })
     }
 
     $scope.isEmpty = isEmpty;

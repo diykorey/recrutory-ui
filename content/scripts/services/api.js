@@ -5,23 +5,26 @@ kandidatoApp.service('api', function($http, $q, $cookies, ApiDataFactory) {
 
     this.search = function(type, keyword) {
         var d = $q.defer();
-      /*  $http.get(apiURL + '/search/' + type + '/byKeywords?query=' + keyword + '&page=0&size=10').then(function(response) {
-            d.resolve(response);
-        }, d.reject.bind(d));*/
         ApiDataFactory.queryGet('/search/' + type + '/byKeywords?query=' + keyword + '&page=0&size=10').then(function(response) {
             d.resolve(response);
         }, d.reject.bind(d));
         return d.promise;
     };
-    this.positionStateForCadindate = function(data) {
+    this.addFlowAction = function(data) {
         var d = $q.defer();
         ApiDataFactory.queryPost('/workflow/action', data).then(function(response) {
             d.resolve(response);
         }, d.reject.bind(d));
 
-      /*  $http.post(apiURL + '/workflow/action', data).then(function(response) {
+        return d.promise;
+    };
+
+    this.updateActionDescription = function(actionId, data) {
+        var d = $q.defer();
+        ApiDataFactory.queryPut('/workflow/action/' + actionId, data).then(function(response) {
             d.resolve(response);
-        }, d.reject.bind(d));*/
+        }, d.reject.bind(d));
+
         return d.promise;
     };
 
@@ -98,6 +101,16 @@ kandidatoApp.service('api', function($http, $q, $cookies, ApiDataFactory) {
         }, d.reject.bind(d));*/
 
         ApiDataFactory.queryGet('candidate/' + id).then(function(response) {
+            d.resolve(response);
+        }, d.reject.bind(d));
+
+        return d.promise;
+    };
+
+    this.archiveVacancy= function(vacancyId) {
+        var d = $q.defer();
+
+        ApiDataFactory.queryDelete('vacancy/' + vacancyId + '/archive/').then(function(response) {
             d.resolve(response);
         }, d.reject.bind(d));
 

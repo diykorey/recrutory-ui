@@ -1,4 +1,3 @@
-
 <div>
 
 	<div class="card-info-top clearfix">
@@ -10,14 +9,14 @@
 		</div>
 	</div>
 	<div class="add-field" ng-show="addProgress">
-		<md-button class="add-field-cancel" ng-click='customField.cancel()'></md-button>
+		<!--md-button class="add-field-cancel" ng-click='customField.cancel()'></md-button>
 		<div class="add-field-prime">
 			<label><md-checkbox class="md-checkbox" aria-label="prime" ng-model="newField.type.prime"></md-checkbox>make it prime</label>
-		</div>
-		<div class="add-field-col">
+		</div-->
+
 
 			<div class="add-field-cell cell-name">
-				<label>Name new field type</label>
+				<!--label>Name new field type</label-->
 				<!--<select kendo-combo-box
 								k-placeholder="'Select type'"
 								k-data-text-field="'name'"
@@ -30,15 +29,24 @@
 								ng-model="newField.type.name" >
 				</select-->
 				<div class="combobox">
-					<input type="text" name="comboboxfieldname" id="field-name" class="textfield" ng-model="newField.type.name" >
+					<input type="text" name="comboboxfieldname" id="field-name" class="textfield" ng-model="newField.type.name" ng-change="debounceInitCustomType()" placeholder="Enter field type">
 					<span></span>
 					<div class="dropdownlist">
-						<a ng-repeat="fieldType in fieldTypes"  ng-click="changeType(fieldType)">{{fieldType.name}}</a>
+						<a ng-repeat="fieldType in fieldTypes" ng-click="changeType(fieldType)">{{fieldType.name}}</a>
 					</div>
 				</div>
-			</div>
 
+			</div>
 			<div class="add-field-cell cell-value">
+				<input class="textfield" ng-model="newField.fieldValue" type="text" placeholder="Enter its value">
+			</div>
+			<div class="md-checkbox-label add-field-prime"  ng-show="newField.type.priorityGroup!='1'" >
+				<md-checkbox class="md-checkbox" aria-label="prime" ng-model="newField.type.prime"></md-checkbox><label class="" >Prime</label>
+			</div>
+			<md-button  ng-disabled="newField.type.name==''" class="add-field-save" ng-click='customField.save()'></md-button>
+			<md-button class="add-field-cancel" ng-click='customField.cancel()'></md-button>
+
+			<!--div class="add-field-cell cell-value">
 				<md-input-container>
 					<label>Enter its value</label>
 					<input class="textfield" ng-model="newField.fieldValue" type="text">
@@ -48,9 +56,9 @@
 			<div class="add-field-cell">&nbsp;</div>
 			<div class="add-field-cell">
 				<md-button class="small-button c1" ng-click='customField.save()'>Done</md-button>
-			</div>
+			</div-->
 			<div class="clear"></div>
-		</div>
+
 	</div>
 	<div class="closure-wrapper">
 		<div class="closure-block" ng-class="hidePredefined ? '' : 'border-visible'">
@@ -85,12 +93,12 @@
 		<div class="closure clearfix" ng-hide="hidePrime">
 			<div class="card-info-main-list">
 				<div ng-show="currentCandidate.summaryCard.primeFields.length == 0">No results</div>
-				<div class="card-info-main-list-item clearfix" ng-repeat="field in currentCandidate.summaryCard.primeFields" >
+				<div class="card-info-main-list-item clearfix" ng-repeat="field in currentCandidate.summaryCard.primeFields">
 					<!--<md-input-container>-->
 					<label>{{field.type.name}}</label>
 					<input class="textfield" size="" type="text" ng-blur="updateField(field)" ng-focus="customField.set(field)" ng-model="field.fieldValue">
 					<!--</md-input-container>-->
-						<!--<<button type="button" class="edit-icon"></button>-->
+					<!--<<button type="button" class="edit-icon"></button>-->
 					<md-button class="del-icon" ng-click="customField.delete(field)"></md-button>
 				</div>
 			</div>
@@ -109,7 +117,7 @@
 					<label>{{field.type.name}}</label>
 					<input class="textfield" type="text" ng-blur="updateField(field)" ng-focus="customField.set(field)" ng-model="field.fieldValue">
 					<!--</md-input-container>-->
-						<!--<<button type="button" class="edit-icon"></button>-->
+					<!--<<button type="button" class="edit-icon"></button>-->
 					<md-button class="del-icon" ng-click="customField.delete(field)"></md-button>
 				</div>
 			</div>
